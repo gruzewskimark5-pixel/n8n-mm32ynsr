@@ -31,6 +31,11 @@ services:
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
+      # Sets n8n to run all workflows in the main process to
+      # optimize performance and reduce memory overhead.
+      - key: EXECUTIONS_PROCESS
+        value: main
+
       # These automatically populate connection details 
       # for the Render Postgres database defined below
       - key: DB_TYPE
