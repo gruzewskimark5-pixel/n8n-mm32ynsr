@@ -57,6 +57,11 @@ services:
           name: n8n-db
           property: user
 
+      # The default port n8n listens on.
+      # Explicitly setting this speeds up your first deploy!
+      - key: PORT
+        value: 5678
+
 databases:
   - name: n8n-db
     plan: free
