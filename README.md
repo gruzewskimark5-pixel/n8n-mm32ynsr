@@ -3,7 +3,7 @@
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
 > [!IMPORTANT]
-> **View full deployment instructions in the [**Render docs**](https://render.com/docs/deploy-n8n).**
+> **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
 
 This template defines a [`render.yaml`](https://github.com/render-examples/n8n/blob/main/render.yaml) file you can use to deploy [n8n](https://n8n.io/) on Render. Click **Use this template** in the upper right to copy this template into your account as a new repo.
 
@@ -22,9 +22,12 @@ After your n8n instance is up and running, follow these steps to finish setting 
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
 ### 2. Configure Webhook URL
-If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` manually to your `onrender.com` URL (e.g., `https://n8n-service-q975.onrender.com/`).
+If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL (for example, `https://n8n-service-q975.onrender.com/`).
 
-### 3. Free Tier Limitations
+### 3. Verification
+You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
+
+### 4. Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - Free web services spin down after 15 minutes of inactivity.
