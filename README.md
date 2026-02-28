@@ -1,11 +1,11 @@
 # Deploy n8n on Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
 
 > [!IMPORTANT]
 > **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
 
-This template defines a [`render.yaml`](https://github.com/render-examples/n8n/blob/main/render.yaml) file you can use to deploy [n8n](https://n8n.io/) on Render. Click **Use this template** in the upper right to copy this template into your account as a new repo.
+This template defines a [`render.yaml`](./render.yaml) file you can use to deploy [n8n](https://n8n.io/) on Render. Click **Use this template** in the upper right to copy this template into your account as a new repo.
 
 The `render.yaml` file defines the following resources:
 
@@ -18,19 +18,19 @@ Each of the above uses a free instance type by default.
 
 After your n8n instance is up and running, follow these steps to finish setting up:
 
-### 1. Initial Setup
+### 👤 1. Initial Setup
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
-### 2. Configure Webhook URL
+### 🪝 2. Configure Webhook URL
 If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL (for example, `https://n8n-service-q975.onrender.com/`).
 
-### 3. Verification
+### ✅ 3. Verification
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
-### 4. Free Tier Limitations
+### ⚠️ 4. Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - Free web services spin down after 15 minutes of inactivity.
-> - Free PostgreSQL databases have a limited lifespan and will eventually expire.
+> - **Spin down:** Free web services spin down after 15 minutes of inactivity.
+> - **Database expiry:** Free PostgreSQL databases expire and are deleted after **90 days**.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
