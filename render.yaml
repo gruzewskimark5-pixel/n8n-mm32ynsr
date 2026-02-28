@@ -43,6 +43,12 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Optimized memory management for Render's 512MB free tier.
+      # Setting max-old-space-size ensures Node.js triggers garbage collection
+      # proactively, preventing OOM kills while leaving headroom for the stack.
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=384
+
       # These automatically populate connection details 
       # for the Render Postgres database defined below
       - key: DB_TYPE
