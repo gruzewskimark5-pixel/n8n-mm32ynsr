@@ -70,6 +70,12 @@ services:
           name: n8n-db
           property: user
 
+      # Increases the database connection pool size from the default (2) to 10.
+      # This reduces connection acquisition latency during concurrent workflow
+      # executions and improves overall system throughput.
+      - key: DB_POSTGRESDB_POOL_SIZE
+        value: "10"
+
       # The default port n8n listens on.
       # Explicitly setting this speeds up your first deploy!
       - key: PORT
