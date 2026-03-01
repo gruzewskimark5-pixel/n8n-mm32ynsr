@@ -11,3 +11,7 @@
 ## 2026-02-28 - Preventing OOM Kills with max-old-space-size
 **Learning:** In environments with strict memory limits (like Render's 512MB free tier), Node.js may not garbage collect frequently enough, leading to OOM kills.
 **Action:** Set `NODE_OPTIONS: --max-old-space-size=384` to force proactive garbage collection before reaching the platform's hard limit, leaving headroom for non-heap memory.
+
+## 2026-03-01 - Improving Database Concurrency with Connection Pooling
+**Learning:** n8n's default database connection pool size is very conservative (2 connections). This can become a significant bottleneck for concurrent workflow executions and UI performance, as operations must wait for an available connection.
+**Action:** Increase `DB_POSTGRESDB_POOL_SIZE` to 10 in `render.yaml`. This is well within the limits of even the smallest Render PostgreSQL plans and significantly improves throughput.
