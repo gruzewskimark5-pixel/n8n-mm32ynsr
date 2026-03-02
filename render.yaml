@@ -77,6 +77,7 @@ services:
 
       # If you use webhook nodes, set this manually to your service URL
       # (e.g., https://n8n-service-q975.onrender.com/) after deployment.
+      # You can find your service URL on the service's dashboard in the Render UI.
       # - key: WEBHOOK_URL
       #   value: https://replace-with-your-url.onrender.com/
 
