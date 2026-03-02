@@ -14,23 +14,35 @@ The `render.yaml` file defines the following resources:
 
 Each of the above uses a free instance type by default.
 
+## Features
+
+- 🚀 **One-click deploy to Render:** Get up and running in minutes with a pre-configured Blueprint.
+- 🐘 **Managed PostgreSQL database included:** Reliable data storage for your workflows, set up automatically.
+- ⚡ **Optimized for Render's Free tier:** Performance and memory configurations tailored for efficient resource usage.
+
 ## Post-deployment setup
 
 After your n8n instance is up and running, follow these steps to finish setting up:
 
-### 👤 1. Initial Setup
+### 👤 1. Create your account
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
-### 🪝 2. Configure Webhook URL
+### 🔗 2. Set your Webhook URL
 If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL (for example, `https://n8n-service-q975.onrender.com/`).
 
-### ✅ 3. Verification
+### 🚦 3. Verify deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
-### ⚠️ 4. Free Tier Limitations
+### 📉 4. Free tier limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - **Spin down:** Free web services spin down after 15 minutes of inactivity.
 > - **Database expiry:** Free PostgreSQL databases expire and are deleted after **90 days**.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
+
+## Resources
+
+- 📖 **[n8n Documentation](https://docs.n8n.io/)**: Official guides and reference for n8n.
+- 💬 **[n8n Community Forum](https://community.n8n.io/)**: Get help and share workflows with other n8n users.
+- 🚀 **[Render Documentation](https://render.com/docs)**: Learn more about deploying and managing services on Render.
