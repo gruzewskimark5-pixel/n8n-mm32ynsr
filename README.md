@@ -14,17 +14,24 @@ The `render.yaml` file defines the following resources:
 
 Each of the above uses a free instance type by default.
 
+## ✨ Features
+
+- **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
+- **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings and automated data pruning.
+- **Persistent Storage:** Includes a Render Postgres database to securely store your workflows and credentials.
+- **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+
 ## Post-deployment setup
 
 After your n8n instance is up and running, follow these steps to finish setting up:
 
-### 👤 1. Initial Setup
+### 👤 1. Create your owner account
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
 ### 🪝 2. Configure Webhook URL
 If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL (for example, `https://n8n-service-q975.onrender.com/`).
 
-### ✅ 3. Verification
+### ✅ 3. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
 ### ⚠️ 4. Free Tier Limitations
