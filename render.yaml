@@ -80,6 +80,14 @@ services:
           name: n8n-db
           property: user
 
+      # Optimized database connection pool size for improved concurrency.
+      # Increasing this from the default (2) to 5 reduces connection
+      # acquisition latency and improves overall system throughput.
+      # A value of 5 is used to stay within Render's free tier Postgres
+      # connection limit.
+      - key: DB_POSTGRESDB_POOL_SIZE
+        value: "5"
+
       # The default port n8n listens on.
       # Explicitly setting this speeds up your first deploy!
       - key: PORT

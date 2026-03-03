@@ -15,3 +15,7 @@
 ## 2026-03-02 - Optimizing Database Efficiency with Execution Data Pruning
 **Learning:** On platforms with restricted database storage (like Render's 1GB free tier), workflow execution history can quickly consume disk space, leading to increased index sizes, slower queries, and potential service failures once the hard limit is reached.
 **Action:** Implement aggressive execution data pruning by setting `EXECUTIONS_DATA_PRUNE: true`, `EXECUTIONS_DATA_MAX_AGE: 168` (7 days), and `EXECUTIONS_DATA_PRUNE_MAX_COUNT: 1000` to keep the database lean and maintain high query performance.
+
+## 2026-03-05 - Reducing Database Connection Latency
+**Learning:** n8n defaults to a Postgres connection pool size of 2. In scenarios with concurrent workflow executions, this small pool can become a bottleneck. However, Render's free tier Postgres limits connections to 5.
+**Action:** Increase `DB_POSTGRESDB_POOL_SIZE` to 5 in `render.yaml` to maximize concurrency while staying within platform constraints, reducing connection acquisition wait times.
