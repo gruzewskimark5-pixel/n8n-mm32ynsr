@@ -49,6 +49,16 @@ services:
       - key: NODE_OPTIONS
         value: --max-old-space-size=384
 
+      # Enable more aggressive execution data pruning to keep the database lean.
+      # This prevents the 1GB free tier database from filling up and maintains
+      # high performance by reducing index size and query latency.
+      - key: EXECUTIONS_DATA_PRUNE
+        value: "true"
+      - key: EXECUTIONS_DATA_MAX_AGE
+        value: "168" # 7 days
+      - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
+        value: "1000"
+
       # These automatically populate connection details 
       # for the Render Postgres database defined below
       - key: DB_TYPE

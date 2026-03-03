@@ -11,3 +11,7 @@
 ## 2026-02-28 - Preventing OOM Kills with max-old-space-size
 **Learning:** In environments with strict memory limits (like Render's 512MB free tier), Node.js may not garbage collect frequently enough, leading to OOM kills.
 **Action:** Set `NODE_OPTIONS: --max-old-space-size=384` to force proactive garbage collection before reaching the platform's hard limit, leaving headroom for non-heap memory.
+
+## 2026-03-02 - Optimizing Database Efficiency with Execution Data Pruning
+**Learning:** On platforms with restricted database storage (like Render's 1GB free tier), workflow execution history can quickly consume disk space, leading to increased index sizes, slower queries, and potential service failures once the hard limit is reached.
+**Action:** Implement aggressive execution data pruning by setting `EXECUTIONS_DATA_PRUNE: true`, `EXECUTIONS_DATA_MAX_AGE: 168` (7 days), and `EXECUTIONS_DATA_PRUNE_MAX_COUNT: 1000` to keep the database lean and maintain high query performance.
