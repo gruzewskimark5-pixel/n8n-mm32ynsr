@@ -88,6 +88,14 @@ services:
       - key: DB_POSTGRESDB_POOL_SIZE
         value: "5"
 
+      # Prevents the service from becoming unresponsive or crashing during
+      # high-load periods by limiting concurrent production executions.
+      # This prevents event loop thrashing and ensures each execution has
+      # sufficient CPU and RAM. A value of 5 is used to align with the
+      # database connection pool size.
+      - key: N8N_CONCURRENCY_PRODUCTION_LIMIT
+        value: "5"
+
       # The default port n8n listens on.
       # Explicitly setting this speeds up your first deploy!
       - key: PORT
