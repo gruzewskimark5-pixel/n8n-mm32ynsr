@@ -19,3 +19,7 @@
 ## 2026-03-05 - Reducing Database Connection Latency
 **Learning:** n8n defaults to a Postgres connection pool size of 2. In scenarios with concurrent workflow executions, this small pool can become a bottleneck. However, Render's free tier Postgres limits connections to 5.
 **Action:** Increase `DB_POSTGRESDB_POOL_SIZE` to 5 in `render.yaml` to maximize concurrency while staying within platform constraints, reducing connection acquisition wait times.
+
+## 2026-03-10 - Preventing Service Unresponsiveness with Concurrency Limits
+**Learning:** In resource-constrained environments (like Render's 512MB free tier), an unexpected surge in production workflow triggers can lead to event loop thrashing, causing the service to become unresponsive or crash due to resource exhaustion (CPU/RAM).
+**Action:** Set `N8N_CONCURRENCY_PRODUCTION_LIMIT` in `render.yaml` to a small value (e.g., 5) to queue concurrent production executions, ensuring the service remains stable and responsive under load while aligning with database connection limits.
