@@ -103,12 +103,14 @@ services:
 
       # If you use webhook nodes, set this manually to your service URL
       # (e.g., https://n8n-service-q975.onrender.com/) after deployment.
+      # You can find your service URL in the Render Dashboard under the
+      # "Connect" button or at the top of the service page.
       # - key: WEBHOOK_URL
       #   value: https://replace-with-your-url.onrender.com/
 
 databases:
   - name: n8n-db
-    plan: free # Note: Free databases expire after 90 days.
+    plan: free # Note: Free databases expire and are DELETED after 90 days.
     # The free instance type is limited to 1 GB of disk
     # space.
     #
