@@ -43,6 +43,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables version check notifications to reduce periodic background
+      # network requests and CPU wake-ups.
+      - key: N8N_VERSION_NOTIFICATIONS_ENABLED
+        value: "false"
+
       # Optimized memory management for Render's 512MB free tier.
       # Setting max-old-space-size ensures Node.js triggers garbage collection
       # proactively, preventing OOM kills while leaving headroom for the stack.
