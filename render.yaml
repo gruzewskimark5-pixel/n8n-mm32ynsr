@@ -59,7 +59,7 @@ services:
       - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
         value: "1000"
 
-      # These automatically populate connection details 
+      # These automatically populate connection details
       # for the Render Postgres database defined below
       - key: DB_TYPE
         value: postgresdb
@@ -101,9 +101,10 @@ services:
       - key: PORT
         value: 5678
 
-      # If you use webhook nodes, set this manually to your service URL
-      # (e.g., https://n8n-service-q975.onrender.com/) after deployment.
-      # You can find your service URL in the Render Dashboard under the
+      # If you use webhook nodes or OAuth2 authentication, set this manually
+      # to your service URL (e.g., https://n8n-service-q975.onrender.com/)
+      # after deployment. You can find your service URL in the Render
+      # Dashboard under the
       # "Connect" button or at the top of the service page.
       # - key: WEBHOOK_URL
       #   value: https://replace-with-your-url.onrender.com/

@@ -9,6 +9,7 @@
 - [Getting Started](#getting-started)
 - [✨ Features](#-features)
 - [Post-deployment Setup](#post-deployment-setup)
+- [🚀 Next Steps](#-next-steps)
 - [⚠️ Free Tier Limitations](#️-free-tier-limitations)
 
 ## Getting Started
@@ -37,14 +38,22 @@ After your n8n instance is up and running, follow these steps to finish setting 
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
 ### 🪝 2. Configure Webhook URL
-If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL.
+If you use **webhook nodes** or **OAuth2 authentication** (e.g., connecting to Google or Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL.
 
-1. Find your service URL in the Render Dashboard (e.g., `https://n8n-service-q975.onrender.com/`).
+1. Find your service URL in the Render Dashboard (under the **Connect** button or at the top of the service page).
 2. Go to your service's **Environment** tab.
 3. Add a new environment variable with the key `WEBHOOK_URL` and your service URL as the value.
 
 ### ✅ 3. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
+
+## 🚀 Next Steps
+
+Now that n8n is running, it's time to build your first automation:
+
+1. **Create a workflow:** Click **+ New** in the n8n dashboard to start with a blank canvas.
+2. **Explore the Library:** Browse thousands of pre-built workflows in the [n8n Workflow Library](https://n8n.io/workflows/) to get inspired and jumpstart your automation.
+3. **Connect your apps:** Add your first node (like Gmail, Slack, or Discord) to start moving data between your favorite tools.
 
 ## ⚠️ Free Tier Limitations
 > [!WARNING]
