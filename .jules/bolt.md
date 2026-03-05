@@ -23,3 +23,7 @@
 ## 2026-03-10 - Preventing Service Unresponsiveness with Concurrency Limits
 **Learning:** In resource-constrained environments (like Render's 512MB free tier), an unexpected surge in production workflow triggers can lead to event loop thrashing, causing the service to become unresponsive or crash due to resource exhaustion (CPU/RAM).
 **Action:** Set `N8N_CONCURRENCY_PRODUCTION_LIMIT` in `render.yaml` to a small value (e.g., 5) to queue concurrent production executions, ensuring the service remains stable and responsive under load while aligning with database connection limits.
+
+## 2026-03-12 - Minimizing Idle Overhead by Disabling Version Checks
+**Learning:** Disabling n8n version notifications reduces periodic background network requests and CPU wake-ups. While individual requests are small, eliminating them helps maximize available CPU and network bandwidth for actual workflow executions on Render's free tier.
+**Action:** Set `N8N_VERSION_NOTIFICATIONS_ENABLED: false` in `render.yaml` for all resource-constrained deployments to minimize idle background activity.
