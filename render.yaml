@@ -43,6 +43,17 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables version check notifications to further reduce background
+      # CPU, memory, and network overhead.
+      - key: N8N_VERSION_NOTIFICATIONS_ENABLED
+        value: "false"
+
+      # Offloads binary data from RAM to disk. This is critical for the 512MB
+      # free tier to prevent OOM crashes when processing files, images, or
+      # large payloads, ensuring stability during file-heavy workflows.
+      - key: N8N_DEFAULT_BINARY_DATA_MODE
+        value: filesystem
+
       # Optimized memory management for Render's 512MB free tier.
       # Setting max-old-space-size ensures Node.js triggers garbage collection
       # proactively, preventing OOM kills while leaving headroom for the stack.
