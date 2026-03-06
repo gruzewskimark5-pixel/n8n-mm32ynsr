@@ -25,7 +25,7 @@ Each of the above uses a free instance type by default.
 ## ✨ Features
 
 - **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
-- **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings, concurrency limits, and automated data pruning.
+- **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings, concurrency limits, disk-offloaded binary data for stability, and automated data pruning.
 - **Persistent Storage:** Includes a Render Postgres database to securely store your workflows and credentials.
 - **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 

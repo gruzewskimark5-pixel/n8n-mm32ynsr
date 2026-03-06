@@ -23,3 +23,7 @@
 ## 2026-03-10 - Preventing Service Unresponsiveness with Concurrency Limits
 **Learning:** In resource-constrained environments (like Render's 512MB free tier), an unexpected surge in production workflow triggers can lead to event loop thrashing, causing the service to become unresponsive or crash due to resource exhaustion (CPU/RAM).
 **Action:** Set `N8N_CONCURRENCY_PRODUCTION_LIMIT` in `render.yaml` to a small value (e.g., 5) to queue concurrent production executions, ensuring the service remains stable and responsive under load while aligning with database connection limits.
+
+## 2026-03-15 - Optimizing Memory and Overhead with Binary Data Mode and Version Checks
+**Learning:** n8n's default in-memory binary data storage is a major OOM risk on Render's 512MB free tier when processing files or large payloads. Additionally, background version checks add unnecessary CPU and network overhead.
+**Action:** Set `N8N_DEFAULT_BINARY_DATA_MODE: filesystem` to offload large payloads to ephemeral disk and `N8N_VERSION_NOTIFICATIONS_ENABLED: false` to minimize idle resource consumption.
