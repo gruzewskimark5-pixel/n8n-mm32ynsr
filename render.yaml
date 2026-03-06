@@ -101,10 +101,16 @@ services:
       - key: PORT
         value: 5678
 
-      # If you use webhook nodes, set this manually to your service URL
-      # (e.g., https://n8n-service-q975.onrender.com/) after deployment.
-      # You can find your service URL in the Render Dashboard under the
-      # "Connect" button or at the top of the service page.
+      # Sets the timezone for your n8n instance.
+      # This is important for accurate scheduling in your workflows.
+      # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      # for a list of valid TZ values.
+      # - key: GENERIC_TIMEZONE
+      #   value: Europe/Berlin
+
+      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
+      # manually to your service URL after your first deployment.
+      # You can find your URL at the top of the service page in the Render Dashboard.
       # - key: WEBHOOK_URL
       #   value: https://replace-with-your-url.onrender.com/
 

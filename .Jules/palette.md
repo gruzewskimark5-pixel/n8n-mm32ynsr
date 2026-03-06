@@ -9,3 +9,7 @@
 ## 2025-05-16 - Reducing Navigation Friction in Deployment Templates
 **Learning:** Providing specific UI navigation paths (e.g., 'Go to the Environment tab') for manual setup steps reduces cognitive load and prevents users from getting lost in a complex platform dashboard.
 **Action:** Always include step-by-step navigation guidance for any manual configuration required after deployment.
+
+## 2025-05-17 - Table of Contents Anchor Consistency
+**Learning:** Emojis in Markdown headers are often stripped or handled inconsistently by git platforms (like GitHub) when generating automatic anchor links. This frequently leads to broken Table of Contents links if the anchors in the TOC don't perfectly match the processed header text.
+**Action:** Keep Table of Contents anchors simple and emoji-free, and ensure header text is synchronized with TOC links to maintain navigation integrity.
