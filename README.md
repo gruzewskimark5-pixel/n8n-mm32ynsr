@@ -7,9 +7,10 @@
 
 ## 📖 Table of Contents
 - [Getting Started](#getting-started)
-- [✨ Features](#-features)
+- [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
-- [⚠️ Free Tier Limitations](#️-free-tier-limitations)
+- [Free Tier Limitations](#free-tier-limitations)
+- [Next Steps](#next-steps)
 
 ## Getting Started
 
@@ -22,14 +23,14 @@ The `render.yaml` file defines the following resources:
 
 Each of the above uses a free instance type by default.
 
-## ✨ Features
+## Features
 
 - **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings, concurrency limits, and automated data pruning.
 - **Persistent Storage:** Includes a Render Postgres database to securely store your workflows and credentials.
 - **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
-## Post-deployment setup
+## Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps to finish setting up:
 
@@ -37,19 +38,27 @@ After your n8n instance is up and running, follow these steps to finish setting 
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
 ### 🪝 2. Configure Webhook URL
-If you use webhook nodes in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually to your service's `onrender.com` URL.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually.
 
-1. Find your service URL in the Render Dashboard (e.g., `https://n8n-service-q975.onrender.com/`).
-2. Go to your service's **Environment** tab.
-3. Add a new environment variable with the key `WEBHOOK_URL` and your service URL as the value.
+1. **Find your URL:** Copy your service URL from the Render Dashboard (e.g., `https://n8n-service-q975.onrender.com/`).
+2. **Open Environment settings:** Navigate to your service's **Environment** tab.
+3. **Add variable:** Click **Add Environment Variable**.
+4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
+5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
 ### ✅ 3. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
-## ⚠️ Free Tier Limitations
+## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - **Spin down:** Free web services spin down after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **deleted** after **90 days**.
+> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **90 days**.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
+
+## Next Steps
+
+- **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
+- **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
+- **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
