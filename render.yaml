@@ -48,6 +48,12 @@ services:
       - key: N8N_VERSION_NOTIFICATIONS_ENABLED
         value: "false"
 
+      # Reduces CPU and I/O overhead by limiting log output to warnings and
+      # errors. This is ideal for resource-constrained environments like
+      # Render's free tier, while still preserving critical troubleshooting info.
+      - key: N8N_LOG_LEVEL
+        value: warn
+
       # Offloads binary data from RAM to disk. This is critical for the 512MB
       # free tier to prevent OOM crashes when processing files, images, or
       # large payloads, ensuring stability during file-heavy workflows.
