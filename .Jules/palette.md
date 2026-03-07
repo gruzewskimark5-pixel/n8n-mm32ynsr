@@ -13,3 +13,7 @@
 ## 2025-05-17 - Table of Contents Anchor Consistency
 **Learning:** Emojis in Markdown headers are often stripped or handled inconsistently by git platforms (like GitHub) when generating automatic anchor links. This frequently leads to broken Table of Contents links if the anchors in the TOC don't perfectly match the processed header text.
 **Action:** Keep Table of Contents anchors simple and emoji-free, and ensure header text is synchronized with TOC links to maintain navigation integrity.
+
+## 2026-03-20 - Proactive Error Prevention in Environment Variables
+**Learning:** For critical environment variables like `WEBHOOK_URL` in n8n, users often intuitively include trailing slashes or ports from their browser's address bar, which causes silent failures in webhook/OAuth2 callbacks. Providing explicit "what not to do" instructions and un-formatted placeholders in both the documentation and the configuration file (`render.yaml`) proactively prevents these common setup errors.
+**Action:** Always include specific formatting warnings (e.g., "no trailing slash") and clean placeholder examples for sensitive environment variables in both the README and Blueprint configuration.
