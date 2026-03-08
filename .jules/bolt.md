@@ -27,3 +27,7 @@
 ## 2026-03-15 - Optimizing Memory and Overhead with Binary Data Mode and Version Checks
 **Learning:** n8n's default in-memory binary data storage is a major OOM risk on Render's 512MB free tier when processing files or large payloads. Additionally, background version checks add unnecessary CPU and network overhead.
 **Action:** Set `N8N_DEFAULT_BINARY_DATA_MODE: filesystem` to offload large payloads to ephemeral disk and `N8N_VERSION_NOTIFICATIONS_ENABLED: false` to minimize idle resource consumption.
+
+## 2026-03-18 - Reducing Resource Overhead with Optimized Log Levels
+**Learning:** The default `info` log level in n8n can generate excessive logs, leading to increased CPU and I/O overhead on resource-constrained environments like Render's 512MB free tier.
+**Action:** Set `N8N_LOG_LEVEL: warn` in `render.yaml` to suppress non-critical information logs, preserving essential troubleshooting data while improving performance.
