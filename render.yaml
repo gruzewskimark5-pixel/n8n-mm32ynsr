@@ -123,7 +123,7 @@ services:
       # manually to your service URL after your first deployment.
       # You can find your URL at the top of the service page in the Render Dashboard.
       # - key: WEBHOOK_URL
-      #   value: https://replace-with-your-url.onrender.com/
+      #   value: https://replace-with-your-url.onrender.com
 
 databases:
   - name: n8n-db
