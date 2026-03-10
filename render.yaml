@@ -121,7 +121,8 @@ services:
 
       # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
       # manually to your service URL after your first deployment.
-      # You can find your URL at the top of the service page in the Render Dashboard.
+      # You can find your URL at the top of the service page in the
+      # Render Dashboard: https://dashboard.render.com/
       # - key: WEBHOOK_URL
       #   value: https://replace-with-your-url.onrender.com/
 
