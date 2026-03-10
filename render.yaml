@@ -66,9 +66,12 @@ services:
       - key: NODE_OPTIONS
         value: --max-old-space-size=384
 
-      # Enable more aggressive execution data pruning to keep the database lean.
-      # This prevents the 1GB free tier database from filling up and maintains
-      # high performance by reducing index size and query latency.
+      # Enable more aggressive execution data pruning and selective saving to
+      # keep the database lean. Disabling successful execution saving reduces
+      # database I/O and prevents the 1GB free tier database from filling up,
+      # maintaining high performance by reducing index size and query latency.
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: none
       - key: EXECUTIONS_DATA_PRUNE
         value: "true"
       - key: EXECUTIONS_DATA_MAX_AGE

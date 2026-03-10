@@ -31,3 +31,7 @@
 ## 2026-03-20 - Optimizing I/O and CPU with Log Level Verbosity
 **Learning:** For n8n on Render's free tier (512MB RAM), high log verbosity (like the default 'info') can cause unnecessary CPU and I/O overhead during frequent workflow executions, which can impact overall performance and responsiveness in such a resource-constrained environment.
 **Action:** Set 'N8N_LOG_LEVEL: warn' in 'render.yaml' to suppress non-critical information logs while still capturing errors and warnings for troubleshooting.
+
+## 2026-03-10 - Minimizing Database I/O with Selective Execution Saving
+**Learning:** By default, n8n saves execution data for every successful run. In resource-constrained environments like Render's free tier (512MB RAM, 1GB Postgres storage), this creates unnecessary I/O overhead and risks premature database exhaustion.
+**Action:** Set `EXECUTIONS_DATA_SAVE_ON_SUCCESS: none` in `render.yaml` to only persist failed executions, significantly reducing database load and storage bloat while maintaining critical troubleshooting capabilities.
