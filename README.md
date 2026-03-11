@@ -40,14 +40,26 @@ Visit your `onrender.com` URL to create your first owner account. This account w
 ### 🪝 2. Configure Webhook URL
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually.
 
-1. **Find your URL:** Copy your service URL from the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com/`).
+1. **Find your URL:** Copy your service URL from the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab.
 3. **Add variable:** Click **Add Environment Variable**.
 4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
+> [!IMPORTANT]
+> The `WEBHOOK_URL` must not include a trailing slash or a port number (e.g., `:5678`). Including these will cause webhook and OAuth2 integrations to fail.
+
 ### ✅ 3. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
+
+### 🕒 4. Set your Timezone (Optional)
+This is important for accurate scheduling in your workflows.
+
+1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `America/New_York`).
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
+3. **Add variable:** Click **Add Environment Variable**.
+4. **Enter details:** Set the key to `GENERIC_TIMEZONE` and paste your timezone as the value.
+5. **Save:** Click **Save Changes**.
 
 ## Free Tier Limitations
 > [!WARNING]
