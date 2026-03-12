@@ -76,6 +76,13 @@ services:
       - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
         value: "1000"
 
+      # To significantly reduce database I/O and storage consumption on Render's
+      # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none".
+      # This ensures n8n only persists data for failed workflow executions,
+      # which are typically the only ones needed for troubleshooting.
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: "none"
+
       # These automatically populate connection details 
       # for the Render Postgres database defined below
       - key: DB_TYPE
