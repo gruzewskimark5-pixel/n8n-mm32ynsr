@@ -64,8 +64,8 @@ You can verify that your n8n instance is running correctly by visiting your serv
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - **Spin down:** Free web services spin down after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **90 days**.
+> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down-on-idle) after 15 minutes of inactivity.
+> - **Database expiry:** Free PostgreSQL databases [expire](https://render.com/docs/free#free-postgresql-databases) and are permanently **DELETED** after **30 days**.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
