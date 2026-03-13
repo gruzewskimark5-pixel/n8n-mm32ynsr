@@ -17,3 +17,7 @@
 ## 2025-05-18 - Preventing Integration Failures with Explicit Formatting
 **Learning:** For environment variables that are used as base URLs (like n8n's `WEBHOOK_URL`), users often intuitively include a trailing slash, which can lead to broken integrations if the application logic later appends another slash. Providing explicit "do not include" instructions and counter-examples prevents this friction.
 **Action:** Always provide explicit formatting constraints (e.g., "no trailing slash") and a clear example/counter-example pair for URL-based environment variables.
+
+## 2026-03-13 - Aligning Templates with Platform Policy Changes
+**Learning:** Platform policies for free tiers can change (e.g., Render reducing Postgres expiry from 90 to 30 days). Keeping deployment templates and documentation synchronized with these changes is critical to prevent user data loss and maintain trust.
+**Action:** Regularly audit external platform constraints and update templates to reflect current realities, providing direct documentation links for authoritative reference.
