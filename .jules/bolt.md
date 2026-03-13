@@ -35,3 +35,7 @@
 ## 2026-03-21 - Optimizing Database I/O and Storage with Selective Data Persistence
 **Learning:** For n8n on Render's free tier (1GB database limit), persisting execution data for every successful workflow run can quickly lead to database bloat, increased I/O overhead, and slower query performance.
 **Action:** Set 'EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"' in 'render.yaml' to only persist data for failed executions, significantly reducing database storage consumption and improving overall system responsiveness.
+
+## 2026-03-22 - Optimizing Idle Resources and Ensuring Security Awareness
+**Learning:** Disabling the built-in workflow template library is a major win for idle resource consumption on Render's 512MB free tier, as it eliminates background CPU and network overhead. This efficiency gain allows for mandatory security features, like version notifications, to be enabled without risking service stability or OOM errors.
+**Action:** Set `N8N_TEMPLATES_ENABLED: "false"` to reduce idle footprint and `N8N_VERSION_NOTIFICATIONS_ENABLED: "true"` to maintain security awareness in resource-constrained environments.
