@@ -47,6 +47,17 @@ services:
       # security updates and new n8n releases.
       - key: N8N_VERSION_NOTIFICATIONS_ENABLED
         value: "true"
+      # Enables version check notifications to ensure security awareness.
+      # While disabling this reduces minor background overhead, security
+      # takes precedence over micro-optimizations on Render's free tier.
+      - key: N8N_VERSION_NOTIFICATIONS_ENABLED
+        value: "true"
+
+      # Disables the workflow template library to reduce idle memory
+      # consumption and background CPU/network overhead. This is critical
+      # for stability on Render's 512MB free tier.
+      - key: N8N_TEMPLATES_ENABLED
+        value: "false"
 
       # For n8n on Render's free tier (512MB RAM), set N8N_LOG_LEVEL to warn
       # to reduce CPU and I/O overhead by suppressing non-critical information
@@ -75,6 +86,13 @@ services:
         value: "168" # 7 days
       - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
         value: "1000"
+
+      # To significantly reduce database I/O and storage consumption on Render's
+      # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none".
+      # This ensures n8n only persists data for failed workflow executions,
+      # which are typically the only ones needed for troubleshooting.
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: "none"
 
       # These automatically populate connection details 
       # for the Render Postgres database defined below
@@ -127,14 +145,17 @@ services:
 
       # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
       # manually to your service URL after your first deployment.
-      # You can find your URL at the top of the service page in the
-      # Render Dashboard: https://dashboard.render.com/
+      # You can find your URL at the top of the service page or under
+      # the 'Connect' button in the Render Dashboard:
+      # https://dashboard.render.com/
+      #
+      # Note: Do not include a trailing slash or port number.
       # - key: WEBHOOK_URL
-      #   value: https://replace-with-your-url.onrender.com/
+      #   value: https://replace-with-your-url.onrender.com
 
 databases:
   - name: n8n-db
-    plan: free # Note: Free databases expire and are DELETED after 90 days.
+    plan: free # Note: Free databases expire and are DELETED after 30 days.
     # The free instance type is limited to 1 GB of disk
     # space.
     #
