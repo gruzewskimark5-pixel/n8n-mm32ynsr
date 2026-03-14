@@ -17,3 +17,7 @@
 ## 2025-05-18 - Preventing Integration Failures with Explicit Formatting
 **Learning:** For environment variables that are used as base URLs (like n8n's `WEBHOOK_URL`), users often intuitively include a trailing slash, which can lead to broken integrations if the application logic later appends another slash. Providing explicit "do not include" instructions and counter-examples prevents this friction.
 **Action:** Always provide explicit formatting constraints (e.g., "no trailing slash") and a clear example/counter-example pair for URL-based environment variables.
+
+## 2026-03-14 - Factual Transparency in Free Tier Templates
+**Learning:** Platform policies for free tiers (like database expiry) are dynamic and change over time. Inaccurate information in deployment templates (e.g., stating 90 days when it is now 30) creates a significant UX risk where users may unexpectedly lose data.
+**Action:** Include direct links to official platform pricing/limits documentation and explicitly label resource constraints (like storage limits) to maintain trust and data safety.
