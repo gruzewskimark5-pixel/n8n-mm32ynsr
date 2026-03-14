@@ -17,3 +17,7 @@
 ## 2025-05-18 - Preventing Integration Failures with Explicit Formatting
 **Learning:** For environment variables that are used as base URLs (like n8n's `WEBHOOK_URL`), users often intuitively include a trailing slash, which can lead to broken integrations if the application logic later appends another slash. Providing explicit "do not include" instructions and counter-examples prevents this friction.
 **Action:** Always provide explicit formatting constraints (e.g., "no trailing slash") and a clear example/counter-example pair for URL-based environment variables.
+
+## 2026-03-23 - Dynamic Platform Policies and UX Transparency
+**Learning:** Platform policies for free tiers (like Render's database expiry periods changing from 90 to 30 days) are dynamic. Relying solely on static text in deployment templates can quickly lead to inaccurate expectations and user data loss.
+**Action:** Always include direct links to authoritative documentation (e.g., Render Docs for "spin down" or "database expiry") alongside explicit platform resource limits in the README to maintain user trust and data safety during platform changes.
