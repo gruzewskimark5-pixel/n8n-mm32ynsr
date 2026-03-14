@@ -27,7 +27,7 @@ Each of the above uses a free instance type by default.
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings, concurrency limits, disk-offloaded binary data for stability, disabled workflow templates, and automated data pruning.
-- 💾 **Persistent Storage:** Includes a Render Postgres database to securely store your workflows and credentials.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
 ## Post-deployment Setup
@@ -64,8 +64,8 @@ You can verify that your n8n instance is running correctly by visiting your serv
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - **Spin down:** Free web services spin down after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **90 days**.
+> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
+> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** ([documentation](https://render.com/docs/free#free-postgresql)).
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
