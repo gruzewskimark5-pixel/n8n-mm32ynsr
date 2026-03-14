@@ -32,10 +32,6 @@
 **Learning:** For n8n on Render's free tier (512MB RAM), high log verbosity (like the default 'info') can cause unnecessary CPU and I/O overhead during frequent workflow executions, which can impact overall performance and responsiveness in such a resource-constrained environment.
 **Action:** Set 'N8N_LOG_LEVEL: warn' in 'render.yaml' to suppress non-critical information logs while still capturing errors and warnings for troubleshooting.
 
-## 2026-03-21 - Optimizing Database I/O and Storage with Selective Data Persistence
-**Learning:** For n8n on Render's free tier (1GB database limit), persisting execution data for every successful workflow run can quickly lead to database bloat, increased I/O overhead, and slower query performance.
-**Action:** Set 'EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"' in 'render.yaml' to only persist data for failed executions, significantly reducing database storage consumption and improving overall system responsiveness.
-
-## 2026-03-22 - Optimizing Idle Resources and Prioritizing Security
-**Learning:** Disabling the n8n workflow template library reduces background overhead, which is critical for stability on the 512MB free tier. Additionally, while disabling version notifications offers minor performance gains, security awareness via update alerts is a higher priority for long-term maintainability.
-**Action:** Set `N8N_TEMPLATES_ENABLED: "false"` to save memory and CPU, and ensure `N8N_VERSION_NOTIFICATIONS_ENABLED: "true"` to maintain security awareness despite the resource constraints.
+## 2026-03-21 - Security Over Performance: Re-enabling Version Notifications
+**Learning:** While disabling version check notifications reduces idle resource consumption on Render's free tier, it creates a security vulnerability by preventing users from receiving critical update alerts. Security maintenance and update awareness take precedence over minor performance gains.
+**Action:** Re-enabled 'N8N_VERSION_NOTIFICATIONS_ENABLED: true' in 'render.yaml' to ensure users are promptly notified of security patches and new releases.

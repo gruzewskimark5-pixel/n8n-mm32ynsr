@@ -43,6 +43,10 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Enables version check notifications to ensure you're aware of
+      # security updates and new n8n releases.
+      - key: N8N_VERSION_NOTIFICATIONS_ENABLED
+        value: "true"
       # Enables version check notifications to ensure security awareness.
       # While disabling this reduces minor background overhead, security
       # takes precedence over micro-optimizations on Render's free tier.
