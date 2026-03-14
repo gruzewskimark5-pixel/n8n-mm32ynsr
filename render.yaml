@@ -43,10 +43,10 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
-      # Disables version check notifications to further reduce background
-      # CPU, memory, and network overhead.
+      # Enables version check notifications to ensure you're aware of
+      # security updates and new n8n releases.
       - key: N8N_VERSION_NOTIFICATIONS_ENABLED
-        value: "false"
+        value: "true"
 
       # For n8n on Render's free tier (512MB RAM), set N8N_LOG_LEVEL to warn
       # to reduce CPU and I/O overhead by suppressing non-critical information

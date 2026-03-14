@@ -31,3 +31,7 @@
 ## 2026-03-20 - Optimizing I/O and CPU with Log Level Verbosity
 **Learning:** For n8n on Render's free tier (512MB RAM), high log verbosity (like the default 'info') can cause unnecessary CPU and I/O overhead during frequent workflow executions, which can impact overall performance and responsiveness in such a resource-constrained environment.
 **Action:** Set 'N8N_LOG_LEVEL: warn' in 'render.yaml' to suppress non-critical information logs while still capturing errors and warnings for troubleshooting.
+
+## 2026-03-21 - Security Over Performance: Re-enabling Version Notifications
+**Learning:** While disabling version check notifications reduces idle resource consumption on Render's free tier, it creates a security vulnerability by preventing users from receiving critical update alerts. Security maintenance and update awareness take precedence over minor performance gains.
+**Action:** Re-enabled 'N8N_VERSION_NOTIFICATIONS_ENABLED: true' in 'render.yaml' to ensure users are promptly notified of security patches and new releases.
