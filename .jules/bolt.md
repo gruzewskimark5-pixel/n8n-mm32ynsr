@@ -35,3 +35,11 @@
 ## 2026-03-21 - Security Over Performance: Re-enabling Version Notifications
 **Learning:** While disabling version check notifications reduces idle resource consumption on Render's free tier, it creates a security vulnerability by preventing users from receiving critical update alerts. Security maintenance and update awareness take precedence over minor performance gains.
 **Action:** Re-enabled 'N8N_VERSION_NOTIFICATIONS_ENABLED: true' in 'render.yaml' to ensure users are promptly notified of security patches and new releases.
+
+## 2026-03-22 - Managing Database Bloat with Workflow History Pruning
+**Learning:** n8n v1+ includes a workflow history feature that saves a version of the workflow every time it is saved. In environments with strict database storage limits (like Render's 1GB free tier), this can lead to rapid database bloat, increased query latency, and potential disk exhaustion.
+**Action:** Set `N8N_WORKFLOW_HISTORY_PRUNE_TIME` in `render.yaml` to a reasonable limit (e.g., 168 hours / 7 days) to ensure the `workflow_history` table remains lean and performant.
+
+## 2026-03-23 - Avoiding Ambiguous Diffs in Performance PRs
+**Learning:** Combining unrelated configuration cleanups with performance optimizations can lead to confusing diffs and review rejections. A previous attempt to remove a duplicate security-critical setting while adding workflow history pruning was misinterpreted as an accidental deletion and a regression.
+**Action:** Always ensure that any "cleanup" performed alongside an optimization is clearly documented or, better yet, consolidate the related configuration into a single unmistakable block to avoid misinterpretation of intent during code review.
