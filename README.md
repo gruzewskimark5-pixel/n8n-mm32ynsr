@@ -10,6 +10,7 @@
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
 - [Free Tier Limitations](#free-tier-limitations)
+- [Maintenance & Updates](#maintenance--updates)
 - [Next Steps](#next-steps)
 
 ## Getting Started
@@ -64,10 +65,19 @@ You can verify that your n8n instance is running correctly by visiting your serv
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** ([documentation](https://render.com/docs/free#free-postgresql)).
+> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity. **Note:** After a service has spun down, the next request will trigger a "cold start," which can take 1-2 minutes.
+> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** ([see Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
+
+## Maintenance & Updates
+
+To update your n8n instance to the latest version:
+
+1. **Navigate to your service:** Open your n8n service in the [Render Dashboard](https://dashboard.render.com/).
+2. **Deploy latest:** Click the **Manual Deploy** button and select **Clear Build Cache & Deploy**.
+
+Render will pull the latest official n8n Docker image and restart your service.
 
 ## Next Steps
 
