@@ -21,3 +21,7 @@
 ## 2026-03-23 - Dynamic Platform Policies and UX Transparency
 **Learning:** Platform policies for free tiers (like Render's database expiry periods changing from 90 to 30 days) are dynamic. Relying solely on static text in deployment templates can quickly lead to inaccurate expectations and user data loss.
 **Action:** Always include direct links to authoritative documentation (e.g., Render Docs for "spin down" or "database expiry") alongside explicit platform resource limits in the README to maintain user trust and data safety during platform changes.
+
+## 2026-03-24 - Managing Expectations with Cold Start Transparency
+**Learning:** For platforms with spin-down behavior (like Render Free Tier), users often mistake the 1-2 minute "cold start" delay for a deployment failure or a broken service. Explicitly documenting this delay in the limitations section significantly reduces user frustration and perceived friction.
+**Action:** Always include a "cold start" notice in the "Spin down" explanation for relevant hosting providers in deployment templates.
