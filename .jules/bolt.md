@@ -43,3 +43,8 @@
 ## 2026-03-23 - Avoiding Ambiguous Diffs in Performance PRs
 **Learning:** Combining unrelated configuration cleanups with performance optimizations can lead to confusing diffs and review rejections. A previous attempt to remove a duplicate security-critical setting while adding workflow history pruning was misinterpreted as an accidental deletion and a regression.
 **Action:** Always ensure that any "cleanup" performed alongside an optimization is clearly documented or, better yet, consolidate the related configuration into a single unmistakable block to avoid misinterpretation of intent during code review.
+
+
+## 2026-03-24 - Dual-Pruning for Workflow History Efficiency
+**Learning:** Using only age-based pruning for workflow history (`N8N_WORKFLOW_HISTORY_PRUNE_TIME`) can still allow significant database bloat if many versions are created in a short period. In resource-constrained environments like Render's 1GB free tier database, this can degrade query performance.
+**Action:** Always combine `N8N_WORKFLOW_HISTORY_PRUNE_TIME` with `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT` in `render.yaml` to ensure the `workflow_history` table is capped by both age and version count for maximum efficiency.
