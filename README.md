@@ -10,6 +10,7 @@
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
 - [Free Tier Limitations](#free-tier-limitations)
+- [Maintenance & Updates](#maintenance--updates)
 - [Next Steps](#next-steps)
 
 ## Getting Started
@@ -37,11 +38,14 @@ After your n8n instance is up and running, follow these steps in the [Render Das
 ### 👤 1. Create your owner account
 Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
 
+> [!TIP]
+> If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a "Service Unavailable" message, wait a moment and refresh the page.
+
 ### 🪝 2. Configure Webhook URL
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually.
 
 > [!IMPORTANT]
-> The `WEBHOOK_URL` must not include a trailing slash or a port number. For example, use `https://n8n-service-q975.onrender.com` instead of `https://n8n-service-q975.onrender.com/`.
+> The `WEBHOOK_URL` must not include a trailing slash or a port number. For example, use `https://n8n-service-q975.onrender.com` instead of `https://n8n-service-q975.onrender.com/` or `https://n8n-service-q975.onrender.com:5678`.
 
 1. **Find your URL:** Copy your service URL from the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab.
@@ -65,9 +69,15 @@ You can verify that your n8n instance is running correctly by visiting your serv
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** ([documentation](https://render.com/docs/free#free-postgresql)).
+> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
+
+## Maintenance & Updates
+
+- 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown in the [Render Dashboard](https://dashboard.render.com/).
+- 💾 **Backups:** Regularly export your workflows and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
+- 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 
 ## Next Steps
 

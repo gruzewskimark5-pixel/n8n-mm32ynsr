@@ -21,3 +21,7 @@
 ## 2026-03-23 - Dynamic Platform Policies and UX Transparency
 **Learning:** Platform policies for free tiers (like Render's database expiry periods changing from 90 to 30 days) are dynamic. Relying solely on static text in deployment templates can quickly lead to inaccurate expectations and user data loss.
 **Action:** Always include direct links to authoritative documentation (e.g., Render Docs for "spin down" or "database expiry") alongside explicit platform resource limits in the README to maintain user trust and data safety during platform changes.
+
+## 2026-03-24 - Descriptive Link Text for Accessibility
+**Learning:** Generic link labels like "[documentation]" or "click here" provide zero context for screen reader users and fail to satisfy WCAG success criteria for link purpose. Using descriptive, actionable link text (e.g., "see Render's Free Tier documentation") improves accessibility and provides clear expectations for all users.
+**Action:** Always use descriptive link text that clearly explains the destination or purpose of the link, especially when directing users to external documentation.
