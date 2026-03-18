@@ -11,6 +11,7 @@
 - [Post-deployment Setup](#post-deployment-setup)
 - [Free Tier Limitations](#free-tier-limitations)
 - [Maintenance & Updates](#maintenance--updates)
+- [Troubleshooting](#troubleshooting)
 - [Next Steps](#next-steps)
 
 ## Getting Started
@@ -36,7 +37,10 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your `onrender.com` URL to create your first owner account. This account will have full access to your n8n instance.
+Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
+
+> [!TIP]
+> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 
 > [!TIP]
 > If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a "Service Unavailable" message, wait a moment and refresh the page.
@@ -47,11 +51,10 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > [!IMPORTANT]
 > The `WEBHOOK_URL` must not include a trailing slash or a port number. For example, use `https://n8n-service-q975.onrender.com` instead of `https://n8n-service-q975.onrender.com/` or `https://n8n-service-q975.onrender.com:5678`.
 
-1. **Find your URL:** Copy your service URL from the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
-2. **Open Environment settings:** Navigate to your service's **Environment** tab.
-3. **Add variable:** Click **Add Environment Variable**.
-4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
-5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
+2. **Add variable:** Click **Add Environment Variable**.
+3. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
+4. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
 ### 🌍 3. Set your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should set the `GENERIC_TIMEZONE` environment variable.
@@ -64,6 +67,32 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 
 ### ✅ 4. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
+
+### 🔑 5. Backup your encryption key
+Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key.
+
+1. **Open Environment settings:** Navigate to your service's **Environment** tab.
+2. **Copy key:** Find the `N8N_ENCRYPTION_KEY` variable and copy its value.
+3. **Store safely:** Save this key in a secure location (like a password manager).
+
+---
+[Back to top](#deploy-n8n-on-render)
+
+## Troubleshooting
+
+### 🐌 Service is slow to start
+On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+
+### 🪝 Webhook or OAuth2 errors
+If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
+- Ensure you have set the `WEBHOOK_URL` environment variable as described in Step 2.
+- Double-check that the `WEBHOOK_URL` **does not** have a trailing slash (e.g., use `https://my-n8n.onrender.com` not `https://my-n8n.onrender.com/`).
+
+### 🐘 Database Connection Errors
+During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+
+---
+[Back to top](#deploy-n8n-on-render)
 
 ## Free Tier Limitations
 > [!WARNING]
