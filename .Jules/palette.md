@@ -25,3 +25,7 @@
 ## 2026-03-24 - Descriptive Link Text for Accessibility
 **Learning:** Generic link labels like "[documentation]" or "click here" provide zero context for screen reader users and fail to satisfy WCAG success criteria for link purpose. Using descriptive, actionable link text (e.g., "see Render's Free Tier documentation") improves accessibility and provides clear expectations for all users.
 **Action:** Always use descriptive link text that clearly explains the destination or purpose of the link, especially when directing users to external documentation.
+
+## 2026-03-25 - Reducing Onboarding Friction with Proactive Troubleshooting
+**Learning:** For infrastructure templates, users often experience initial "failure" signals (like 503s during cold starts) that are actually normal platform behaviors. Providing a dedicated Troubleshooting section that explains these signals reduces anxiety and prevents users from abandoning the setup.
+**Action:** Always include a Troubleshooting section that addresses platform-specific behaviors like cold starts and common configuration errors (e.g., trailing slashes) to manage user expectations.
