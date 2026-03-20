@@ -84,11 +84,13 @@ services:
       - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
         value: "1000"
 
-      # Enables automatic pruning of workflow history versions to manage
-      # database storage. This keeps the 'workflow_history' table from
-      # bloating Render's 1GB free tier database.
+      # Enables automatic pruning of workflow history versions by age and
+      # count to manage database storage. This keeps the 'workflow_history'
+      # table from bloating Render's 1GB free tier database.
       - key: N8N_WORKFLOW_HISTORY_PRUNE_TIME
         value: "168" # 7 days
+      - key: N8N_WORKFLOW_HISTORY_PRUNE_LIMIT
+        value: "10"
 
       # To significantly reduce database I/O and storage consumption on Render's
       # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none".

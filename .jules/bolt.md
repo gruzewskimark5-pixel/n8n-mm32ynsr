@@ -43,3 +43,7 @@
 ## 2026-03-23 - Avoiding Ambiguous Diffs in Performance PRs
 **Learning:** Combining unrelated configuration cleanups with performance optimizations can lead to confusing diffs and review rejections. A previous attempt to remove a duplicate security-critical setting while adding workflow history pruning was misinterpreted as an accidental deletion and a regression.
 **Action:** Always ensure that any "cleanup" performed alongside an optimization is clearly documented or, better yet, consolidate the related configuration into a single unmistakable block to avoid misinterpretation of intent during code review.
+
+## 2026-03-24 - Strengthening Database Efficiency with Workflow History Limits
+**Learning:** While n8n execution data pruning is well-documented, workflow history pruning is often overlooked. On Render's 1GB free tier database, the `workflow_history` table can grow rapidly as users iterate on complex workflows. Time-based pruning (`N8N_WORKFLOW_HISTORY_PRUNE_TIME`) is good, but adding a count-based limit (`N8N_WORKFLOW_HISTORY_PRUNE_LIMIT`) provides a critical secondary safeguard against database bloat for high-frequency savers.
+**Action:** Always combine `N8N_WORKFLOW_HISTORY_PRUNE_TIME` and `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT` in resource-constrained environments to ensure the `workflow_history` table remains lean and performant.
