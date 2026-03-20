@@ -25,12 +25,18 @@ The `render.yaml` file defines the following resources:
 
 Each of the above uses a free instance type by default.
 
+> [!WARNING]
+> Render's **Free instance type** for PostgreSQL databases has a critical limitation: the database and all its data are **PERMANENTLY DELETED** after **30 days** of usage. For production workflows, upgrading to a paid database plan is highly recommended.
+
 ## Features
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier with optimized memory settings, concurrency limits, disk-offloaded binary data for stability, disabled workflow templates, and automated data pruning.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+
+---
+[Back to top](#deploy-n8n-on-render)
 
 ## Post-deployment Setup
 
@@ -46,15 +52,16 @@ Visit your service URL to create your first owner account. This account will hav
 > If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a "Service Unavailable" message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
 > The `WEBHOOK_URL` must not include a trailing slash or a port number. For example, use `https://n8n-service-q975.onrender.com` instead of `https://n8n-service-q975.onrender.com/` or `https://n8n-service-q975.onrender.com:5678`.
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
-2. **Add variable:** Click **Add Environment Variable**.
-3. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
-4. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
+1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+3. **Add variable:** Click **Add Environment Variable**.
+4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
+5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
 ### 🌍 3. Set your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should set the `GENERIC_TIMEZONE` environment variable.
@@ -69,9 +76,9 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
 ### 🔑 5. Backup your encryption key
-Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key.
+Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab.
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
 2. **Copy key:** Find the `N8N_ENCRYPTION_KEY` variable and copy its value.
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
@@ -91,6 +98,15 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
 
+### 📝 Viewing and Adjusting Logs
+If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+
+To get more detailed logs:
+1. Navigate to the **Environment** tab.
+2. Find the `N8N_LOG_LEVEL` variable.
+3. Change its value from `warn` to `info` or `debug`.
+4. **Save** your changes and Render will restart the service with the new log level.
+
 ---
 [Back to top](#deploy-n8n-on-render)
 
@@ -102,11 +118,17 @@ During initial deployment, the database might take slightly longer to initialize
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
+---
+[Back to top](#deploy-n8n-on-render)
+
 ## Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown in the [Render Dashboard](https://dashboard.render.com/).
 - 💾 **Backups:** Regularly export your workflows and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+
+---
+[Back to top](#deploy-n8n-on-render)
 
 ## Next Steps
 

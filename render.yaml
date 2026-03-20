@@ -59,6 +59,7 @@ services:
       # For n8n on Render's free tier (512MB RAM), set N8N_LOG_LEVEL to warn
       # to reduce CPU and I/O overhead by suppressing non-critical information
       # logs during workflow executions while preserving critical troubleshooting data.
+      # Change this value to "info" or "debug" for more detailed logging.
       - key: N8N_LOG_LEVEL
         value: warn
 
