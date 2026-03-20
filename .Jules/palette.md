@@ -30,6 +30,9 @@
 **Learning:** For infrastructure templates, users often experience initial "failure" signals (like 503s during cold starts) that are actually normal platform behaviors. Providing a dedicated Troubleshooting section that explains these signals reduces anxiety and prevents users from abandoning the setup.
 **Action:** Always include a Troubleshooting section that addresses platform-specific behaviors like cold starts and common configuration errors (e.g., trailing slashes) to manage user expectations.
 
+## 2026-03-26 - Transparency for Background Tasks on Free Tiers
+**Learning:** For automation tools like n8n deployed on free tiers with "spin-down" policies, users often assume background tasks (like scheduled workflows) will run even when the service is inactive. This leads to silent failures and poor UX. Explicitly documenting that background tasks will not "wake up" the service is critical for accurate user expectations.
+**Action:** Always check if the application relies on background/scheduled tasks and explicitly document any platform-imposed limitations (like spin-down) that affect these tasks in the README.
 ## 2026-03-26 - Proactive Risk Transparency in Onboarding
 **Learning:** For high-stakes limitations like data deletion, placing warnings only in a 'Limitations' section at the end of a document is often too late for the user's initial decision-making. Surfacing these risks in the 'Getting Started' section provides immediate transparency and builds trust before the user invests time in the setup.
 **Action:** Always identify the most critical user risks (e.g., data loss, cost) and surface them in the earliest possible setup section, in addition to any dedicated limitations or warnings sections.

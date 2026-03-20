@@ -66,6 +66,9 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 ### 🌍 3. Set your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should set the `GENERIC_TIMEZONE` environment variable.
 
+> [!TIP]
+> Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
+
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab.
 3. **Add variable:** Click **Add Environment Variable**.
@@ -115,6 +118,7 @@ To get more detailed logs:
 > This template uses Render's **Free instance type** by default.
 > - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
 > - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
+> - **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
