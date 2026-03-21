@@ -43,6 +43,16 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables the initial "How do you plan to use n8n?" personalization
+      # survey to provide a smoother, faster first-run experience.
+      - key: N8N_PERSONALIZATION_ENABLED
+        value: "false"
+
+      # Sets the release type to 'stable' to remove the '[DEV]' tag from the
+      # browser tab title, providing a more professional and stable interface.
+      - key: N8N_RELEASE_TYPE
+        value: stable
+
       # Enables version check notifications to ensure you're aware of
       # security updates and new n8n releases. While disabling this
       # reduces minor background overhead, security awareness takes
