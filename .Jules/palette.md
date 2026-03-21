@@ -36,3 +36,7 @@
 ## 2026-03-26 - Proactive Risk Transparency in Onboarding
 **Learning:** For high-stakes limitations like data deletion, placing warnings only in a 'Limitations' section at the end of a document is often too late for the user's initial decision-making. Surfacing these risks in the 'Getting Started' section provides immediate transparency and builds trust before the user invests time in the setup.
 **Action:** Always identify the most critical user risks (e.g., data loss, cost) and surface them in the earliest possible setup section, in addition to any dedicated limitations or warnings sections.
+
+## 2026-03-27 - Professionalizing the "Out-of-Box" Experience
+**Learning:** For self-hosted applications, small visual "nits" like a `[DEV]` tag in the browser tab or a required "personalization" survey can make the deployment feel less stable or "production-ready." Removing these via environment variables (`N8N_RELEASE_TYPE=stable`, `N8N_PERSONALIZATION_ENABLED=false`) significantly improves the perceived quality of the interface.
+**Action:** Always identify and disable non-essential onboarding surveys or "dev mode" flags in production-focused deployment templates to provide a more professional first-run experience.
