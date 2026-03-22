@@ -28,6 +28,9 @@ Each of the above uses a free instance type by default.
 > [!WARNING]
 > Render's **Free instance type** for PostgreSQL databases has a critical limitation: the database and all its data are **PERMANENTLY DELETED** after **30 days** of usage. For production workflows, upgrading to a paid database plan is highly recommended.
 
+---
+[↑ Back to top](#deploy-n8n-on-render)
+
 ## Features
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
@@ -36,7 +39,7 @@ Each of the above uses a free instance type by default.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
 
 ## Post-deployment Setup
 
@@ -86,7 +89,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
 
 ## Troubleshooting
 
@@ -111,7 +114,7 @@ To get more detailed logs:
 4. **Save** your changes and Render will restart the service with the new log level.
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
 
 ## Free Tier Limitations
 > [!WARNING]
@@ -123,7 +126,7 @@ To get more detailed logs:
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
 
 ## Maintenance & Updates
 
@@ -132,7 +135,7 @@ To get more detailed logs:
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
 
 ## Next Steps
 
@@ -141,4 +144,4 @@ To get more detailed logs:
 - 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
 
 ---
-[Back to top](#deploy-n8n-on-render)
+[↑ Back to top](#deploy-n8n-on-render)
