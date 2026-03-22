@@ -51,3 +51,7 @@
 ## 2026-03-25 - Reducing Background Overhead by Disabling Personalization
 **Learning:** n8n's personalization flow, which includes initial setup questions and periodic background requests for personalized content, adds unnecessary CPU and network overhead. In resource-constrained environments like Render's 512MB free tier, every reduction in background processing improves stability and performance.
 **Action:** Set `N8N_PERSONALIZATION_ENABLED: "false"` in `render.yaml` to eliminate this overhead and provide a leaner, more efficient "production-ready" setup.
+
+## 2026-03-26 - Reducing Startup Noise and Minor Overhead
+**Learning:** n8n's hiring banner is enabled by default and outputs to the console. While minor, disabling it reduces log noise and eliminates the small processing step required to display it, aligning with the "every millisecond counts" philosophy for resource-constrained environments.
+**Action:** Set `N8N_HIRING_BANNER_ENABLED: "false"` in `render.yaml`.
