@@ -36,3 +36,7 @@
 ## 2026-03-26 - Proactive Risk Transparency in Onboarding
 **Learning:** For high-stakes limitations like data deletion, placing warnings only in a 'Limitations' section at the end of a document is often too late for the user's initial decision-making. Surfacing these risks in the 'Getting Started' section provides immediate transparency and builds trust before the user invests time in the setup.
 **Action:** Always identify the most critical user risks (e.g., data loss, cost) and surface them in the earliest possible setup section, in addition to any dedicated limitations or warnings sections.
+
+## 2026-03-27 - Enhancing Navigation with Visual Cues
+**Learning:** Adding a simple visual cue (like an up-arrow `↑`) to "Back to top" links provides immediate visual affordance, making it clearer to the user that the link will navigate them upwards. Furthermore, ensuring these links are placed after every major section, especially following high-density blocks like warning callouts, maintains a consistent and predictable navigation experience.
+**Action:** Always include a visual icon in repetitive navigation links and ensure consistent placement across all primary sections of long documentation files.
