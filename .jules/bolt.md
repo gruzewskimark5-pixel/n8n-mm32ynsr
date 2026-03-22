@@ -47,3 +47,7 @@
 ## 2026-03-24 - Strengthening Database Efficiency with Workflow History Limits
 **Learning:** While n8n execution data pruning is well-documented, workflow history pruning is often overlooked. On Render's 1GB free tier database, the `workflow_history` table can grow rapidly as users iterate on complex workflows. Time-based pruning (`N8N_WORKFLOW_HISTORY_PRUNE_TIME`) is good, but adding a count-based limit (`N8N_WORKFLOW_HISTORY_PRUNE_LIMIT`) provides a critical secondary safeguard against database bloat for high-frequency savers.
 **Action:** Always combine `N8N_WORKFLOW_HISTORY_PRUNE_TIME` and `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT` in resource-constrained environments to ensure the `workflow_history` table remains lean and performant.
+
+## 2026-03-25 - Reducing Background Overhead by Disabling Personalization
+**Learning:** n8n's personalization flow, which includes initial setup questions and periodic background requests for personalized content, adds unnecessary CPU and network overhead. In resource-constrained environments like Render's 512MB free tier, every reduction in background processing improves stability and performance.
+**Action:** Set `N8N_PERSONALIZATION_ENABLED: "false"` in `render.yaml` to eliminate this overhead and provide a leaner, more efficient "production-ready" setup.
