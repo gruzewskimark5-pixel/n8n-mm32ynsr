@@ -55,3 +55,7 @@
 ## 2026-03-26 - Reducing Startup Noise and Minor Overhead
 **Learning:** n8n's hiring banner is enabled by default and outputs to the console. While minor, disabling it reduces log noise and eliminates the small processing step required to display it, aligning with the "every millisecond counts" philosophy for resource-constrained environments.
 **Action:** Set `N8N_HIRING_BANNER_ENABLED: "false"` in `render.yaml`.
+
+## 2026-03-27 - Optimizing UI and Production Readiness with Release Type
+**Learning:** By default, n8n may display a '[DEV]' prefix in the browser tab, which can indicate it's not running in its most optimized production state. In resource-constrained environments like Render's 512MB free tier, every reduction in unnecessary UI processing or development-related checks is a win.
+**Action:** Set `N8N_RELEASE_TYPE: stable` in `render.yaml` to ensure the instance is explicitly configured for production use, providing a cleaner UI and ensuring n8n uses its most efficient execution paths.
