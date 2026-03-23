@@ -40,3 +40,11 @@
 ## 2026-03-27 - Enhancing Navigation with Visual Cues
 **Learning:** Adding a simple visual cue (like an up-arrow `↑`) to "Back to top" links provides immediate visual affordance, making it clearer to the user that the link will navigate them upwards. Furthermore, ensuring these links are placed after every major section, especially following high-density blocks like warning callouts, maintains a consistent and predictable navigation experience.
 **Action:** Always include a visual icon in repetitive navigation links and ensure consistent placement across all primary sections of long documentation files.
+
+## 2026-03-28 - Reducing Friction with UI-Specific Instructions
+**Learning:** When documenting steps to copy sensitive or masked values from a platform's dashboard (e.g., Render's encryption keys), users often overlook the masking mechanism. Explicitly instructing them to click a "Reveal" or "eye icon" button provides clear guidance and prevents the common mistake of copying a masked or empty value.
+**Action:** Always include specific UI interactions (like "Click the eye icon") when guiding users through copying sensitive configuration data from third-party dashboards.
+
+## 2026-03-29 - Enabling Self-Service Diagnostics in Documentation
+**Learning:** Users often struggle to verify if an environment variable (like `WEBHOOK_URL`) was correctly applied until they encounter a failure. Providing a specific "in-app" verification method (e.g., checking the Production URL inside an n8n Webhook node) empowers users to self-diagnose and correct misconfigurations early in the setup process.
+**Action:** For all critical environment variables, identify and document a specific way for the user to verify the setting's effect directly within the application's interface.
