@@ -85,7 +85,7 @@ You can verify that your n8n instance is running correctly by visiting your serv
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
-2. **Copy key:** Find the `N8N_ENCRYPTION_KEY` variable and copy its value.
+2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
 ---
@@ -100,6 +100,7 @@ On Render's Free Tier, services spin down after 15 minutes of inactivity. When y
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
 - Ensure you have set the `WEBHOOK_URL` environment variable as described in Step 2.
 - Double-check that the `WEBHOOK_URL` **does not** have a trailing slash (e.g., use `https://my-n8n.onrender.com` not `https://my-n8n.onrender.com/`).
+- **Verify in n8n:** Open any **Webhook** node in the n8n editor and check the **Production URL**. It should correctly display your service URL (e.g., `https://my-n8n.onrender.com/webhook/...`). If it shows `http://localhost:5678`, your `WEBHOOK_URL` is not set correctly.
 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
