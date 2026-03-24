@@ -48,3 +48,7 @@
 ## 2026-03-29 - Enabling Self-Service Diagnostics in Documentation
 **Learning:** Users often struggle to verify if an environment variable (like `WEBHOOK_URL`) was correctly applied until they encounter a failure. Providing a specific "in-app" verification method (e.g., checking the Production URL inside an n8n Webhook node) empowers users to self-diagnose and correct misconfigurations early in the setup process.
 **Action:** For all critical environment variables, identify and document a specific way for the user to verify the setting's effect directly within the application's interface.
+
+## 2026-03-30 - Improving Scannability in Technical Documentation
+**Learning:** Refactoring dense, comma-separated lists of technical features into structured, nested lists significantly improves the onboarding UX. It allows users to quickly scan and understand the value proposition and specific optimizations without being overwhelmed by a wall of text.
+**Action:** When documenting a complex set of optimizations or features in a README, always prefer a nested list format with bolded categories to enhance readability and information hierarchy.
