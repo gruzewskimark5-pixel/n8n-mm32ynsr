@@ -59,3 +59,7 @@
 ## 2026-03-27 - Optimizing UI and Production Readiness with Release Type
 **Learning:** By default, n8n may display a '[DEV]' prefix in the browser tab, which can indicate it's not running in its most optimized production state. In resource-constrained environments like Render's 512MB free tier, every reduction in unnecessary UI processing or development-related checks is a win.
 **Action:** Set `N8N_RELEASE_TYPE: stable` in `render.yaml` to ensure the instance is explicitly configured for production use, providing a cleaner UI and ensuring n8n uses its most efficient execution paths.
+
+## 2026-03-28 - Minimizing Database I/O with Execution Data Settings
+**Learning:** For n8n on Render's free tier, database I/O is a significant performance bottleneck. By default, n8n attempts to save progress for every node execution and keep a history of manual "test" runs. These writes add unnecessary latency and consume limited storage.
+**Action:** Set `EXECUTIONS_DATA_SAVE_ON_PROGRESS: "false"` and `EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS: "false"` in `render.yaml` to ensure only essential production execution failures are persisted, significantly reducing database write pressure.
