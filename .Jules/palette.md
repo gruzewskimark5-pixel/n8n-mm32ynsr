@@ -52,3 +52,7 @@
 ## 2026-03-30 - Improving Scannability in Technical Documentation
 **Learning:** Refactoring dense, comma-separated lists of technical features into structured, nested lists significantly improves the onboarding UX. It allows users to quickly scan and understand the value proposition and specific optimizations without being overwhelmed by a wall of text.
 **Action:** When documenting a complex set of optimizations or features in a README, always prefer a nested list format with bolded categories to enhance readability and information hierarchy.
+
+## 2025-06-01 - Improving Scannability with Inline Icons
+**Learning:** Incorporating specific visual icons (e.g., 💤 for spin-down, 🗓️ for expiry) directly into list items for platform limitations provides immediate visual context and significantly improves the scannability of dense technical sections compared to plain text bullets.
+**Action:** Use thematic icons within lists when documenting multiple disparate platform limitations to help users quickly identify the nature of each constraint.

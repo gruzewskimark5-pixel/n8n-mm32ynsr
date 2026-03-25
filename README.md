@@ -42,6 +42,9 @@ Each of the above uses a free instance type by default.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
+> [!TIP]
+> **Template Library:** To optimize performance, the built-in Template Library is disabled by default. You can browse workflows at [n8n.io/workflows](https://n8n.io/workflows/) or re-enable it by setting the `N8N_TEMPLATES_ENABLED` environment variable to `true` in the Render Dashboard.
+
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
@@ -59,7 +62,7 @@ Visit your service URL to create your first owner account. This account will hav
 > If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a "Service Unavailable" message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks. For more details on how to verify this setting, see the [Webhook or OAuth2 errors](#webhook-or-oauth2-errors) section in Troubleshooting.
 
 > [!IMPORTANT]
 > The `WEBHOOK_URL` must not include a trailing slash or a port number. For example, use `https://n8n-service-q975.onrender.com` instead of `https://n8n-service-q975.onrender.com/` or `https://n8n-service-q975.onrender.com:5678`.
@@ -124,9 +127,9 @@ To get more detailed logs:
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
-> - **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
+> - 💤 **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
+> - 🗓️ **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
+> - ⏰ **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
