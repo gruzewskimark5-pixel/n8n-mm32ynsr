@@ -61,6 +61,11 @@ services:
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
 
+      # Disables n8n UI onboarding tips to reduce background processing
+      # and frontend logic execution in production environments.
+      - key: N8N_ONBOARDING_FLOW_DISABLED
+        value: "true"
+
       # Disables the hiring banner in the console to reduce startup noise
       # and minor background processing overhead.
       - key: N8N_HIRING_BANNER_ENABLED
