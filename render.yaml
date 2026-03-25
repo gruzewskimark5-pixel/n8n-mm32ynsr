@@ -66,6 +66,17 @@ services:
       - key: N8N_HIRING_BANNER_ENABLED
         value: "false"
 
+      # Disables onboarding tips in the UI to reduce minor background
+      # processing and frontend logic execution.
+      - key: N8N_ONBOARDING_FLOW_DISABLED
+        value: "true"
+
+      # Skips unnecessary external API calls to deregister webhooks during
+      # shutdown. This speeds up the frequent spin-down process on Render's
+      # free tier and avoids redundant re-registration logic.
+      - key: N8N_SKIP_WEBHOOK_DEREGISTRATION_ON_SHUTDOWN
+        value: "true"
+
       # Sets the release type to stable to remove the '[DEV]' prefix from the
       # browser tab and ensure n8n runs in a production-optimized mode.
       - key: N8N_RELEASE_TYPE

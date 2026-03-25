@@ -63,3 +63,7 @@
 ## 2026-03-28 - Minimizing Database I/O with Execution Data Settings
 **Learning:** For n8n on Render's free tier, database I/O is a significant performance bottleneck. By default, n8n attempts to save progress for every node execution and keep a history of manual "test" runs. These writes add unnecessary latency and consume limited storage.
 **Action:** Set `EXECUTIONS_DATA_SAVE_ON_PROGRESS: "false"` and `EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS: "false"` in `render.yaml` to ensure only essential production execution failures are persisted, significantly reducing database write pressure.
+
+## 2026-03-29 - Optimizing Shutdown and Frontend Overhead for Ephemeral Environments
+**Learning:** In ephemeral environments like Render's free tier, frequent spin-down/spin-up cycles make the lifecycle efficiency critical. Skipping webhook deregistration on shutdown (`N8N_SKIP_WEBHOOK_DEREGISTRATION_ON_SHUTDOWN: "true"`) avoids unnecessary external API calls, speeding up the shutdown process. Additionally, disabling the onboarding flow (`N8N_ONBOARDING_FLOW_DISABLED: "true"`) further reduces background logic and frontend processing for a leaner production instance.
+**Action:** Always include lifecycle and UI-onboarding optimizations in deployment templates for resource-constrained, ephemeral hosting environments.
