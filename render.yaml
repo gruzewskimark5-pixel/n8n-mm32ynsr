@@ -109,11 +109,16 @@ services:
         value: "10"
 
       # To significantly reduce database I/O and storage consumption on Render's
-      # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none".
-      # This ensures n8n only persists data for failed workflow executions,
-      # which are typically the only ones needed for troubleshooting.
+      # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none" and
+      # disable progress/manual execution saves. This ensures n8n only persists
+      # data for failed production workflow executions, minimizing unnecessary
+      # database writes.
       - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
         value: "none"
+      - key: EXECUTIONS_DATA_SAVE_ON_PROGRESS
+        value: "false"
+      - key: EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
+        value: "false"
 
       # These automatically populate connection details 
       # for the Render Postgres database defined below
