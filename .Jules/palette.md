@@ -52,3 +52,7 @@
 ## 2026-03-30 - Improving Scannability in Technical Documentation
 **Learning:** Refactoring dense, comma-separated lists of technical features into structured, nested lists significantly improves the onboarding UX. It allows users to quickly scan and understand the value proposition and specific optimizations without being overwhelmed by a wall of text.
 **Action:** When documenting a complex set of optimizations or features in a README, always prefer a nested list format with bolded categories to enhance readability and information hierarchy.
+
+## 2026-03-31 - Reducing Confusion with State-Specific UI Instructions
+**Learning:** For applications with multiple view states (like n8n's Webhook node having separate Test and Production tabs), a generic "verify the URL" instruction is often insufficient and leads to false "misconfiguration" reports. Users often stay on the default (Test) view and assume their Production setting hasn't applied.
+**Action:** Always identify and explicitly name the specific tab, toggle, or view state the user must enter to correctly verify a configuration change within the application UI.

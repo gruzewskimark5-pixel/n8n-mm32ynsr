@@ -70,6 +70,9 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
+> [!TIP]
+> **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
+
 ### 🌍 3. Set your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should set the `GENERIC_TIMEZONE` environment variable.
 
@@ -104,7 +107,7 @@ On Render's Free Tier, services spin down after 15 minutes of inactivity. When y
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
 - Ensure you have set the `WEBHOOK_URL` environment variable as described in Step 2.
 - Double-check that the `WEBHOOK_URL` **does not** have a trailing slash (e.g., use `https://my-n8n.onrender.com` not `https://my-n8n.onrender.com/`).
-- **Verify in n8n:** Open any **Webhook** node in the n8n editor and check the **Production URL**. It should correctly display your service URL (e.g., `https://my-n8n.onrender.com/webhook/...`). If it shows `http://localhost:5678`, your `WEBHOOK_URL` is not set correctly.
+- **Verify in n8n:** Open any **Webhook** node in the n8n editor, select the **Production** URL tab, and check the URL. It should correctly display your service URL (e.g., `https://my-n8n.onrender.com/webhook/...`). If it shows `http://localhost:5678`, your `WEBHOOK_URL` is not set correctly.
 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
@@ -124,9 +127,9 @@ To get more detailed logs:
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
-> - **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
-> - **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
-> - **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
+> - 💤 **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
+> - 🗓️ **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
+> - ⏰ **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
 
