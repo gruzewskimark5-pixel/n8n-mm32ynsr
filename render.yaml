@@ -61,6 +61,11 @@ services:
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
 
+      # Disables the onboarding flow to reduce initial setup overhead,
+      # background network calls, and idle resource consumption.
+      - key: N8N_ONBOARDING_FLOW_DISABLED
+        value: "true"
+
       # Disables the hiring banner in the console to reduce startup noise
       # and minor background processing overhead.
       - key: N8N_HIRING_BANNER_ENABLED
@@ -156,6 +161,12 @@ services:
       # database connection pool size.
       - key: N8N_CONCURRENCY_PRODUCTION_LIMIT
         value: "5"
+
+      # Speeds up service shutdown and container lifecycle in ephemeral
+      # environments like Render Free Tier by skipping unnecessary
+      # external API calls to deregister webhooks.
+      - key: N8N_SKIP_WEBHOOK_DEREGISTRATION_ON_SHUTDOWN
+        value: "true"
 
       # The default port n8n listens on.
       # Explicitly setting this speeds up your first deploy!
