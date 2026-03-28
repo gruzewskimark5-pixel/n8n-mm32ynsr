@@ -56,7 +56,7 @@ Visit your service URL to create your first owner account. This account will hav
 > **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 
 > [!TIP]
-> If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a "Service Unavailable" message, wait a moment and refresh the page.
+> If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
@@ -67,7 +67,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
 3. **Add variable:** Click **Add Environment Variable**.
-4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your service URL as the value.
+4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 
 > [!TIP]
@@ -98,32 +98,6 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Troubleshooting
-
-### 🐌 Service is slow to start
-On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
-
-### 🪝 Webhook or OAuth2 errors
-If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
-- Ensure you have set the `WEBHOOK_URL` environment variable as described in Step 2.
-- Double-check that the `WEBHOOK_URL` **does not** have a trailing slash (e.g., use `https://my-n8n.onrender.com` not `https://my-n8n.onrender.com/`).
-- **Verify in n8n:** Open any **Webhook** node in the n8n editor, select the **Production** URL tab, and check the URL. It should correctly display your service URL (e.g., `https://my-n8n.onrender.com/webhook/...`). If it shows `http://localhost:5678`, your `WEBHOOK_URL` is not set correctly.
-
-### 🐘 Database Connection Errors
-During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
-
-### 📝 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
-
-To get more detailed logs:
-1. Navigate to the **Environment** tab.
-2. Find the `N8N_LOG_LEVEL` variable.
-3. Change its value from `warn` to `info` or `debug`.
-4. **Save** your changes and Render will restart the service with the new log level.
-
----
-[↑ Back to top](#deploy-n8n-on-render)
-
 ## Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
@@ -141,6 +115,44 @@ To get more detailed logs:
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown in the [Render Dashboard](https://dashboard.render.com/).
 - 💾 **Backups:** Regularly export your workflows and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+
+---
+[↑ Back to top](#deploy-n8n-on-render)
+
+## Troubleshooting
+
+### 🐌 Service is slow to start
+On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+
+### 🪝 Webhook or OAuth2 errors
+If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
+- Ensure you have set the `WEBHOOK_URL` environment variable as described in Step 2.
+- Double-check that the `WEBHOOK_URL` **does not** have a trailing slash (e.g., use `https://my-n8n.onrender.com` not `https://my-n8n.onrender.com/`).
+- **Verify in n8n:** Open any **Webhook** node in the n8n editor, select the **Production** URL tab, and check the URL. It should correctly display your service URL (e.g., `https://my-n8n.onrender.com/webhook/...`). If it shows `http://localhost:5678`, your `WEBHOOK_URL` is not set correctly.
+
+### 🐘 Database Connection Errors
+During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+
+### 🧩 Missing "Templates" tab
+To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab.
+2. Change `N8N_TEMPLATES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
+
+### ✅ Successful executions not showing
+To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`). If you want to see successful executions in your history:
+1. Navigate to the **Environment** tab.
+2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
+3. **Save Changes**. Note that this will increase database storage usage.
+
+### 📝 Viewing and Adjusting Logs
+If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+
+To get more detailed logs:
+1. Navigate to the **Environment** tab.
+2. Find the `N8N_LOG_LEVEL` variable.
+3. Change its value from `warn` to `info` or `debug`.
+4. **Save** your changes and Render will restart the service with the new log level.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)

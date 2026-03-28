@@ -56,3 +56,7 @@
 ## 2026-03-31 - Reducing Confusion with State-Specific UI Instructions
 **Learning:** For applications with multiple view states (like n8n's Webhook node having separate Test and Production tabs), a generic "verify the URL" instruction is often insufficient and leads to false "misconfiguration" reports. Users often stay on the default (Test) view and assume their Production setting hasn't applied.
 **Action:** Always identify and explicitly name the specific tab, toggle, or view state the user must enter to correctly verify a configuration change within the application UI.
+
+## 2025-03-27 - Document Order and Instructional Grounding
+**Learning:** In deployment templates, the README is the primary "user interface." Discrepancies between the Table of Contents and the physical section order increase cognitive load and friction. Furthermore, when performance optimizations disable default application features (like n8n templates), users perceive this as a "bug" unless it's explicitly addressed in the Troubleshooting section with clear re-enablement steps.
+**Action:** Always verify that the physical header order in README.md matches the Table of Contents, and proactively add troubleshooting entries for any UI features disabled by the template's default environment variables.
