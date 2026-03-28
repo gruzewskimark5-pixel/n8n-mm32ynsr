@@ -63,3 +63,7 @@
 ## 2026-03-28 - Minimizing Database I/O with Execution Data Settings
 **Learning:** For n8n on Render's free tier, database I/O is a significant performance bottleneck. By default, n8n attempts to save progress for every node execution and keep a history of manual "test" runs. These writes add unnecessary latency and consume limited storage.
 **Action:** Set `EXECUTIONS_DATA_SAVE_ON_PROGRESS: "false"` and `EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS: "false"` in `render.yaml` to ensure only essential production execution failures are persisted, significantly reducing database write pressure.
+
+## 2026-03-29 - Preventing Resource Exhaustion with Global Execution Timeouts
+**Learning:** In resource-constrained environments like Render's 512MB free tier, runaway workflows (e.g., infinite loops or hung HTTP requests) can indefinitely consume CPU and RAM, leading to OOM kills or severe platform throttling. n8n does not have a global execution timeout enabled by default.
+**Action:** Set `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to a sensible default (e.g., 3600 seconds) in `render.yaml` to provide a critical stability safety net that automatically reclaims resources from stalled or inefficient workflows.
