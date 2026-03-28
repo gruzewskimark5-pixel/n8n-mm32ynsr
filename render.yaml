@@ -162,6 +162,15 @@ services:
       - key: N8N_CONCURRENCY_PRODUCTION_LIMIT
         value: "5"
 
+      # Sets a global timeout for all workflow executions (1 hour) to
+      # provide a critical safety net for Render's 512MB free tier.
+      # This prevents runaway or hanging workflows from indefinitely
+      # consuming CPU and RAM, ensuring long-term service stability.
+      - key: N8N_EXECUTIONS_TIMEOUT
+        value: "3600"
+      - key: N8N_EXECUTIONS_TIMEOUT_MAX
+        value: "3600"
+
       # Speeds up service shutdown and container lifecycle in ephemeral
       # environments like Render Free Tier by skipping unnecessary
       # external API calls to deregister webhooks.
