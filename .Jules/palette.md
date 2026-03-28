@@ -60,3 +60,7 @@
 ## 2025-03-27 - Document Order and Instructional Grounding
 **Learning:** In deployment templates, the README is the primary "user interface." Discrepancies between the Table of Contents and the physical section order increase cognitive load and friction. Furthermore, when performance optimizations disable default application features (like n8n templates), users perceive this as a "bug" unless it's explicitly addressed in the Troubleshooting section with clear re-enablement steps.
 **Action:** Always verify that the physical header order in README.md matches the Table of Contents, and proactively add troubleshooting entries for any UI features disabled by the template's default environment variables.
+
+## 2025-03-27 - Proactive Setup Verification and Visual Guidance
+**Learning:** For deployment templates with manual post-deploy steps, users often miss formatting rules (like trailing slashes) or fail to verify their settings until they encounter a runtime failure. Adding visual example/counter-example pairs (✅/❌) and specific "in-app" verification steps (e.g., checking a specific node's tab in n8n) significantly reduces configuration errors and improves the "Day 1" onboarding experience.
+**Action:** Always include visual format checklists and state-specific UI verification steps for critical environment variables in the setup guide.
