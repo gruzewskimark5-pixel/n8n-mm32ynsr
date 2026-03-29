@@ -39,6 +39,11 @@ services:
       - key: EXECUTIONS_PROCESS
         value: main
 
+      # Improves performance for frequently triggered workflows by caching
+      # definitions in memory and avoiding repeated database lookups.
+      - key: N8N_WORKFLOW_RUN_LOCAL_CACHE
+        value: "true"
+
       # Disables telemetry to reduce background overhead and network calls.
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"

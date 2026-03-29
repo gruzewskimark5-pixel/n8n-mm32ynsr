@@ -67,3 +67,7 @@
 ## 2026-03-29 - Preventing Resource Exhaustion with Global Execution Timeouts
 **Learning:** In resource-constrained environments like Render's 512MB free tier, runaway workflows (e.g., infinite loops or hung HTTP requests) can indefinitely consume CPU and RAM, leading to OOM kills or severe platform throttling. n8n does not have a global execution timeout enabled by default.
 **Action:** Set `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to a sensible default (e.g., 3600 seconds) in `render.yaml` to provide a critical stability safety net that automatically reclaims resources from stalled or inefficient workflows.
+
+## 2026-03-30 - Reducing Database Lookups with Workflow Caching
+**Learning:** For frequently triggered workflows, n8n's default behavior of fetching the workflow definition from the database for every execution adds unnecessary I/O overhead and latency. In resource-constrained environments like Render's free tier, this can lead to database connection exhaustion and slower response times.
+**Action:** Set `N8N_WORKFLOW_RUN_LOCAL_CACHE: "true"` in `render.yaml` to cache workflow definitions in memory, significantly reducing database pressure and improving execution startup performance.
