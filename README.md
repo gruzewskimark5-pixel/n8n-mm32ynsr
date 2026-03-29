@@ -148,10 +148,21 @@ To save memory on Render's free tier, the workflow template library is disabled 
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### ✅ Successful executions not showing
-To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`). If you want to see successful executions in your history:
-1. Navigate to the **Environment** tab.
+To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
+
+To see successful executions, you have two options:
+
+**Option 1: For specific workflows (Recommended)**
+This is the most efficient way to save database space while still seeing successes for critical workflows.
+1. Open your workflow in the n8n editor.
+2. Click the **horizontal ellipsis (three dots)** in the top-right corner.
+3. Select **Settings**.
+4. Change **Save Successful Executions** to **Yes** and click **Save**.
+
+**Option 2: For all workflows**
+1. Navigate to the **Environment** tab in the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
-3. **Save Changes**. Note that this will increase database storage usage.
+3. **Save Changes**. Note that this will increase your database storage usage more quickly.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
