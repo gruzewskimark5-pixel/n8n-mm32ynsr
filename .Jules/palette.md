@@ -64,3 +64,7 @@
 ## 2025-03-27 - Proactive Setup Verification and Visual Guidance
 **Learning:** For deployment templates with manual post-deploy steps, users often miss formatting rules (like trailing slashes) or fail to verify their settings until they encounter a runtime failure. Adding visual example/counter-example pairs (✅/❌) and specific "in-app" verification steps (e.g., checking a specific node's tab in n8n) significantly reduces configuration errors and improves the "Day 1" onboarding experience.
 **Action:** Always include visual format checklists and state-specific UI verification steps for critical environment variables in the setup guide.
+
+## 2025-03-27 - Granular Resource Management in Documentation
+**Learning:** For deployment templates on free tiers (like n8n on Render), recommending granular, per-workflow settings (e.g., "Save Successful Executions") over global environment variables provides a superior UX. It empowers users to manage their limited resources (database storage) surgically without sacrificing visibility for critical workflows.
+**Action:** Always identify and prioritize "in-app" granular settings in documentation when global overrides might have negative resource impacts on the user's environment.
