@@ -68,3 +68,7 @@
 ## 2025-03-27 - Granular Resource Management in Documentation
 **Learning:** For deployment templates on free tiers (like n8n on Render), recommending granular, per-workflow settings (e.g., "Save Successful Executions") over global environment variables provides a superior UX. It empowers users to manage their limited resources (database storage) surgically without sacrificing visibility for critical workflows.
 **Action:** Always identify and prioritize "in-app" granular settings in documentation when global overrides might have negative resource impacts on the user's environment.
+
+## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
+**Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
+**Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.

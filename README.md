@@ -58,7 +58,7 @@ Visit your service URL to create your first owner account. This account will hav
 > [!TIP]
 > If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
-### 🪝 2. Configure Webhook URL
+### 🪝 2. Configure Webhook URL (Required)
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
@@ -75,6 +75,9 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
 > [!TIP]
+> **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
+
+> [!TIP]
 > **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
 
 ### 🌍 3. Set your Timezone (Optional)
@@ -88,7 +91,7 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 3. **Add variable:** Click **Add Environment Variable**.
 4. **Enter details:** Set the key to `GENERIC_TIMEZONE` and your TZ name as the value.
 5. **Save:** Click **Save Changes**.
-6. **Verify:** To confirm the change, create a new workflow in n8n, select the **three dots icon** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
+6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
@@ -134,9 +137,9 @@ On Render's Free Tier, services spin down after 15 minutes of inactivity. When y
 
 ### 🪝 Webhook or OAuth2 errors
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
-- Ensure you have set the `WEBHOOK_URL` environment variable as described in [Step 2](#-2-configure-webhook-url).
+- Ensure you have set the `WEBHOOK_URL` environment variable as described in [Step 2](#2-configure-webhook-url-required).
 - Double-check that the `WEBHOOK_URL` follows the correct format (no trailing slash).
-- **Verify in n8n:** Follow the [in-app verification steps](#-2-configure-webhook-url) to confirm your configuration is active.
+- **Verify in n8n:** Follow the [in-app verification steps](#2-configure-webhook-url-required) to confirm your configuration is active.
 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
