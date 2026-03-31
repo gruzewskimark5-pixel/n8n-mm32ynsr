@@ -152,18 +152,18 @@ services:
           property: user
 
       # Optimized database connection pool size for improved concurrency.
-      # Increasing this from the default (2) to 5 reduces connection
+      # Increasing this from the default (2) to 10 reduces connection
       # acquisition latency and improves overall system throughput.
-      # A value of 5 is used to stay within Render's free tier Postgres
-      # connection limit.
+      # While Render's free tier Postgres supports up to 100 connections,
+      # a pool size of 10 provides a critical buffer for background
+      # tasks (heartbeats, pruning, UI requests) and prevents contention.
       - key: DB_POSTGRESDB_POOL_SIZE
-        value: "5"
+        value: "10"
 
       # Prevents the service from becoming unresponsive or crashing during
       # high-load periods by limiting concurrent production executions.
       # This prevents event loop thrashing and ensures each execution has
-      # sufficient CPU and RAM. A value of 5 is used to align with the
-      # database connection pool size.
+      # sufficient CPU and RAM.
       - key: N8N_CONCURRENCY_PRODUCTION_LIMIT
         value: "5"
 
