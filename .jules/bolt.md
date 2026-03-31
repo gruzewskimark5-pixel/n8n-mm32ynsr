@@ -71,3 +71,7 @@
 ## 2026-03-30 - Reducing Database Lookups with Workflow Caching
 **Learning:** For frequently triggered workflows, n8n's default behavior of fetching the workflow definition from the database for every execution adds unnecessary I/O overhead and latency. In resource-constrained environments like Render's free tier, this can lead to database connection exhaustion and slower response times.
 **Action:** Set `N8N_WORKFLOW_RUN_LOCAL_CACHE: "true"` in `render.yaml` to cache workflow definitions in memory, significantly reducing database pressure and improving execution startup performance.
+
+## 2025-05-20 - Optimizing n8n Database Throughput with Connection Buffering
+**Learning:** In n8n, setting `DB_POSTGRESDB_POOL_SIZE` equal to `N8N_CONCURRENCY_PRODUCTION_LIMIT` can cause connection contention. Background tasks like heartbeats, pruning, and UI requests also require database connections. Render's Free Tier Postgres supports up to 100 connections (97 usable), which is far higher than the previously assumed limit of 5.
+**Action:** Always ensure `DB_POSTGRESDB_POOL_SIZE` exceeds `N8N_CONCURRENCY_PRODUCTION_LIMIT` by a reasonable buffer (e.g., 5) to prevent latency in background tasks and maintain UI responsiveness during high workflow loads.
