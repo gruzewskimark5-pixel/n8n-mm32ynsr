@@ -87,7 +87,7 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
-2. **Open Environment settings:** Navigate to your service's **Environment** tab.
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
 3. **Add variable:** Click **Add Environment Variable**.
 4. **Enter details:** Set the key to `GENERIC_TIMEZONE` and your TZ name as the value.
 5. **Save:** Click **Save Changes**.
@@ -102,7 +102,7 @@ You can verify that your n8n instance is running correctly by visiting your serv
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
@@ -123,8 +123,8 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ## Maintenance & Updates
 
-- 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown in the [Render Dashboard](https://dashboard.render.com/).
-- 💾 **Backups:** Regularly export your workflows and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
+- 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
+- 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 
 ---
@@ -146,7 +146,7 @@ During initial deployment, the database might take slightly longer to initialize
 
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
-1. Navigate to the **Environment** tab.
+1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
@@ -163,13 +163,13 @@ This is the most efficient way to save database space while still seeing success
 4. Change **Save Successful Executions** to **Yes** and click **Save**.
 
 **Option 2: For all workflows**
-1. Navigate to the **Environment** tab in the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
-1. Navigate to the **Environment** tab.
+1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
 
@@ -177,7 +177,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
 
 To get more detailed logs:
-1. Navigate to the **Environment** tab.
+1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Find the `N8N_LOG_LEVEL` variable.
 3. Change its value from `warn` to `info` or `debug`.
 4. **Save** your changes and Render will restart the service with the new log level.
