@@ -134,6 +134,13 @@ services:
       # for the Render Postgres database defined below
       - key: DB_TYPE
         value: postgresdb
+
+      # Reduces unnecessary network and CPU overhead by decreasing the
+      # frequency of database heartbeats from every 2 seconds (default)
+      # to every 60 seconds.
+      - key: DB_PING_INTERVAL_SECONDS
+        value: "60"
+
       - key: DB_POSTGRESDB_DATABASE
         fromDatabase:
           name: n8n-db

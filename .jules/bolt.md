@@ -75,3 +75,7 @@
 ## 2026-03-31 - Improving Connection Headroom with Larger Pool Size
 **Learning:** Setting the database connection pool size equal to the production concurrency limit can lead to contention. n8n requires connections for background heartbeats, UI requests, and metadata updates in addition to workflow executions. Contrary to previous assumptions of a strict 5-connection limit on Render Free Tier, modern Render Postgres supports up to 97 connections.
 **Action:** Increase `DB_POSTGRESDB_POOL_SIZE` (e.g., to 10) while keeping `N8N_CONCURRENCY_PRODUCTION_LIMIT` lower (e.g., 5). This provides a performance buffer for system tasks and UI responsiveness without exceeding platform limits or impacting memory.
+
+## 2026-04-01 - Reducing Background Database Heartbeat Overhead
+**Learning:** By default, n8n heartbeats the database every 2 seconds to verify reachability. In resource-constrained environments like Render Free Tier (512MB RAM), this high-frequency heartbeat creates constant background network and CPU activity that can interfere with execution performance and startup times. Increasing this interval reduces idle overhead without sacrificing stability.
+**Action:** Set `DB_PING_INTERVAL_SECONDS` (added in n8n v1.92.2) to a higher value (e.g., 60 seconds) in `render.yaml` to minimize background I/O pressure.
