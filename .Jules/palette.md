@@ -72,3 +72,7 @@
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
 **Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.
+
+## 2026-04-02 - Transparency in Maintenance and Learning Resources
+**Learning:** For deployment templates where the README is the primary UI, providing immediate context on the origin of critical variables (like encryption keys) and explicit warnings about platform-specific backup limitations (or lack thereof) significantly reduces "Day 2" anxiety and prevents data loss. Furthermore, catering to diverse learning styles by including video resources alongside documentation improves onboarding success.
+**Action:** Always identify critical, platform-managed variables and explain their origin. Proactively warn users about backup limitations on free tiers and include visual/video learning paths where available.
