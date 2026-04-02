@@ -66,9 +66,17 @@
 **Action:** Always include visual format checklists and state-specific UI verification steps for critical environment variables in the setup guide.
 
 ## 2025-03-27 - Granular Resource Management in Documentation
-**Learning:** For deployment templates on free tiers (like n8n on Render), recommending granular, per-workflow settings (e.g., "Save Successful Executions") over global environment variables provides a superior UX. It empowers users to manage their limited resources (database storage) surgically without sacrificing visibility for critical workflows.
+**Learning:** For deployment templates on free tiers (like n8n on Render), recommending per-workflow settings (e.g., "Save Successful Executions") over global environment variables provides a superior UX. It empowers users to manage their limited resources (database storage) surgically without sacrificing visibility for critical workflows.
 **Action:** Always identify and prioritize "in-app" granular settings in documentation when global overrides might have negative resource impacts on the user's environment.
 
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
 **Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.
+
+## 2025-10-27 - Navigational Scannability in Blueprint Docs
+**Learning:** For Blueprint-only repositories, the README is the interface. Long guides without detailed navigation lead to "scroll fatigue." Expanding the Table of Contents with nested links for setup and troubleshooting subsections drastically improves scannability and allows users to jump directly to the context they need.
+**Action:** Always implement a nested Table of Contents for primary setup and troubleshooting sections in infrastructure-as-code documentation.
+
+## 2025-10-27 - Discoverability via Proactive Documentation Tips
+**Learning:** Users rarely read full software manuals; however, placing "Pro Tips" about high-value interface features (like keyboard shortcut hints) in the "Next Steps" or "Getting Started" sections of a deployment template creates delightful discovery moments and improves immediate post-deploy usability.
+**Action:** Identify and surface high-impact, non-obvious interface features (like shortcuts) as tips within the setup flow to enhance the target application's UX.
