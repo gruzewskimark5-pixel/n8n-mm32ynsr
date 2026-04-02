@@ -72,3 +72,7 @@
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
 **Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.
+
+## 2026-04-02 - Safety Affordance in Critical Documentation
+**Learning:** For setup steps with irreversible consequences (like data loss from missing backups), a standard numbered list item is often insufficient to grab the user's attention. Adding an explicit "(Critical)" label to the section header creates a strong visual affordance that persists even when users are skimming, significantly increasing the likelihood of compliance with essential safety procedures.
+**Action:** Always identify setup steps with high safety or data-loss risks and append an explicit "(Critical)" label to their corresponding section headers.
