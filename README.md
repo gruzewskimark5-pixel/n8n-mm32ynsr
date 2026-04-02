@@ -9,12 +9,24 @@
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
+    - [1. Create your owner account](#1-create-your-owner-account)
+    - [2. Configure Webhook URL](#2-configure-webhook-url-required)
+    - [3. Set your Timezone](#3-set-your-timezone-optional)
+    - [4. Verify your deployment](#4-verify-your-deployment)
+    - [5. Backup your encryption key](#5-backup-your-encryption-key)
 - [Free Tier Limitations](#free-tier-limitations)
 - [Maintenance & Updates](#maintenance--updates)
 - [Troubleshooting](#troubleshooting)
+    - [Service is slow to start](#service-is-slow-to-start)
+    - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
+    - [Database Connection Errors](#database-connection-errors)
+    - [Missing "Templates" tab](#missing-templates-tab)
+    - [Successful executions not showing](#successful-executions-not-showing)
+    - [Workflows timing out](#workflows-timing-out)
+    - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [Next Steps](#next-steps)
 
-## Getting Started
+## 🏁 Getting Started
 
 This template defines a [`render.yaml`](./render.yaml) file you can use to deploy [n8n](https://n8n.io/) on Render. Click **Use this template** in the upper right to copy this template into your account as a new repo.
 
@@ -31,13 +43,13 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Features
+## ✨ Features
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding) and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding, personalization) and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -45,9 +57,9 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Post-deployment Setup
+## 🛠️ Post-deployment Setup
 
-After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
+After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up. If you encounter any issues during setup, refer to the [Troubleshooting](#troubleshooting) section below.
 
 ### 👤 1. Create your owner account
 Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
@@ -109,7 +121,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Free Tier Limitations
+## ⚠️ Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - 💤 **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
@@ -121,16 +133,17 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Maintenance & Updates
+## 🔄 Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+- 🔔 **Version Notifications:** By default, n8n will notify you in-app when a new version is available, ensuring you stay informed about security updates and new features.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Troubleshooting
+## 🔍 Troubleshooting
 
 ### 🐌 Service is slow to start
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
@@ -185,7 +198,7 @@ To get more detailed logs:
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Next Steps
+## 🚀 Next Steps
 
 - 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
