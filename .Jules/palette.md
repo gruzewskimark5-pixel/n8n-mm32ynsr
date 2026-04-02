@@ -72,3 +72,7 @@
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
 **Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.
+
+## 2025-05-19 - Actionable Placeholders in Configuration Templates
+**Learning:** In technical configuration templates (like `render.yaml`), using generic, actionable placeholders (e.g., 'replace-with-your-url') is superior UX to using specific documentation examples. It clearly signals that user input is required and prevents the risk of users accidentally deploying with a specific, non-functional example URL.
+**Action:** Always prioritize generic, high-intent placeholders in configuration files while reserving specific examples for the documentation (README) to maintain both clarity and safety.

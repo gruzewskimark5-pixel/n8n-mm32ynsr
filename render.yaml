@@ -19,7 +19,7 @@ services:
       url: docker.io/n8nio/n8n:latest
 
     # The path of the service's health check endpoint for zero-downtime deploys.
-    healthCheckPath: /healthz
+    healthCheckPath: /healthz/readiness
 
     # All environment variables defined below are required!
     #
