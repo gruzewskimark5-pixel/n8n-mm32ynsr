@@ -99,7 +99,7 @@ You can verify that your n8n instance is running correctly by visiting your serv
 > [!TIP]
 > This endpoint performs a basic reachability check for the n8n service. To verify that the database is also connected and ready, you can use the `/healthz/readiness` path instead.
 
-### 🔑 5. Backup your encryption key
+### 🔑 5. Backup your encryption key (Critical)
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
@@ -132,7 +132,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ## Troubleshooting
 
-### 🐌 Service is slow to start
+### 🐌 Service is slow to start (Cold Start)
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
 
 ### 🪝 Webhook or OAuth2 errors
@@ -191,6 +191,7 @@ To get more detailed logs:
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
 - 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
 - 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+- ⌨️ **Keyboard Shortcuts:** Press **?** inside n8n to view all available keyboard shortcuts.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
