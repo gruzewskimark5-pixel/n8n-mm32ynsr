@@ -49,7 +49,7 @@ Each of the above uses a free instance type by default.
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
 
-### 👤 1. Create your owner account
+### 👤 1. Create your owner account (Required)
 Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
 
 > [!TIP]
@@ -93,18 +93,22 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 5. **Save:** Click **Save Changes**.
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
-### ✅ 4. Verify your deployment
+### ✅ 4. Verify your deployment (Recommended)
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
 
 > [!TIP]
 > This endpoint performs a basic reachability check for the n8n service. To verify that the database is also connected and ready, you can use the `/healthz/readiness` path instead.
 
-### 🔑 5. Backup your encryption key
-Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
+### 🔑 5. Backup your encryption key (Critical)
+Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key.
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
-3. **Store safely:** Save this key in a secure location (like a password manager).
+> [!WARNING]
+> **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
+
+1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+3. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
+4. **Store safely:** Save this key in a secure location (like a password manager).
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -124,7 +128,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ## Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
-- 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
+- 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure [backup of your `N8N_ENCRYPTION_KEY`](#5-backup-your-encryption-key-critical).
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 
 ---
@@ -191,6 +195,7 @@ To get more detailed logs:
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
 - 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
 - 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
