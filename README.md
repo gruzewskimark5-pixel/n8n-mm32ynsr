@@ -9,12 +9,24 @@
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
+  - [1. Create your owner account](#1-create-your-owner-account)
+  - [2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
+  - [3. Set your Timezone (Optional)](#3-set-your-timezone-optional)
+  - [4. Verify your deployment](#4-verify-your-deployment)
+  - [5. Backup your encryption key](#5-backup-your-encryption-key)
 - [Free Tier Limitations](#free-tier-limitations)
 - [Maintenance & Updates](#maintenance--updates)
 - [Troubleshooting](#troubleshooting)
+  - [Service is slow to start](#service-is-slow-to-start)
+  - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
+  - [Database Connection Errors](#database-connection-errors)
+  - [Missing "Templates" tab](#missing-templates-tab)
+  - [Successful executions not showing](#successful-executions-not-showing)
+  - [Workflows timing out](#workflows-timing-out)
+  - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [Next Steps](#next-steps)
 
-## Getting Started
+## 🚀 Getting Started
 
 This template defines a [`render.yaml`](./render.yaml) file you can use to deploy [n8n](https://n8n.io/) on Render. Click **Use this template** in the upper right to copy this template into your account as a new repo.
 
@@ -31,7 +43,7 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Features
+## ✨ Features
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
@@ -45,7 +57,7 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Post-deployment Setup
+## 🛠️ Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
 
@@ -94,13 +106,16 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return an `OK` response.
+You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return an `OK` response.
 
 > [!TIP]
-> This endpoint performs a basic reachability check for the n8n service. To verify that the database is also connected and ready, you can use the `/healthz/readiness` path instead.
+> This endpoint confirms that both the n8n service is reachable and the database is successfully connected and migrated. For a basic service reachability check, you can use the `/healthz` path instead.
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
+
+> [!IMPORTANT]
+> **Treat this key like a password.** Save it in a secure location (like a password manager). If you lose it, you lose your credentials.
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
@@ -109,7 +124,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Free Tier Limitations
+## ⚠️ Free Tier Limitations
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - 💤 **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
@@ -121,8 +136,9 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Maintenance & Updates
+## 🔄 Maintenance & Updates
 
+- 🔔 **Security awareness:** This Blueprint has `N8N_VERSION_NOTIFICATIONS_ENABLED` set to `true` by default to ensure you are alerted to important security updates and new n8n releases.
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
@@ -130,7 +146,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Troubleshooting
+## 🩺 Troubleshooting
 
 ### 🐌 Service is slow to start
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
@@ -185,7 +201,10 @@ To get more detailed logs:
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## Next Steps
+## 🎯 Next Steps
+
+> [!TIP]
+> **Quick discovery:** Press <kbd>?</kbd> (question mark) anywhere in the n8n editor to reveal all available keyboard shortcuts.
 
 - 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
