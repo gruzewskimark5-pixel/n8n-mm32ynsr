@@ -67,7 +67,11 @@
 
 ## 2025-03-27 - Granular Resource Management in Documentation
 **Learning:** For deployment templates on free tiers (like n8n on Render), recommending granular, per-workflow settings (e.g., "Save Successful Executions") over global environment variables provides a superior UX. It empowers users to manage their limited resources (database storage) surgically without sacrificing visibility for critical workflows.
-**Action:** Always identify and prioritize "in-app" granular settings in documentation when global overrides might have negative resource impacts on the user's environment.
+- Always identify and prioritize "in-app" granular settings in documentation when global overrides might have memory/storage impacts on the user's environment.
+
+## 2025-06-01 - Layered Navigation and Proactive Support in Technical Documentation
+**Learning:** For long-form technical documentation (READMEs), a flat Table of Contents often fails to provide enough granularity for users to jump directly to their specific pain point. Furthermore, users often experience "setup anxiety" when following multi-step guides; placing proactive "escape hatches" (links to troubleshooting) directly within the instructional flow, rather than just at the end, significantly reduces cognitive load and frustration.
+**Action:** Always implement nested links in the Table of Contents for sections with 3+ sub-steps/topics and include contextual "Troubleshooting" links within the primary onboarding narrative.
 
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.

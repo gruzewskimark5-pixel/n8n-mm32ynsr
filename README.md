@@ -9,9 +9,21 @@
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
+  - [1. Create your owner account](#1-create-your-owner-account)
+  - [2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
+  - [3. Set your Timezone (Optional)](#3-set-your-timezone-optional)
+  - [4. Verify your deployment](#4-verify-your-deployment)
+  - [5. Backup your encryption key](#5-backup-your-encryption-key)
 - [Free Tier Limitations](#free-tier-limitations)
 - [Maintenance & Updates](#maintenance--updates)
 - [Troubleshooting](#troubleshooting)
+  - [Service is slow to start](#service-is-slow-to-start)
+  - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
+  - [Database Connection Errors](#database-connection-errors)
+  - [Missing "Templates" tab](#missing-templates-tab)
+  - [Successful executions not showing](#successful-executions-not-showing)
+  - [Workflows timing out](#workflows-timing-out)
+  - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [Next Steps](#next-steps)
 
 ## Getting Started
@@ -47,7 +59,7 @@ Each of the above uses a free instance type by default.
 
 ## Post-deployment Setup
 
-After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
+After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up. If you encounter any issues during setup, check the [Troubleshooting](#troubleshooting) section below.
 
 ### 👤 1. Create your owner account
 Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
@@ -191,6 +203,9 @@ To get more detailed logs:
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
 - 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
 - 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+
+> [!TIP]
+> **Master n8n faster:** Press `?` anywhere in the n8n editor to reveal all keyboard shortcuts.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
