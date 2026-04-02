@@ -159,6 +159,11 @@ services:
       - key: DB_POSTGRESDB_POOL_SIZE
         value: "10"
 
+      # Reduces idle background heartbeat overhead between n8n and the database,
+      # which is beneficial for resource-constrained environments like Render Free Tier.
+      - key: DB_PING_INTERVAL_SECONDS
+        value: "60"
+
       # Prevents the service from becoming unresponsive or crashing during
       # high-load periods by limiting concurrent production executions.
       # This prevents event loop thrashing and ensures each execution has
