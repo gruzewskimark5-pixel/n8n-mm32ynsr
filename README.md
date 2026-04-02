@@ -88,8 +88,8 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
-3. **Add variable:** Click **Add Environment Variable**.
-4. **Enter details:** Set the key to `GENERIC_TIMEZONE` and your TZ name as the value.
+3. **Edit variable:** Find the `GENERIC_TIMEZONE` variable in the list.
+4. **Enter details:** Update the value from `Europe/Berlin` to your chosen TZ name (e.g., `America/New_York`).
 5. **Save:** Click **Save Changes**.
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
