@@ -37,7 +37,7 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding) and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, banners, personalization, onboarding) and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -99,7 +99,7 @@ You can verify that your n8n instance is running correctly by visiting your serv
 > [!TIP]
 > This endpoint performs a basic reachability check for the n8n service. To verify that the database is also connected and ready, you can use the `/healthz/readiness` path instead.
 
-### 🔑 5. Backup your encryption key
+### 🔑 5. Backup your encryption key (Critical)
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
@@ -124,7 +124,8 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ## Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
-- 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
+- 🔔 **Version Alerts:** You will see a notification in the n8n UI when a new version is available, as version notifications are enabled by default.
+- 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY` (see [Step 5](#5-backup-your-encryption-key-critical)).
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 
 ---
