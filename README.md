@@ -72,10 +72,13 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 3. **Add variable:** Click **Add Environment Variable**.
 4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
-6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
+6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab (located at the top of the node editor), and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
 > [!TIP]
-> **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
+> **Test vs. Production Tabs:** Within the n8n Webhook node editor, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
+
+> [!TIP]
+> **Troubleshooting `localhost:5678`:** If the Production tab still shows a URL starting with `http://localhost:5678`, your `WEBHOOK_URL` environment variable has not been correctly applied or the service hasn't finished restarting. Double-check your environment settings in the Render Dashboard.
 
 > [!TIP]
 > **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
@@ -101,6 +104,9 @@ You can verify that your n8n instance is running correctly by visiting your serv
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
+
+> [!IMPORTANT]
+> **Treat this key like a password.** Anyone with access to it can decrypt your n8n credentials.
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.

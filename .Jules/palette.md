@@ -72,3 +72,7 @@
 ## 2025-05-18 - Standardizing UI Terminology and High-Impact Labeling
 **Learning:** In technical documentation, inconsistent naming for UI elements (e.g., "three dots" vs. "horizontal ellipsis") increases cognitive load. Furthermore, users often skim setup guides and skip steps that don't look mandatory; explicitly labeling critical configuration steps as "(Required)" and providing state-specific guidance (like n8n's "Test vs. Production" tabs) drastically reduces "Day 1" support issues.
 **Action:** Always standardize UI element descriptions across the entire document and use "(Required)" labels for any environment variable setup that is essential for core application functionality.
+
+## 2025-05-19 - Proactive Troubleshooting for Default Configuration States
+**Learning:** Users often assume that because a configuration field (like n8n's Webhook URL) is populated, it is correctly configured, even if it shows a default placeholder like `localhost`. Proactively addressing these "false success" signals in setup guides by explicitly naming the incorrect default state and providing its resolution drastically reduces onboarding friction and prevents silent configuration failures.
+**Action:** Identify any default application states or placeholder values that resemble a successful configuration and provide explicit troubleshooting guidance to help users transition to the correct production state.
