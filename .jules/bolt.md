@@ -75,3 +75,7 @@
 ## 2026-03-31 - Improving Connection Headroom with Larger Pool Size
 **Learning:** Setting the database connection pool size equal to the production concurrency limit can lead to contention. n8n requires connections for background heartbeats, UI requests, and metadata updates in addition to workflow executions. Contrary to previous assumptions of a strict 5-connection limit on Render Free Tier, modern Render Postgres supports up to 97 connections.
 **Action:** Increase `DB_POSTGRESDB_POOL_SIZE` (e.g., to 10) while keeping `N8N_CONCURRENCY_PRODUCTION_LIMIT` lower (e.g., 5). This provides a performance buffer for system tasks and UI responsiveness without exceeding platform limits or impacting memory.
+
+## 2026-04-01 - Inconsistent n8n Environment Variable Naming Conventions
+**Learning:** n8n environment variables for related features often follow inconsistent naming patterns. For example, workflow history uses `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT`, but automatic deactivation uses `N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES`. Assuming consistent suffixes or specific camelCase formatting can lead to non-functional configurations that are silently ignored by n8n's configuration loader.
+**Action:** Always cross-reference the official n8n configuration reference to verify the exact key names and property keys, as naming conventions vary significantly across different functional areas of the application.

@@ -118,6 +118,13 @@ services:
       - key: N8N_WORKFLOW_HISTORY_PRUNE_LIMIT
         value: "10"
 
+      # Automatically deactivates workflows after repeated failures to prevent
+      # continuous resource consumption (CPU/RAM) from broken workflows.
+      - key: N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED
+        value: "true"
+      - key: N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES
+        value: "3"
+
       # To significantly reduce database I/O and storage consumption on Render's
       # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none" and
       # disable progress/manual execution saves. This ensures n8n only persists
