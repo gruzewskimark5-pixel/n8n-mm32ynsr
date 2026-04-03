@@ -49,7 +49,7 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding), reduced database heartbeat overhead, and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
