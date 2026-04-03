@@ -61,6 +61,11 @@ services:
       - key: N8N_TEMPLATES_ENABLED
         value: "false"
 
+      # Disables the community nodes library to reduce background overhead
+      # and idle resource consumption.
+      - key: N8N_COMMUNITY_PACKAGES_ENABLED
+        value: "false"
+
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_PERSONALIZATION_ENABLED
