@@ -76,3 +76,7 @@
 ## 2025-05-19 - Actionable Placeholders in Configuration Templates
 **Learning:** In technical configuration templates (like `render.yaml`), using generic, actionable placeholders (e.g., 'replace-with-your-url') is superior UX to using specific documentation examples. It clearly signals that user input is required and prevents the risk of users accidentally deploying with a specific, non-functional example URL.
 **Action:** Always prioritize generic, high-intent placeholders in configuration files while reserving specific examples for the documentation (README) to maintain both clarity and safety.
+
+## 2025-05-20 - Navigational Discoverability and Visual Hierarchy in Docs
+**Learning:** In documentation-heavy repositories, the "UI" is the README. Improving visual hierarchy with icons and expanding the Table of Contents with nested links for complex sections (like Troubleshooting) significantly reduces cognitive load. Furthermore, providing specific "success signals" (like 'plain-text OK') for verification steps eliminates ambiguity.
+**Action:** Always look for opportunities to expand TOCs for long sections and provide explicit, expected output values for verification steps.
