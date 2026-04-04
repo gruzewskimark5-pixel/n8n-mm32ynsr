@@ -13,6 +13,25 @@
 - [⚙️ Maintenance & Updates](#maintenance--updates)
 - [🔍 Troubleshooting](#troubleshooting)
 - [🏁 Next Steps](#next-steps)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Post-deployment Setup](#post-deployment-setup)
+  - [1. Create your owner account](#1-create-your-owner-account)
+  - [2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
+  - [3. Set your Timezone (Optional)](#3-set-your-timezone-optional)
+  - [4. Verify your deployment](#4-verify-your-deployment)
+  - [5. Backup your encryption key](#5-backup-your-encryption-key)
+- [Free Tier Limitations](#free-tier-limitations)
+- [Maintenance & Updates](#maintenance--updates)
+- [Troubleshooting](#troubleshooting)
+  - [Service is slow to start](#service-is-slow-to-start)
+  - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
+  - [Database Connection Errors](#database-connection-errors)
+  - [Missing "Templates" tab](#missing-templates-tab)
+  - [Successful executions not showing](#successful-executions-not-showing)
+  - [Workflows timing out](#workflows-timing-out)
+  - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
+- [Next Steps](#next-steps)
 
 ## 🚀 Getting Started
 
@@ -37,7 +56,8 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding) and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding), reduced database heartbeat overhead, and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -46,6 +66,7 @@ Each of the above uses a free instance type by default.
 [↑ Back to top](#deploy-n8n-on-render)
 
 ## 🛠️ Post-deployment Setup
+## ⚙️ Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
 
@@ -95,9 +116,10 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 
 ### ✅ 4. Verify your deployment
 You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return a plain-text `OK` response in your browser.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
-> This endpoint performs a basic reachability check for the n8n service. To verify that the database is also connected and ready, you can use the `/healthz/readiness` path instead.
+> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead.
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
@@ -122,10 +144,12 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 [↑ Back to top](#deploy-n8n-on-render)
 
 ## ⚙️ Maintenance & Updates
+## 🔄 Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+- 🔔 **Security Alerts:** n8n version check notifications are enabled by default (`N8N_VERSION_NOTIFICATIONS_ENABLED: "true"`) to ensure you're alerted to security updates and new releases directly in the dashboard.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -186,6 +210,9 @@ To get more detailed logs:
 [↑ Back to top](#deploy-n8n-on-render)
 
 ## 🏁 Next Steps
+
+> [!TIP]
+> **Keyboard Shortcuts:** Press `?` anywhere in the n8n editor to view a complete list of keyboard shortcuts for faster workflow building.
 
 - 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.

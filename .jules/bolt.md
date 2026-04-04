@@ -75,3 +75,14 @@
 ## 2026-03-31 - Improving Connection Headroom with Larger Pool Size
 **Learning:** Setting the database connection pool size equal to the production concurrency limit can lead to contention. n8n requires connections for background heartbeats, UI requests, and metadata updates in addition to workflow executions. Contrary to previous assumptions of a strict 5-connection limit on Render Free Tier, modern Render Postgres supports up to 97 connections.
 **Action:** Increase `DB_POSTGRESDB_POOL_SIZE` (e.g., to 10) while keeping `N8N_CONCURRENCY_PRODUCTION_LIMIT` lower (e.g., 5). This provides a performance buffer for system tasks and UI responsiveness without exceeding platform limits or impacting memory.
+
+## 2026-04-03 - Reducing Idle Overhead by Disabling Community Packages
+**Learning:** Initializing the community nodes library in n8n involves filesystem checks and background processes that consume CPU and memory. In resource-constrained environments like Render's 512MB Free Tier, these non-essential background tasks can impact the stability and performance of core workflow executions.
+**Action:** Set `N8N_COMMUNITY_PACKAGES_ENABLED: "false"` in `render.yaml` to eliminate this background overhead, aligning with the "Lean Background" strategy for optimized performance.
+## 2026-04-01 - Inconsistent n8n Environment Variable Naming Conventions
+**Learning:** n8n environment variables for related features often follow inconsistent naming patterns. For example, workflow history uses `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT`, but automatic deactivation uses `N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES`. Assuming consistent suffixes or specific camelCase formatting can lead to non-functional configurations that are silently ignored by n8n's configuration loader.
+**Action:** Always cross-reference the official n8n configuration reference to verify the exact key names and property keys, as naming conventions vary significantly across different functional areas of the application.
+
+## 2026-04-04 - Identifying and Correcting Silent Configuration Failures
+**Learning:** Incorrect environment variable naming (e.g., extra underscores in `N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED`) causes n8n to silently ignore settings, disabling critical resource-saving features. Furthermore, a concurrency limit of 5 is still risky for Render's 512MB RAM tier during peak loads.
+**Action:** Always verify exact environment variable keys against official n8n documentation to prevent silent failures, and implement a strict concurrency limit of 2 for highly memory-constrained environments to ensure maximum stability.
