@@ -49,7 +49,7 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding, diagnostics, personalization), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -81,8 +81,8 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
-3. **Add variable:** Click **Add Environment Variable**.
-4. **Enter details:** Set the key to `WEBHOOK_URL` and paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
+3. **Update variable:** Find the `WEBHOOK_URL` variable.
+4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
 6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
@@ -100,8 +100,8 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
-3. **Add variable:** Click **Add Environment Variable**.
-4. **Enter details:** Set the key to `GENERIC_TIMEZONE` and your TZ name as the value.
+3. **Update variable:** Find the `GENERIC_TIMEZONE` variable.
+4. **Enter details:** Update the value to your chosen TZ name.
 5. **Save:** Click **Save Changes**.
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
