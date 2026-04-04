@@ -125,9 +125,9 @@ services:
 
       # Automatically deactivates workflows after repeated failures to prevent
       # continuous resource consumption (CPU/RAM) from broken workflows.
-      - key: N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED
+      - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES
+      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
@@ -179,9 +179,10 @@ services:
       # Prevents the service from becoming unresponsive or crashing during
       # high-load periods by limiting concurrent production executions.
       # This prevents event loop thrashing and ensures each execution has
-      # sufficient CPU and RAM.
+      # sufficient CPU and RAM. A lower limit of 2 is used to ensure stability
+      # on Render's 512MB free tier.
       - key: N8N_CONCURRENCY_PRODUCTION_LIMIT
-        value: "5"
+        value: "2"
 
       # To prevent runaway workflows from indefinitely consuming CPU and RAM
       # on Render's 512MB free tier, these variables set a global execution
