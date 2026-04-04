@@ -6,6 +6,13 @@
 > **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
 
 ## Table of Contents
+- [🚀 Getting Started](#getting-started)
+- [✨ Features](#features)
+- [🛠️ Post-deployment Setup](#post-deployment-setup)
+- [⚠️ Free Tier Limitations](#free-tier-limitations)
+- [⚙️ Maintenance & Updates](#maintenance--updates)
+- [🔍 Troubleshooting](#troubleshooting)
+- [🏁 Next Steps](#next-steps)
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Post-deployment Setup](#post-deployment-setup)
@@ -58,6 +65,7 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
+## 🛠️ Post-deployment Setup
 ## ⚙️ Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
@@ -107,6 +115,7 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
+You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return a plain-text `OK` response in your browser.
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
@@ -134,6 +143,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
+## ⚙️ Maintenance & Updates
 ## 🔄 Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
@@ -146,7 +156,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ## 🔍 Troubleshooting
 
-### 🐌 Service is slow to start
+### 💤 Service is slow to start
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
 
 ### 🪝 Webhook or OAuth2 errors
