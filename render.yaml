@@ -206,18 +206,18 @@ services:
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
-      # - key: GENERIC_TIMEZONE
-      #   value: Europe/Berlin
+      - key: GENERIC_TIMEZONE
+        value: UTC
 
-      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
+      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), update this
       # manually to your service URL after your first deployment.
       # You can find your URL at the top of the service page or under
       # the 'Connect' button in the Render Dashboard:
       # https://dashboard.render.com/
       #
-      # Note: Do not include a trailing slash or port number.
-      # - key: WEBHOOK_URL
-      #   value: https://replace-with-your-url.onrender.com
+      # Note: Do not include a trailing slash or port number (e.g., / or :5678).
+      - key: WEBHOOK_URL
+        value: https://replace-with-your-url.onrender.com
 
 databases:
   - name: n8n-db
