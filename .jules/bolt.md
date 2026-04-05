@@ -86,3 +86,7 @@
 ## 2026-04-04 - Identifying and Correcting Silent Configuration Failures
 **Learning:** Incorrect environment variable naming (e.g., extra underscores in `N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED`) causes n8n to silently ignore settings, disabling critical resource-saving features. Furthermore, a concurrency limit of 5 is still risky for Render's 512MB RAM tier during peak loads.
 **Action:** Always verify exact environment variable keys against official n8n documentation to prevent silent failures, and implement a strict concurrency limit of 2 for highly memory-constrained environments to ensure maximum stability.
+
+## 2026-05-20 - Complementing Main Process Execution with Disabled Task Runners
+**Learning:** Setting `EXECUTIONS_PROCESS=main` optimizes workflow execution, but n8n still spawns child processes for Code nodes by default through task runners. On Render's 512MB free tier, these additional processes can still trigger OOM kills.
+**Action:** Always set `N8N_RUNNERS_ENABLED: "false"` alongside `EXECUTIONS_PROCESS: main` in highly resource-constrained environments to ensure absolute single-process execution.

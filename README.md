@@ -9,21 +9,14 @@
 - [🚀 Getting Started](#getting-started)
 - [✨ Features](#features)
 - [🛠️ Post-deployment Setup](#post-deployment-setup)
-- [⚠️ Free Tier Limitations](#free-tier-limitations)
-- [⚙️ Maintenance & Updates](#maintenance--updates)
-- [🔍 Troubleshooting](#troubleshooting)
-- [🏁 Next Steps](#next-steps)
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [Post-deployment Setup](#post-deployment-setup)
   - [1. Create your owner account](#1-create-your-owner-account)
   - [2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
   - [3. Set your Timezone (Optional)](#3-set-your-timezone-optional)
   - [4. Verify your deployment](#4-verify-your-deployment)
   - [5. Backup your encryption key](#5-backup-your-encryption-key)
-- [Free Tier Limitations](#free-tier-limitations)
-- [Maintenance & Updates](#maintenance--updates)
-- [Troubleshooting](#troubleshooting)
+- [⚠️ Free Tier Limitations](#free-tier-limitations)
+- [🔄 Maintenance & Updates](#maintenance--updates)
+- [🔍 Troubleshooting](#troubleshooting)
   - [Service is slow to start](#service-is-slow-to-start)
   - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [Database Connection Errors](#database-connection-errors)
@@ -31,7 +24,7 @@
   - [Successful executions not showing](#successful-executions-not-showing)
   - [Workflows timing out](#workflows-timing-out)
   - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
-- [Next Steps](#next-steps)
+- [🏁 Next Steps](#next-steps)
 
 ## 🚀 Getting Started
 
@@ -54,10 +47,9 @@ Each of the above uses a free instance type by default.
 
 - 🚀 **One-Click Deploy:** Get up and running in minutes with a pre-configured Blueprint.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
-  - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
+  - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding), reduced database heartbeat overhead, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
+  - **Lean Background:** Disabled non-essential features (templates, community packages, personalization, onboarding, hiring banners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -66,7 +58,6 @@ Each of the above uses a free instance type by default.
 [↑ Back to top](#deploy-n8n-on-render)
 
 ## 🛠️ Post-deployment Setup
-## ⚙️ Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
 
@@ -115,7 +106,6 @@ To ensure your scheduled workflows run at the correct time, you should set the `
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance is running correctly by visiting your service URL with the `/healthz` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz`). A successful setup will return a plain-text `OK` response in your browser.
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
@@ -143,7 +133,6 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## ⚙️ Maintenance & Updates
 ## 🔄 Maintenance & Updates
 
 - 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
