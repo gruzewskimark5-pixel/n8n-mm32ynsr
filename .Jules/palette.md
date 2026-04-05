@@ -80,3 +80,7 @@
 ## 2025-05-20 - Navigational Discoverability and Visual Hierarchy in Docs
 **Learning:** In documentation-heavy repositories, the "UI" is the README. Improving visual hierarchy with icons and expanding the Table of Contents with nested links for complex sections (like Troubleshooting) significantly reduces cognitive load. Furthermore, providing specific "success signals" (like 'plain-text OK') for verification steps eliminates ambiguity.
 **Action:** Always look for opportunities to expand TOCs for long sections and provide explicit, expected output values for verification steps.
+
+## 2025-05-21 - Reducing Instructional Friction with Active Defaults
+**Learning:** In infrastructure-as-code templates (like `render.yaml`), leaving critical but optional configuration (like `GENERIC_TIMEZONE`) commented out increases the likelihood of users skipping it, leading to future friction (e.g., misaligned cron schedules). Providing an active, sensible default (like `UTC`) prompts the user during the initial deployment UI, ensuring the feature is discovered and configured correctly from Day 1.
+**Action:** Always identify high-value optional settings in Blueprint templates and provide active, sensible defaults instead of commented-out examples to improve feature discoverability and reduce setup friction.
