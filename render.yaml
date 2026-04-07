@@ -25,8 +25,9 @@ services:
     #
     # You can define additional environment variables as needed.
     envVars:
-      # Generates a base64-encoded key for
-      # encrypting credentials in n8n
+      # A unique key for encrypting credentials in n8n.
+      # Render automatically generates this value during
+      # your first deployment.
       #
       # Do not modify this value after it's generated!
       # If you do, you'll lose access to all credentials
@@ -207,8 +208,8 @@ services:
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
-      # - key: GENERIC_TIMEZONE
-      #   value: Europe/Berlin
+      - key: GENERIC_TIMEZONE
+        value: UTC
 
       # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
       # manually to your service URL after your first deployment.
@@ -217,8 +218,10 @@ services:
       # https://dashboard.render.com/
       #
       # Note: Do not include a trailing slash or port number.
-      # - key: WEBHOOK_URL
-      #   value: https://replace-with-your-url.onrender.com
+      # ✅ https://n8n-service-q975.onrender.com
+      # ❌ https://n8n-service-q975.onrender.com/
+      - key: WEBHOOK_URL
+        value: https://replace-with-your-url.onrender.com
 
 databases:
   - name: n8n-db
