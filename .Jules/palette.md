@@ -80,3 +80,7 @@
 ## 2025-05-20 - Navigational Discoverability and Visual Hierarchy in Docs
 **Learning:** In documentation-heavy repositories, the "UI" is the README. Improving visual hierarchy with icons and expanding the Table of Contents with nested links for complex sections (like Troubleshooting) significantly reduces cognitive load. Furthermore, providing specific "success signals" (like 'plain-text OK') for verification steps eliminates ambiguity.
 **Action:** Always look for opportunities to expand TOCs for long sections and provide explicit, expected output values for verification steps.
+
+## 2025-05-21 - Content Consolidation and Header Deduplication
+**Learning:** Redundant headers and fragmented feature lists in a README increase cognitive load and can lead to user confusion. Consolidating overlapping technical optimizations into a single, cohesive list and removing duplicate section headers creates a more professional and trustworthy "Documentation UI," which is critical for infrastructure-as-code templates.
+**Action:** Always audit documentation for structural redundancy and consolidate overlapping information to minimize "wall of text" friction.
