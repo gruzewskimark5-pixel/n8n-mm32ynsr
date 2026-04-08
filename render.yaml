@@ -71,6 +71,13 @@ services:
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
 
+      # Disables the n8n task runners to optimize memory on Render's 512MB
+      # free tier. This ensures that Code nodes and other tasks run within
+      # the main process rather than spawning separate child processes,
+      # significantly reducing memory overhead.
+      - key: N8N_RUNNERS_ENABLED
+        value: "false"
+
       # Disables the onboarding flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_ONBOARDING_FLOW_DISABLED
