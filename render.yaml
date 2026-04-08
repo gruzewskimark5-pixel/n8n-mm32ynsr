@@ -30,7 +30,8 @@ services:
       #
       # Do not modify this value after it's generated!
       # If you do, you'll lose access to all credentials
-      # encrypted with the previous value.
+      # encrypted with the previous value. Treat this key
+      # like a password and back it up securely.
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
@@ -207,8 +208,8 @@ services:
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
-      # - key: GENERIC_TIMEZONE
-      #   value: Europe/Berlin
+      - key: GENERIC_TIMEZONE
+        value: UTC
 
       # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
       # manually to your service URL after your first deployment.
