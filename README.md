@@ -65,6 +65,7 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
+  - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding, personalization, and diagnostics), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Disabled non-essential features (templates, community packages, personalization, onboarding, hiring banners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Disabled non-essential features (templates, community packages, task runners, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding, and task runners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
@@ -90,7 +91,7 @@ Visit your service URL to create your first owner account. This account will hav
 > **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 
 > [!TIP]
-> If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
+> 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
@@ -122,6 +123,8 @@ To ensure your scheduled workflows run at the correct time, you should update th
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+3. **Update variable:** Find the `GENERIC_TIMEZONE` environment variable (it defaults to `UTC`).
+4. **Enter details:** Update the value to your preferred TZ name (e.g., `America/New_York`).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your TZ name.
 5. **Save:** Click **Save Changes**.
@@ -134,7 +137,7 @@ You can verify that your n8n instance and database are correctly connected by vi
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
 
 ### 🔑 5. Backup your encryption key
-Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n.**
+Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.

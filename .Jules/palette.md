@@ -85,6 +85,9 @@
 **Learning:** Redundant headers and fragmented feature lists in a README increase cognitive load and can lead to user confusion. Consolidating overlapping technical optimizations into a single, cohesive list and removing duplicate section headers creates a more professional and trustworthy "Documentation UI," which is critical for infrastructure-as-code templates.
 **Action:** Always audit documentation for structural redundancy and consolidate overlapping information to minimize "wall of text" friction.
 
+## 2026-04-08 - Dashboard Discoverability via Blueprint Pre-definition
+**Learning:** Uncommenting optional but high-value environment variables in the Blueprint (`render.yaml`) significantly improves the onboarding UX. It makes these options discoverable in the Render Dashboard's "Edit" view during the initial deployment, prompting proactive configuration rather than reactive troubleshooting.
+**Action:** Always pre-define (but don't necessarily enable) high-value optional variables in the Blueprint and ensure README instructions use "Update/Edit" terminology to match the dashboard's state.
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
