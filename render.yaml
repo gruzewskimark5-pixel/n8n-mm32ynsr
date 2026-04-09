@@ -39,6 +39,9 @@ services:
       - key: EXECUTIONS_PROCESS
         value: main
 
+      # Disables task runners to ensure that all executions, including Code
+      # nodes, run within the main process. This prevents spawning child
+      # processes and is critical for stability on Render's 512MB free tier.
       # Optimizes memory on Render's 512MB tier by forcing Code nodes and other
       # tasks to run within the main process instead of spawning separate child processes.
       - key: N8N_RUNNERS_ENABLED
