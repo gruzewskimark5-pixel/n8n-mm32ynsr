@@ -66,6 +66,12 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables task runners to optimize memory on 512MB tiers by forcing
+      # Code nodes and other tasks to run within the main process instead
+      # of spawning separate child processes.
+      - key: N8N_RUNNERS_ENABLED
+        value: "false"
+
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_PERSONALIZATION_ENABLED
