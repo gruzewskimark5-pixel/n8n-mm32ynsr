@@ -49,6 +49,7 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
+  - **Lean Background:** Disabled non-essential features (templates, community packages, task runners, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding, and task runners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
