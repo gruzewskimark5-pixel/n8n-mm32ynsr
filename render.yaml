@@ -42,6 +42,8 @@ services:
       # Disables task runners to ensure that all executions, including Code
       # nodes, run within the main process. This prevents spawning child
       # processes and is critical for stability on Render's 512MB free tier.
+      # Optimizes memory on Render's 512MB tier by forcing Code nodes and other
+      # tasks to run within the main process instead of spawning separate child processes.
       - key: N8N_RUNNERS_ENABLED
         value: "false"
 
@@ -70,6 +72,12 @@ services:
       # Disables the community nodes library to reduce background overhead
       # and idle resource consumption.
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
+        value: "false"
+
+      # Disables task runners to optimize memory on 512MB tiers by forcing
+      # Code nodes and other tasks to run within the main process instead
+      # of spawning separate child processes.
+      - key: N8N_RUNNERS_ENABLED
         value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
@@ -213,18 +221,20 @@ services:
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
-      # - key: GENERIC_TIMEZONE
-      #   value: Europe/Berlin
+      - key: GENERIC_TIMEZONE
+        value: UTC
 
-      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), set this
-      # manually to your service URL after your first deployment.
+      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), you must
+      # set this manually to your service URL after your first deployment
+      # for webhooks and OAuth2 callbacks to work correctly.
+      #
       # You can find your URL at the top of the service page or under
       # the 'Connect' button in the Render Dashboard:
       # https://dashboard.render.com/
       #
       # Note: Do not include a trailing slash or port number.
-      # - key: WEBHOOK_URL
-      #   value: https://replace-with-your-url.onrender.com
+      - key: WEBHOOK_URL
+        value: https://replace-with-your-url.onrender.com
 
 databases:
   - name: n8n-db
