@@ -91,3 +91,5 @@
 ## 2026-04-05 - Optimizing Memory by Disabling Task Runners
 **Learning:** n8n's task runners, when enabled, can spawn separate Node.js child processes for executing certain tasks (like Code nodes). In highly memory-constrained environments like Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
 **Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force all tasks to run within the main process, maximizing available memory for core workflow execution.
+**Learning:** Recent versions of n8n use a Task Runner system that spawns separate child processes for Code nodes and other tasks. On Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
+**Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force these tasks to run within the main process, drastically reducing memory usage and improving stability for low-memory environments.
