@@ -39,6 +39,11 @@ services:
       - key: EXECUTIONS_PROCESS
         value: main
 
+      # Optimizes memory on Render's 512MB tier by forcing Code nodes and other
+      # tasks to run within the main process instead of spawning separate child processes.
+      - key: N8N_RUNNERS_ENABLED
+        value: "false"
+
       # Improves performance for frequently triggered workflows by caching
       # definitions in memory and avoiding repeated database lookups.
       - key: N8N_WORKFLOW_RUN_LOCAL_CACHE
