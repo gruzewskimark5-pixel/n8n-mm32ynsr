@@ -8,22 +8,6 @@
 ## Table of Contents
 - [🚀 Getting Started](#getting-started)
 - [✨ Features](#features)
-- [🛠️ Post-deployment Setup](#post-deployment-setup)
-  - [1. Create your owner account](#1-create-your-owner-account)
-  - [2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
-  - [3. Set your Timezone (Optional)](#3-set-your-timezone-optional)
-  - [4. Verify your deployment](#4-verify-your-deployment)
-  - [5. Backup your encryption key](#5-backup-your-encryption-key)
-- [⚠️ Free Tier Limitations](#free-tier-limitations)
-- [🔄 Maintenance & Updates](#maintenance--updates)
-- [🔍 Troubleshooting](#troubleshooting)
-  - [Service is slow to start](#service-is-slow-to-start)
-  - [Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
-  - [Database Connection Errors](#database-connection-errors)
-  - [Missing "Templates" tab](#missing-templates-tab)
-  - [Successful executions not showing](#successful-executions-not-showing)
-  - [Workflows timing out](#workflows-timing-out)
-  - [Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [⚙️ Post-deployment Setup](#post-deployment-setup)
   - [👤 1. Create your owner account](#1-create-your-owner-account)
   - [🪝 2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
@@ -65,12 +49,6 @@ Each of the above uses a free instance type by default.
 - ⚡ **Free Tier Optimized:** Pre-tuned for Render's free tier:
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
-  - **Lean Background:** Disabled non-essential features (task runners, templates, community packages, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, task runners, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding, personalization, and diagnostics), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, personalization, onboarding, hiring banners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, task runners, banners, onboarding), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
-  - **Lean Background:** Disabled non-essential features (templates, community packages, banners, onboarding, and task runners), reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for maximum efficiency.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
@@ -81,7 +59,6 @@ Each of the above uses a free instance type by default.
 ---
 [↑ Back to top](#deploy-n8n-on-render)
 
-## 🛠️ Post-deployment Setup
 ## ⚙️ Post-deployment Setup
 
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
@@ -125,10 +102,8 @@ To ensure your scheduled workflows run at the correct time, you should update th
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
-3. **Update variable:** Find the `GENERIC_TIMEZONE` environment variable (it defaults to `UTC`).
-4. **Enter details:** Update the value to your preferred TZ name (e.g., `America/New_York`).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
-4. **Enter details:** Change the value from `UTC` to your TZ name.
+4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
 5. **Save:** Click **Save Changes**.
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
