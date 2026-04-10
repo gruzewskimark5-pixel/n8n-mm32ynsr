@@ -43,11 +43,10 @@ services:
       # Disables task runners to optimize memory on 512MB tiers by forcing
       # Code nodes and other tasks to run within the main process instead
       # of spawning separate child processes.
-      # Disables task runners to ensure that all executions, including Code
-      # nodes, run within the main process. This prevents spawning child
-      # processes and is critical for stability on Render's 512MB free tier.
-      # Optimizes memory on Render's 512MB tier by forcing Code nodes and other
-      # tasks to run within the main process instead of spawning separate child processes.
+      # Disables task runners to optimize memory on 512MB tiers by forcing
+      # Code nodes and other tasks to run within the main process instead
+      # of spawning separate child processes. This is critical for stability
+      # on Render's 512MB free tier.
       - key: N8N_RUNNERS_ENABLED
         value: "false"
 
@@ -78,22 +77,9 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
-      # Disables task runners to optimize memory on 512MB tiers by forcing
-      # Code nodes and other tasks to run within the main process instead
-      # of spawning separate child processes.
-      - key: N8N_RUNNERS_ENABLED
-        value: "false"
-
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_PERSONALIZATION_ENABLED
-        value: "false"
-
-      # Disables the n8n task runners to optimize memory on Render's 512MB
-      # free tier. This ensures that Code nodes and other tasks run within
-      # the main process rather than spawning separate child processes,
-      # significantly reducing memory overhead.
-      - key: N8N_RUNNERS_ENABLED
         value: "false"
 
       # Disables the onboarding flow to reduce initial setup overhead,
