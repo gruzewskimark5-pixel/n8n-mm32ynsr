@@ -77,12 +77,15 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables the fetching of node icons from external sources to reduce
+      # background network calls and memory usage from icon caching.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
-
 
       # Disables the onboarding flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
