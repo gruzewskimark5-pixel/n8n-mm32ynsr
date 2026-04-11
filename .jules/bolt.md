@@ -102,3 +102,7 @@
 **Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force all tasks to run within the main process, maximizing available memory for core workflow execution.
 **Learning:** Recent versions of n8n use a Task Runner system that spawns separate child processes for Code nodes and other tasks. On Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
 **Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force these tasks to run within the main process, drastically reducing memory usage and improving stability for low-memory environments.
+
+## 2024-05-22 - Accelerating Startup with Settings File Permissions
+**Learning:** n8n v2.0+ and some late v1 versions attempt to enforce strict 0600 permissions on the settings directory by default. In Docker environments, especially those with network-attached storage or specific volume drivers, this recursive permission check can significantly delay the startup sequence.
+**Action:** Set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"` in `render.yaml` to skip this check and achieve faster container readiness on Render's Free Tier.
