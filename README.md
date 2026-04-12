@@ -70,10 +70,10 @@ Visit your service URL to create your first owner account. This account will hav
 > **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 
 > [!TIP]
-> 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
+> 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` message, wait a minute and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you MUST set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
 > The `WEBHOOK_URL` must not include a trailing slash or a port number:
@@ -108,10 +108,20 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended:
+
+```
+https://n8n-service-q975.onrender.com/healthz/readiness
+```
+
+A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
-> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
+> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead:
+>
+> ```
+> https://n8n-service-q975.onrender.com/healthz
+> ```
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
@@ -148,7 +158,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ## 🔍 Troubleshooting
 
 ### 💤 Service is slow to start
-On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` message, wait a minute and refresh the page.
 
 ### 🪝 Webhook or OAuth2 errors
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
