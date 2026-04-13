@@ -23,6 +23,7 @@
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
+  - [🔄 Workflows being automatically deactivated](#workflows-being-automatically-deactivated)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [🏁 Next Steps](#next-steps)
 
@@ -50,9 +51,9 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
+  - **Auto-maintenance:** Automated execution pruning (after 7 days) and history pruning (after 10 versions) to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
@@ -187,6 +188,14 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
+
+### 🔄 Workflows being automatically deactivated
+To prevent broken workflows from continuously consuming resources on Render's 512MB free tier, n8n is configured to automatically deactivate any workflow that fails 3 times in a row.
+
+If your workflow has been deactivated:
+1. **Check the Execution log:** Open the workflow in n8n and select the **Executions** tab in the left-hand sidebar to identify the cause of the failures.
+2. **Fix the error:** Address the underlying issue (e.g., a missing credential, a changed API endpoint, or a syntax error).
+3. **Reactivate:** Once fixed, toggle the **Active** switch in the top-right corner of the workflow editor to "On".
 
 ### 📝 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
