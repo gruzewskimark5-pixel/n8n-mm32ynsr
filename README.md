@@ -86,7 +86,10 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
-6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
+6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL:
+   ```text
+   https://n8n-service-q975.onrender.com/webhook/...
+   ```
 
 > [!TIP]
 > **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
@@ -108,10 +111,20 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended:
+
+```text
+https://n8n-service-q975.onrender.com/healthz/readiness
+```
+
+A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
-> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
+> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead:
+>
+> ```text
+> https://n8n-service-q975.onrender.com/healthz
+> ```
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
@@ -148,7 +161,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ## 🔍 Troubleshooting
 
 ### 💤 Service is slow to start
-On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 Webhook or OAuth2 errors
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
@@ -163,7 +176,7 @@ During initial deployment, the database might take slightly longer to initialize
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
-3. **Save Changes**. Note that this will increase your service's idle memory usage.
+3. Click **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### ✅ Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
@@ -180,13 +193,13 @@ This is the most efficient way to save database space while still seeing success
 **Option 2: For all workflows**
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
-3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+3. Click **Save Changes**. Note that this will increase your database storage usage more quickly.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
+3. Click **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
 
 ### 📝 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
@@ -195,7 +208,7 @@ To get more detailed logs:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Find the `N8N_LOG_LEVEL` variable.
 3. Change its value from `warn` to `info` or `debug`.
-4. **Save** your changes and Render will restart the service with the new log level.
+4. Click **Save Changes**. Render will restart the service with the new log level.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)

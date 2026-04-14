@@ -30,8 +30,8 @@ services:
       #
       # Do not modify this value after it's generated!
       # If you do, you'll lose access to all credentials
-      # encrypted with the previous value. Treat this key
-      # like a password and back it up securely.
+      # encrypted with the previous value. You MUST treat
+      # this key like a password and back it up securely.
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
@@ -232,6 +232,9 @@ services:
       # https://dashboard.render.com/
       #
       # Note: Do not include a trailing slash or port number.
+      # - ✅ https://n8n-service.onrender.com
+      # - ❌ https://n8n-service.onrender.com/
+      # - ❌ https://n8n-service.onrender.com:5678
       - key: WEBHOOK_URL
         value: https://replace-with-your-url.onrender.com
 
