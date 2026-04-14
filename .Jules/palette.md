@@ -91,3 +91,7 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-04-14 - Scannable Formatting Guidance in Infrastructure Templates
+**Learning:** Using visual indicators like ✅ and ❌ in YAML comments for complex environment variables (e.g., `WEBHOOK_URL`) provides immediate, scannable guidance directly in the deployment dashboard. This reduces formatting errors (like trailing slashes) at the exact point of action, creating a more intuitive and error-resistant setup experience.
+**Action:** Use visual "do/don't" formatting examples in Blueprint comments for any configuration variable that has strict or non-obvious formatting requirements.
