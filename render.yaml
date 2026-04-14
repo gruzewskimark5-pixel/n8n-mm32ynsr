@@ -72,26 +72,17 @@ services:
       - key: N8N_TEMPLATES_ENABLED
         value: "false"
 
-      # Disables the community nodes library to reduce background overhead
-      # and idle resource consumption.
+      # Optimizes performance by disabling non-essential background features,
+      # reducing CPU, memory, and network overhead.
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
-
-
-      # Disables the personalization flow to reduce initial setup overhead,
-      # background network calls, and idle resource consumption.
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
-
-
-      # Disables the onboarding flow to reduce initial setup overhead,
-      # background network calls, and idle resource consumption.
       - key: N8N_ONBOARDING_FLOW_DISABLED
         value: "true"
-
-      # Disables the hiring banner in the console to reduce startup noise
-      # and minor background processing overhead.
       - key: N8N_HIRING_BANNER_ENABLED
+        value: "false"
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
         value: "false"
 
       # Sets the release type to stable to remove the '[DEV]' prefix from the
