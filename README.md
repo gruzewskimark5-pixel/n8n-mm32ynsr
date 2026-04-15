@@ -73,10 +73,10 @@ Visit your service URL to create your first owner account. This account will hav
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you MUST set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
-> The `WEBHOOK_URL` must not include a trailing slash or a port number:
+> The `WEBHOOK_URL` MUST NOT include a trailing slash or a port number:
 > - ✅ `https://n8n-service-q975.onrender.com`
 > - ❌ `https://n8n-service-q975.onrender.com/`
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
@@ -89,7 +89,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
 > [!TIP]
-> **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
+> **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You MUST select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
 
 > [!TIP]
 > **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
@@ -108,7 +108,13 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended:
+
+```text
+https://n8n-service-q975.onrender.com/healthz/readiness
+```
+
+A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
