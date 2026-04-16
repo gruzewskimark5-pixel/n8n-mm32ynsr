@@ -91,3 +91,11 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-04-08 - Enhancing "At-Source" Configuration with Visual Affordance
+**Learning:** For infrastructure-as-code templates (like `render.yaml`), the Render Dashboard's environment variable view is a primary user interface. Using visual indicators (✅/❌) and concrete examples directly in YAML comments provides immediate, scannable guidance at the point of action, significantly reducing formatting errors (like trailing slashes in URLs) without requiring the user to switch back to documentation.
+**Action:** Always use visual format checklists and state-specific examples in Blueprint comments for complex environment variables.
+
+## 2026-04-08 - Improving Usability via Context-Specific Formatting
+**Learning:** In technical documentation, inline examples of long URLs or commands are harder to parse and copy accurately. Moving verification URLs and endpoint examples into dedicated code blocks with generic placeholders improves the "scan-and-copy" workflow and provides clearer visual separation between instructions and actionable data.
+**Action:** Always use dedicated code blocks for verification URLs and high-intent placeholders in README setup guides.
