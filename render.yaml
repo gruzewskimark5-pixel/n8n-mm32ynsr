@@ -94,6 +94,12 @@ services:
       - key: N8N_HIRING_BANNER_ENABLED
         value: "false"
 
+      # Optimizes performance on resource-constrained tiers like Render 512MB
+      # by preventing background network requests for node icons and
+      # reducing memory usage required for icon caching.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
+
       # Sets the release type to stable to remove the '[DEV]' prefix from the
       # browser tab and ensure n8n runs in a production-optimized mode.
       - key: N8N_RELEASE_TYPE
