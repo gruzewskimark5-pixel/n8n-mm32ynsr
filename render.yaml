@@ -77,6 +77,10 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables external icon fetching to reduce background network requests
+      # and minimize memory usage for icon caching on Render's 512MB free tier.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
