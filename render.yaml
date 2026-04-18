@@ -77,6 +77,11 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables external icon fetching to optimize performance on resource-constrained
+      # tiers like Render 512MB by preventing background network requests for node
+      # icons and reducing memory usage required for icon caching.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
