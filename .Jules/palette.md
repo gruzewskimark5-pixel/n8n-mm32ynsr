@@ -91,3 +91,7 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-04-14 - Configuration Files as User Interface
+**Learning:** For infrastructure-as-code templates, the "UI" is the documentation and configuration files. Pre-emptively providing formatting examples and using emphatic labeling (MUST) for critical variables directly at the point of configuration (in-file comments) significantly reduces deployment friction and prevents common "Day 1" configuration errors.
+**Action:** Always treat configuration file comments as 'at-source' micro-UX and include visual validation examples (✅/❌) for complex string requirements like URLs.

@@ -50,7 +50,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -73,10 +73,10 @@ Visit your service URL to create your first owner account. This account will hav
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you MUST set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
-> The `WEBHOOK_URL` must not include a trailing slash or a port number:
+> The `WEBHOOK_URL` MUST NOT include a trailing slash or a port number:
 > - ✅ `https://n8n-service-q975.onrender.com`
 > - ❌ `https://n8n-service-q975.onrender.com/`
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
@@ -108,10 +108,18 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended. A successful setup will return a plain-text `OK` response.
+
+```text
+https://n8n-service-q975.onrender.com/healthz/readiness
+```
 
 > [!TIP]
-> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
+> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead:
+>
+> ```text
+> https://n8n-service-q975.onrender.com/healthz
+> ```
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
