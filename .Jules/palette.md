@@ -91,3 +91,7 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-04-10 - Enhancing Scannability with Code Blocks for URLs
+**Learning:** Moving long verification URLs from inline text to dedicated code blocks in documentation improves scannability and prevents copy-paste errors, especially for users on mobile or those using screen readers who benefit from the clear separation of actionable technical data.
+**Action:** Always place long verification or example URLs in standalone code blocks rather than inline backticks to improve visual prominence and usability.
