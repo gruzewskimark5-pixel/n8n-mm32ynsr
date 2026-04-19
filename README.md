@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [📦 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -86,7 +87,10 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
-6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
+6. **Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL:
+   ```text
+   https://n8n-service-q975.onrender.com/webhook/...
+   ```
 
 > [!TIP]
 > **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
@@ -108,7 +112,11 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended. A successful setup will return a plain-text `OK` response.
+
+```text
+https://n8n-service-q975.onrender.com/healthz/readiness
+```
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
@@ -164,6 +172,12 @@ To save memory on Render's free tier, the workflow template library is disabled 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
+
+### 📦 Missing "Community Nodes"
+To reduce background overhead and idle resource consumption, community nodes are disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable them:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**. Note that this may increase your service's idle memory usage.
 
 ### ✅ Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
