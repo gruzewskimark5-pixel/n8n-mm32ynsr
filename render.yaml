@@ -77,6 +77,11 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Prevents background network requests for node icons and reduces memory
+      # usage required for icon caching. This is essential for stability on
+      # Render's 512MB free tier.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
@@ -218,6 +223,8 @@ services:
 
       # Sets the timezone for your n8n instance.
       # This is important for accurate scheduling in your workflows.
+      #
+      # Provide a valid TZ database name (e.g., 'America/New_York', 'Europe/Berlin').
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
       - key: GENERIC_TIMEZONE
@@ -231,7 +238,10 @@ services:
       # the 'Connect' button in the Render Dashboard:
       # https://dashboard.render.com/
       #
-      # Note: Do not include a trailing slash or port number.
+      # Note: Do not include a trailing slash or port number:
+      # - ✅ https://n8n-service-q975.onrender.com
+      # - ❌ https://n8n-service-q975.onrender.com/
+      # - ❌ https://n8n-service-q975.onrender.com:5678
       - key: WEBHOOK_URL
         value: https://replace-with-your-url.onrender.com
 
