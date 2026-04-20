@@ -23,6 +23,7 @@
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
+  - [🧩 Missing "Community Nodes" tab](#missing-community-nodes-tab)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [🏁 Next Steps](#next-steps)
 
@@ -50,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, task runners, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -73,7 +74,7 @@ Visit your service URL to create your first owner account. This account will hav
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
-If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
+If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you **MUST** set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
 > The `WEBHOOK_URL` must not include a trailing slash or a port number:
@@ -187,6 +188,12 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
+
+### 🧩 Missing "Community Nodes" tab
+To save memory and background resources on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### 📝 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
