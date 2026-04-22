@@ -25,7 +25,7 @@ services:
     #
     # You can define additional environment variables as needed.
     envVars:
-      # Generates a base64-encoded key for
+      # ⚠️ Generates a base64-encoded key for
       # encrypting credentials in n8n
       #
       # Do not modify this value after it's generated!
@@ -219,19 +219,21 @@ services:
       # Sets the timezone for your n8n instance.
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-      # for a list of valid TZ values.
+      # for a list of valid TZ values (e.g., 'America/New_York', 'Europe/Berlin').
       - key: GENERIC_TIMEZONE
         value: UTC
 
-      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), you must
-      # set this manually to your service URL after your first deployment
-      # for webhooks and OAuth2 callbacks to work correctly.
+      # (Required) If you use webhook nodes or OAuth2 (e.g., Google, Slack),
+      # you must set this manually to your service URL after your first
+      # deployment for webhooks and OAuth2 callbacks to work correctly.
       #
       # You can find your URL at the top of the service page or under
       # the 'Connect' button in the Render Dashboard:
       # https://dashboard.render.com/
       #
       # Note: Do not include a trailing slash or port number.
+      # ✅ https://n8n-service-q975.onrender.com
+      # ❌ https://n8n-service-q975.onrender.com/
       - key: WEBHOOK_URL
         value: https://replace-with-your-url.onrender.com
 
