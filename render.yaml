@@ -25,13 +25,11 @@ services:
     #
     # You can define additional environment variables as needed.
     envVars:
-      # Generates a base64-encoded key for
-      # encrypting credentials in n8n
+      # ⚠️ Generates a base64-encoded key for encrypting credentials in n8n.
       #
-      # Do not modify this value after it's generated!
-      # If you do, you'll lose access to all credentials
-      # encrypted with the previous value. Treat this key
-      # like a password and back it up securely.
+      # MUST NOT modify this value after it's generated! If you do, you'll lose
+      # access to all credentials encrypted with the previous value. Treat
+      # this key like a password and back it up securely.
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
@@ -77,6 +75,10 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables external icon fetching to reduce background network calls
+      # and further optimize memory usage on the 512MB free tier.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
@@ -216,10 +218,11 @@ services:
       - key: PORT
         value: 5678
 
-      # Sets the timezone for your n8n instance.
-      # This is important for accurate scheduling in your workflows.
+      # Sets the timezone for your n8n instance. This is important for accurate
+      # scheduling in your workflows. Provide a valid TZ database name:
+      # ✅ America/New_York
+      # ✅ Europe/Berlin
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-      # for a list of valid TZ values.
       - key: GENERIC_TIMEZONE
         value: UTC
 
@@ -231,7 +234,10 @@ services:
       # the 'Connect' button in the Render Dashboard:
       # https://dashboard.render.com/
       #
-      # Note: Do not include a trailing slash or port number.
+      # Formatting rules:
+      # ✅ https://n8n-service.onrender.com
+      # ❌ https://n8n-service.onrender.com/
+      # ❌ https://n8n-service.onrender.com:5678
       - key: WEBHOOK_URL
         value: https://replace-with-your-url.onrender.com
 

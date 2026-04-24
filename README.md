@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [🧩 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -50,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, external icons, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -108,10 +109,18 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### ✅ 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended. A successful setup will return a plain-text `OK` response.
+
+**Health Check URL:**
+```text
+https://your-service-name.onrender.com/healthz/readiness
+```
 
 > [!TIP]
-> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
+> This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead:
+> ```text
+> https://your-service-name.onrender.com/healthz
+> ```
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
@@ -163,6 +172,12 @@ During initial deployment, the database might take slightly longer to initialize
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
+
+### 🧩 Missing "Community Nodes"
+To save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### ✅ Successful executions not showing
