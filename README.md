@@ -18,6 +18,7 @@
 - [🔄 Maintenance & Updates](#maintenance--updates)
 - [🔍 Troubleshooting](#troubleshooting)
   - [💤 Service is slow to start](#service-is-slow-to-start)
+  - [🧩 Missing "Community Nodes" menu](#missing-community-nodes-menu)
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
@@ -50,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, personalization, onboarding, telemetry, external icons, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -70,7 +71,7 @@ Visit your service URL to create your first owner account. This account will hav
 > **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 
 > [!TIP]
-> 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
+> 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a minute and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
@@ -149,6 +150,12 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ### 💤 Service is slow to start
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+
+### 🧩 Missing "Community Nodes" menu
+To save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### 🪝 Webhook or OAuth2 errors
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
