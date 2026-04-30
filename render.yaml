@@ -28,7 +28,7 @@ services:
       # Generates a base64-encoded key for
       # encrypting credentials in n8n
       #
-      # Do not modify this value after it's generated!
+      # ⚠️ MUST NOT modify this value after it's generated!
       # If you do, you'll lose access to all credentials
       # encrypted with the previous value. Treat this key
       # like a password and back it up securely.
@@ -216,7 +216,7 @@ services:
       - key: PORT
         value: 5678
 
-      # Sets the timezone for your n8n instance.
+      # Sets the timezone for your n8n instance (e.g., America/New_York).
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
@@ -232,6 +232,8 @@ services:
       # https://dashboard.render.com/
       #
       # Note: Do not include a trailing slash or port number.
+      # ✅ https://n8n-service-q975.onrender.com
+      # ❌ https://n8n-service-q975.onrender.com/
       - key: WEBHOOK_URL
         value: https://replace-with-your-url.onrender.com
 

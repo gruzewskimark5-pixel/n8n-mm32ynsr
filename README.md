@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [🧩 Missing "Community Nodes" menu](#missing-community-nodes-menu)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -50,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, task runners, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -163,6 +164,12 @@ During initial deployment, the database might take slightly longer to initialize
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
+
+### 🧩 Missing "Community Nodes" menu
+To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 
 ### ✅ Successful executions not showing
