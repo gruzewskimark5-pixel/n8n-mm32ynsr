@@ -77,6 +77,11 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables the fetching of external icons for nodes to reduce background
+      # network calls and minor CPU overhead in the editor. This is part of the
+      # "Lean Background" strategy for optimized performance.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
