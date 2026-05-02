@@ -106,3 +106,7 @@
 ## 2024-05-22 - Accelerating Startup with Settings File Permissions
 **Learning:** n8n v2.0+ and some late v1 versions attempt to enforce strict 0600 permissions on the settings directory by default. In Docker environments, especially those with network-attached storage or specific volume drivers, this recursive permission check can significantly delay the startup sequence.
 **Action:** Set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"` in `render.yaml` to skip this check and achieve faster container readiness on Render's Free Tier.
+
+## 2026-05-02 - Reducing SDK Instantiation Overhead with Instance Caching
+**Learning:** Repetitive instantiation of SDK classes (like `Agent` in `AgentClient`) can lead to unnecessary CPU cycles and heap memory pressure, especially in high-throughput scenarios. Using a `Map` for instance caching significantly improves performance.
+**Action:** Implement "get-or-create" caching patterns for service-like objects in SDKs to minimize GC pressure and improve response times for repetitive requests.
