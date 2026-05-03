@@ -89,6 +89,11 @@ services:
       - key: N8N_ONBOARDING_FLOW_DISABLED
         value: "true"
 
+      # Disables external icon fetching to reduce network overhead and
+      # improve editor responsiveness on Render's free tier.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
+
       # Disables the hiring banner in the console to reduce startup noise
       # and minor background processing overhead.
       - key: N8N_HIRING_BANNER_ENABLED
