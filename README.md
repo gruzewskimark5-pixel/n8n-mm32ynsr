@@ -50,7 +50,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -114,7 +114,8 @@ You can verify that your n8n instance and database are correctly connected by vi
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
 
 ### 🔑 5. Backup your encryption key
-Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
+> [!WARNING]
+> ⚠️ **MUST NOT modify your encryption key after it is generated.** Your credentials in n8n are encrypted with this unique key. If you ever need to migrate or restore your n8n instance, you will need it. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
@@ -164,6 +165,7 @@ To save memory on Render's free tier, the workflow template library is disabled 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
+4. **Verify:** Once the service restarts, refresh n8n and confirm the **Templates** icon (a puzzle piece or grid icon) is visible in the left-hand sidebar.
 
 ### ✅ Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
@@ -181,6 +183,8 @@ This is the most efficient way to save database space while still seeing success
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+
+**Verify changes:** To confirm your success settings are active, run a test workflow and check the **Executions** tab in the n8n sidebar. Successful runs should now appear in the list.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
