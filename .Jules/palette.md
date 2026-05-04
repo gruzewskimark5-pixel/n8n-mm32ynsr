@@ -91,3 +91,7 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-05-04 - Confirming Intent with Post-Troubleshooting Verification
+**Learning:** When users follow troubleshooting steps to re-enable a feature that was intentionally disabled for performance (like n8n templates), they often feel uncertain if the change worked until they find it by chance. Adding an explicit "Verify" step that directs them to the exact UI location provides immediate closure and confidence in their setup.
+**Action:** Always include a "Verify" step with the specific UI path (e.g., "confirm the Templates icon is visible") after every set of instructions for re-enabling optional features.
