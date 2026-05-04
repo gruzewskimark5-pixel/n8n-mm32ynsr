@@ -77,6 +77,11 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables external icons to reduce network overhead and improve n8n
+      # editor responsiveness, which is critical for the 512MB free tier.
+      - key: N8N_ICONS_CAN_USE_EXTERNAL
+        value: "false"
+
 
       # Disables the personalization flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
