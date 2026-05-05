@@ -23,6 +23,7 @@
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
+  - [🧩 Missing "Community Nodes" menu](#missing-community-nodes-menu)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [🏁 Next Steps](#next-steps)
 
@@ -50,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community packages, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** Templates, community nodes, external icons, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -187,6 +188,13 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
+
+### 🧩 Missing "Community Nodes" menu
+To reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**.
+4. **Verify:** Once the service restarts, log in to n8n, click on **Settings** in the bottom left, and confirm that the **Community Nodes** menu is now visible in the sidebar.
 
 ### 📝 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
