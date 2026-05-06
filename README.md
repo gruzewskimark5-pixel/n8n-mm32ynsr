@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [🔌 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -164,6 +165,14 @@ To save memory on Render's free tier, the workflow template library is disabled 
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
+4. **Verify:** Confirm the **Templates** tab appears in the left-hand sidebar of the n8n editor.
+
+### 🔌 Missing "Community Nodes"
+To save memory and background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**.
+4. **Verify:** Navigate to **Settings > Community Nodes** in the n8n editor to confirm the library is active.
 
 ### ✅ Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
@@ -181,6 +190,7 @@ This is the most efficient way to save database space while still seeing success
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+4. **Verify:** Confirm successful production executions appear in the **Executions** list in the left-hand sidebar of the n8n editor.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
