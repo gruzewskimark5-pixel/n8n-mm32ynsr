@@ -1,5 +1,10 @@
+import { Kernel } from "../kernel/kernel.ts";
+import { Agent } from "./agent.ts";
+
 export class AgentClient {
-  constructor(kernel) {
+  kernel: Kernel;
+
+  constructor(kernel: Kernel) {
     this.kernel = kernel;
   }
 
