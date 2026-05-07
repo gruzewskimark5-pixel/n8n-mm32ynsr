@@ -25,13 +25,13 @@ services:
     #
     # You can define additional environment variables as needed.
     envVars:
-      # Generates a base64-encoded key for
-      # encrypting credentials in n8n
+      # (Required) Generates a base64-encoded key for
+      # encrypting credentials in n8n.
       #
-      # Do not modify this value after it's generated!
-      # If you do, you'll lose access to all credentials
-      # encrypted with the previous value. Treat this key
-      # like a password and back it up securely.
+      # YOU MUST NOT modify this value after it's generated!
+      # If you do, you'll permanently lose access to all
+      # credentials encrypted with the previous value.
+      # Treat this key like a password and back it up securely.
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
