@@ -1,8 +1,12 @@
 export class Agent {
-  constructor(kernel, domain) {
+  kernel: any;
+  domain: any;
+  identity: string;
+
+  constructor(kernel, domain, identity) {
     this.kernel = kernel;
     this.domain = domain;
-    this.identity = "kernel-compliant";
+    this.identity = identity;
   }
 
   async act(intent, context) {
