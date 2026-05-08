@@ -91,3 +91,7 @@
 ## 2025-05-22 - Improving Discovery and Guided Onboarding
 **Learning:** Pre-defining optional but critical environment variables (like `WEBHOOK_URL` and `GENERIC_TIMEZONE`) in a Blueprint template (`render.yaml`) significantly improves the onboarding UX. It allows users to "update" existing fields in the dashboard rather than "adding" them manually, which reduces cognitive load and prevents naming errors.
 **Action:** Always pre-define critical configuration keys in the infrastructure template to provide a guided, "fill-in-the-blanks" experience for the user.
+
+## 2026-05-22 - Contextual Clarity in Multi-UI Workflows
+**Learning:** In deployment templates where users interact with both a platform dashboard (Render) and the deployed application (n8n), ambiguous navigation instructions (e.g., "Go to the Environment tab") cause friction. Explicitly grounding the location (e.g., "...in the Render Dashboard") and providing an "in-app" verification step (e.g., "confirm the Templates icon is visible") closes the feedback loop and confirms successful configuration.
+**Action:** Always qualify navigation steps with the specific UI context (Platform vs. App) and include a visible "success signal" verification step within the application for every infrastructure change.
