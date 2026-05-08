@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [🔌 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -161,9 +162,17 @@ During initial deployment, the database might take slightly longer to initialize
 
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
-1. Navigate to the **Environment** tab in the left-hand sidebar.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
+4. **Verify:** Once the service restarts, open n8n and confirm the **Templates** icon is visible in the left-hand sidebar.
+
+### 🔌 Missing "Community Nodes"
+To reduce background overhead, community nodes are disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable them:
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**. Note that this will increase your service's idle memory usage.
+4. **Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
 ### ✅ Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
