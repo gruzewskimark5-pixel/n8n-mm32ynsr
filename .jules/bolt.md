@@ -106,3 +106,7 @@
 ## 2024-05-22 - Accelerating Startup with Settings File Permissions
 **Learning:** n8n v2.0+ and some late v1 versions attempt to enforce strict 0600 permissions on the settings directory by default. In Docker environments, especially those with network-attached storage or specific volume drivers, this recursive permission check can significantly delay the startup sequence.
 **Action:** Set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"` in `render.yaml` to skip this check and achieve faster container readiness on Render's Free Tier.
+
+## 2026-05-20 - Reducing Editor Latency by Disabling External Icons
+**Learning:** In the n8n editor UI, many nodes attempt to fetch favicons and brand icons from external third-party URLs. In resource-constrained environments or networks with high latency, these external requests can noticeably delay the responsiveness of the node configuration panel and increase the browser's network overhead.
+**Action:** Set `N8N_ICONS_CAN_USE_EXTERNAL: "false"` in `render.yaml` to prevent these external lookups, ensuring a faster and more predictable editor experience on Render's Free Tier.
