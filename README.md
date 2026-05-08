@@ -21,6 +21,7 @@
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
+  - [📦 Missing "Community Nodes"](#missing-community-nodes)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
@@ -51,6 +52,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
+    - **Disabled Features:** Templates, community nodes, personalization, onboarding, telemetry, and hiring banners.
     - **Disabled Features:** Templates, community packages, external icons, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
@@ -165,6 +167,14 @@ To save memory on Render's free tier, the workflow template library is disabled 
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
+4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
+
+### 📦 Missing "Community Nodes"
+To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+1. Navigate to the **Environment** tab in the left-hand sidebar.
+2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
+3. **Save Changes**.
+4. **Verify:** Once the service restarts, go to **Settings > Community Nodes** in your n8n instance to manage installed nodes.
 4. **Verify:** Once the service restarts, open n8n and confirm the **Templates** icon is visible in the left-hand sidebar.
 
 ### 🔌 Missing "Community Nodes"
