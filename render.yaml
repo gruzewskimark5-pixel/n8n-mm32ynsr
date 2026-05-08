@@ -25,13 +25,13 @@ services:
     #
     # You can define additional environment variables as needed.
     envVars:
-      # Generates a base64-encoded key for
-      # encrypting credentials in n8n
+      # (Required) Generates a base64-encoded key for
+      # encrypting credentials in n8n.
       #
-      # Do not modify this value after it's generated!
-      # If you do, you'll lose access to all credentials
-      # encrypted with the previous value. Treat this key
-      # like a password and back it up securely.
+      # YOU MUST NOT modify this value after it's generated!
+      # If you do, you'll permanently lose access to all
+      # credentials encrypted with the previous value.
+      # Treat this key like a password and back it up securely.
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
 
@@ -79,6 +79,9 @@ services:
 
       # Disables external icon fetching to reduce network overhead and improve
       # the responsiveness of the n8n editor UI on Render's free tier.
+      # Disables external icons in the n8n editor UI to reduce unnecessary
+      # network overhead and improve editor responsiveness on Render's
+      # free tier.
       - key: N8N_ICONS_CAN_USE_EXTERNAL
         value: "false"
 
