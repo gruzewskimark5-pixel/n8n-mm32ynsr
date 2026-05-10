@@ -168,6 +168,7 @@ To save memory on Render's free tier, the workflow template library is disabled 
 4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
+To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 To reduce background overhead and save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.

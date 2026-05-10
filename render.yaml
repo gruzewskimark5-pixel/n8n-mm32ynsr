@@ -77,8 +77,6 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
-      # Disables external icon fetching to reduce network overhead and improve
-      # the responsiveness of the n8n editor UI on Render's free tier.
       # Disables external icons in the n8n editor UI to reduce unnecessary
       # network overhead and improve editor responsiveness on Render's
       # free tier.
