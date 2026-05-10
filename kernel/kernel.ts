@@ -7,15 +7,19 @@ export class Kernel {
   }
 
   route(intent, surface, agent, context) {
-    this.contracts.identity.validate(agent);
-    this.contracts.routing.validate(intent, surface);
-    this.contracts.object.validate(context);
+    // Optimized: Destructure contracts and stateMachine to minimize property lookups in the hot path.
+    const { contracts, stateMachine } = this;
+    const { identity, routing, object } = contracts;
 
-    const nextState = this.stateMachine.transition(context, intent);
+    identity.validate(agent);
+    routing.validate(intent, surface);
+    object.validate(context);
+
+    const nextState = stateMachine.transition(context, intent);
 
     return {
       state: nextState,
-      next_action: this.stateMachine.nextAction(nextState),
+      next_action: stateMachine.nextAction(nextState),
     };
   }
 }

@@ -97,6 +97,10 @@
 ## 2026-05-20 - Complementing Main Process Execution with Disabled Task Runners
 **Learning:** Setting `EXECUTIONS_PROCESS=main` optimizes workflow execution, but n8n still spawns child processes for Code nodes by default through task runners. On Render's 512MB free tier, these additional processes can still trigger OOM kills.
 **Action:** Always set `N8N_RUNNERS_ENABLED: "false"` alongside `EXECUTIONS_PROCESS: main` in highly resource-constrained environments to ensure absolute single-process execution.
+
+## 2026-05-21 - Minimizing Property Lookups in Kernel Hot Path
+**Learning:** In the performance-critical `Kernel.route` method, repeated property access to `this.contracts` and `this.stateMachine` adds measurable overhead during high-frequency execution. While individual lookups are fast, they compound in tight loops.
+**Action:** Always destructure `this` and nested objects (like `this.contracts`) into local variables at the beginning of hot path methods to minimize property lookup depth and improve V8 optimization potential.
 ## 2026-04-05 - Optimizing Memory by Disabling Task Runners
 **Learning:** n8n's task runners, when enabled, can spawn separate Node.js child processes for executing certain tasks (like Code nodes). In highly memory-constrained environments like Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
 **Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force all tasks to run within the main process, maximizing available memory for core workflow execution.
