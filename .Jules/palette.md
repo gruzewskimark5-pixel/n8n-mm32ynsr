@@ -95,3 +95,7 @@
 ## 2026-05-22 - Contextual Clarity in Multi-UI Workflows
 **Learning:** In deployment templates where users interact with both a platform dashboard (Render) and the deployed application (n8n), ambiguous navigation instructions (e.g., "Go to the Environment tab") cause friction. Explicitly grounding the location (e.g., "...in the Render Dashboard") and providing an "in-app" verification step (e.g., "confirm the Templates icon is visible") closes the feedback loop and confirms successful configuration.
 **Action:** Always qualify navigation steps with the specific UI context (Platform vs. App) and include a visible "success signal" verification step within the application for every infrastructure change.
+
+## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
+**Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
+**Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
