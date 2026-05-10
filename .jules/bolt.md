@@ -114,3 +114,7 @@
 ## 2026-05-20 - Reducing Editor Latency by Disabling External Icons
 **Learning:** In the n8n editor UI, many nodes attempt to fetch favicons and brand icons from external third-party URLs. In resource-constrained environments or networks with high latency, these external requests can noticeably delay the responsiveness of the node configuration panel and increase the browser's network overhead.
 **Action:** Set `N8N_ICONS_CAN_USE_EXTERNAL: "false"` in `render.yaml` to prevent these external lookups, ensuring a faster and more predictable editor experience on Render's Free Tier.
+
+## 2026-05-21 - Avoiding constructor-level .bind() for Micro-optimizations
+**Learning:** Caching method references using `.bind()` in a constructor to reduce property lookups in hot paths is often a net negative. It creates unique function objects for every instance, increasing memory pressure and initialization overhead. Modern JS engines with Inline Caching already optimize property lookups effectively.
+**Action:** Favor local destructuring in hot methods (e.g., `const { validate } = this.contract;`) over constructor-level binding for a cleaner balance of readability and performance without memory side effects.
