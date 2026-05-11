@@ -11,8 +11,12 @@ export class Kernel {
     this.contracts = config.contracts;
   }
 
-  route(intent, surface, agent, context) {
-    // Optimized: Destructure contracts and stateMachine to minimize property lookups in the hot path.
+  /**
+   * Routes the intent to the state machine after validating contracts.
+   * Optimized: Uses destructuring to minimize property lookups and uses
+   * stateMachine.process to reduce function call overhead.
+   */
+  route(intent: string, surface: string, agent: any, context: any): any {
     const { contracts, stateMachine } = this;
     const { identity, routing, object } = contracts;
 
@@ -20,28 +24,6 @@ export class Kernel {
     routing.validate(intent, surface);
     object.validate(context);
 
-    const nextState = stateMachine.transition(context, intent);
-
-    return {
-      state: nextState,
-      next_action: stateMachine.nextAction(nextState),
-  /**
-   * Routes the intent to the state machine after validating contracts.
-   * Optimized: Uses destructuring to minimize property lookups on 'this' and 'this.contracts'.
-   */
-  route(intent: string, surface: string, agent: any, context: any): any {
-    const { identity, routing, object } = this.contracts;
-
-    identity.validate(agent);
-    routing.validate(intent, surface);
-    object.validate(context);
-
-    const sm = this.stateMachine;
-    const nextState = sm.transition(context, intent);
-
-    return {
-      state: nextState,
-      next_action: sm.nextAction(nextState),
-    };
+    return stateMachine.process(context, intent);
   }
 }
