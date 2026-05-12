@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2026-05-12 - Closing the Feedback Loop in Documentation
+**Learning:** For deployment templates where the README is the primary "UI," every configuration instruction should conclude with a "Verify" step. This provides immediate closure for the user and confirms the "Action -> Feedback" cycle, reducing anxiety during the setup of infrastructure-as-code. Furthermore, linking high-level feature summaries directly to their respective configuration sections minimizes navigational friction.
+**Action:** Always include a standardized "Verify" step with specific UI signals for every manual configuration step and use internal anchor links to connect feature lists to detailed instructions.
