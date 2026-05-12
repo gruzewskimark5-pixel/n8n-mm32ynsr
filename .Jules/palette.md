@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2026-04-29 - [At-Source Configuration Micro-UX]
+**Learning:** Providing explicit anti-patterns (e.g., trailing slashes in URLs) and concrete localized string examples directly within configuration files drastically reduces cognitive load and "at-source" errors when compared to delegating that context entirely to external documentation.
+**Action:** Always include inline format verification and explicit "MUST NOT" constraints with warning emojis for immutable/sensitive fields to provide immediate, visible feedback directly where the user is making the configuration change.
