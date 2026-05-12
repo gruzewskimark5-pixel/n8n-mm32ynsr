@@ -118,3 +118,7 @@
 ## 2026-05-21 - Avoiding constructor-level .bind() for Micro-optimizations
 **Learning:** Caching method references using `.bind()` in a constructor to reduce property lookups in hot paths is often a net negative. It creates unique function objects for every instance, increasing memory pressure and initialization overhead. Modern JS engines with Inline Caching already optimize property lookups effectively.
 **Action:** Favor local destructuring in hot methods (e.g., `const { validate } = this.contract;`) over constructor-level binding for a cleaner balance of readability and performance without memory side effects.
+
+## 2026-05-22 - Optimizing Kernel Performance via Property Flattening
+**Learning:** To optimize the `Kernel.route` hot path, flattening nested configurations (like `config.contracts`) into individual class properties (e.g., `this.identityContract`) during construction further reduces property lookup depth compared to local destructuring within the method. This follows the pattern of minimizing lookup overhead in high-frequency execution paths.
+**Action:** Always flatten deeply nested configuration objects into direct class properties in the constructor when those properties are accessed in performance-critical methods.
