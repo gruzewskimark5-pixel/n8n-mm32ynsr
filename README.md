@@ -51,9 +51,9 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community nodes, external icons, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), external icons, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
+  - **Auto-maintenance:** Automated [execution](#successful-executions-not-showing) and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
@@ -168,8 +168,7 @@ To save memory on Render's free tier, the workflow template library is disabled 
 4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
-To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
-To reduce background overhead and save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
@@ -186,17 +185,20 @@ This is the most efficient way to save database space while still seeing success
 2. Click the **horizontal ellipsis (three dots)** in the top-right corner.
 3. Select **Settings**.
 4. Change **Save Successful Executions** to **Yes** and click **Save**.
+5. **Verify:** Run your workflow manually by clicking **Execute Workflow** and confirm the execution appears in the **Executions** tab in the left-hand sidebar.
 
 **Option 2: For all workflows**
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+4. **Verify:** Once the service restarts, run any workflow and confirm it appears in the **Executions** tab in the left-hand sidebar.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
 1. Navigate to the **Environment** tab in the left-hand sidebar.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
+4. **Verify:** To confirm the change, check the n8n logs in the Render Dashboard after a workflow execution to ensure it is no longer being terminated prematurely.
 
 ### 📝 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
@@ -206,6 +208,7 @@ To get more detailed logs:
 2. Find the `N8N_LOG_LEVEL` variable.
 3. Change its value from `warn` to `info` or `debug`.
 4. **Save** your changes and Render will restart the service with the new log level.
+5. **Verify:** Check the **Logs** tab in the Render Dashboard to confirm that more detailed `info` or `debug` messages are now being recorded.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
