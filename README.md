@@ -51,7 +51,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community nodes, external icons, personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), external icons, personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -83,7 +83,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+2. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
@@ -102,7 +102,7 @@ To ensure your scheduled workflows run at the correct time, you should update th
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+2. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
 5. **Save:** Click **Save Changes**.
@@ -117,7 +117,7 @@ You can verify that your n8n instance and database are correctly connected by vi
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
@@ -168,7 +168,6 @@ To save memory on Render's free tier, the workflow template library is disabled 
 4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
-To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 To reduce background overhead and save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
@@ -194,7 +193,7 @@ This is the most efficient way to save database space while still seeing success
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
-1. Navigate to the **Environment** tab in the left-hand sidebar.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
 
@@ -202,7 +201,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
 
 To get more detailed logs:
-1. Navigate to the **Environment** tab in the left-hand sidebar.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Find the `N8N_LOG_LEVEL` variable.
 3. Change its value from `warn` to `info` or `debug`.
 4. **Save** your changes and Render will restart the service with the new log level.
@@ -219,6 +218,7 @@ To get more detailed logs:
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
 - 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
 - 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+- 🔍 **Stuck?** Check the [Troubleshooting](#troubleshooting) guide for common issues and fixes.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)

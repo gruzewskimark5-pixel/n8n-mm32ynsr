@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2026-05-24 - Contextual Consistency in Documentation Navigation
+**Learning:** In deployment templates where the README acts as the primary user interface, inconsistent navigation instructions for the hosting platform (e.g., "Environment tab") vs. the application itself cause significant friction. Standardizing on explicit, fully-qualified location strings (like "...in the left-hand sidebar of the Render Dashboard") across all setup and troubleshooting steps ensures the user never loses context during multi-step configuration workflows.
+**Action:** Always audit documentation to ensure navigation instructions for external platforms are fully qualified and consistent in phrasing across every section of the guide.
