@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2026-05-16 - Emoji Semantic Accuracy in Documentation Headers
+**Learning:** Using status-heavy icons like ✅ (success/verified) for general troubleshooting categories creates visual ambiguity, as users often scan for these icons to confirm successful completion of steps. Reserving ✅ strictly for verification results and using more neutral, descriptive icons (like 📊 for execution data) maintains a clear visual language.
+**Action:** Always audit documentation for emoji semantic overlap and ensure success icons are only used for actual success signals or verification steps.
