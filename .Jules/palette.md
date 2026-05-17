@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2025-05-23 - Visual Semantics and Navigation Consistency in Docs
+**Learning:** In technical documentation, using "status" icons (like ✅) for general topic headers (like "Executions") creates visual noise and ambiguity, as users naturally associate them with success states. Replacing them with semantically relevant icons (like 📜 for history) improves scannability. Additionally, standardizing navigation paths with direct links to the platform dashboard (Render) in every instruction block reduces cognitive load for users who navigate via deep links or anchor tags.
+**Action:** Always audit documentation for icon-state collisions and ensure every manual setup instruction provides a complete, linked path to the target UI.
