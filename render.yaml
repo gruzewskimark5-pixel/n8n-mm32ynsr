@@ -205,9 +205,9 @@ services:
       # To prevent runaway workflows from indefinitely consuming CPU and RAM
       # on Render's 512MB free tier, these variables set a global execution
       # timeout of 1 hour (3600 seconds).
-      - key: N8N_EXECUTIONS_TIMEOUT
+      - key: EXECUTIONS_TIMEOUT
         value: "3600"
-      - key: N8N_EXECUTIONS_TIMEOUT_MAX
+      - key: EXECUTIONS_TIMEOUT_MAX
         value: "3600"
 
       # Speeds up service shutdown and container lifecycle in ephemeral
