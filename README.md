@@ -1,6 +1,6 @@
 # Deploy n8n on Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
+[![Deploy n8n to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
 
 > [!IMPORTANT]
 > **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
