@@ -26,7 +26,7 @@ function runBenchmark(iterations: number) {
   console.log(`Running benchmark: ${iterations} iterations...`);
 
   // Warm up
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 100000; i++) {
     agent.act("test-intent", { identity: "test-identity" });
   }
 
@@ -50,5 +50,5 @@ function runBenchmark(iterations: number) {
   console.log("Performance check passed!");
 }
 
-const iterations = 1000000;
+const iterations = 10000000;
 runBenchmark(iterations);
