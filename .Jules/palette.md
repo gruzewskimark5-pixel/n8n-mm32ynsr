@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2025-05-23 - Descriptive Action Buttons for Accessibility
+**Learning:** Graphical buttons like "Deploy to Render" often use generic alt text that fails to provide context for screen reader users when multiple deployment options might exist. Including the specific application name in the alt text (e.g., "Deploy n8n to Render") ensures that the action is clear and unambiguous for all users.
+**Action:** Always ensure that primary action buttons in documentation include the specific context or application name in their alt text and title attributes.
