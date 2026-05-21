@@ -99,3 +99,7 @@
 ## 2026-05-23 - Eliminating Documentation Friction in Deployment Templates
 **Learning:** Redundant and inconsistent documentation in a deployment template (which serves as the primary "User Interface" for the developer) increases cognitive load and can lead to configuration errors. Consolidating overlapping troubleshooting sections and fixing copy-paste errors—such as incorrect "Verify" steps—ensures a reliable and smooth onboarding experience.
 **Action:** Always audit README files for redundant headers or sections and strictly verify that "Verify" steps accurately reflect the application's actual UI labels and locations.
+
+## 2025-05-23 - Respecting Infrastructure Performance Constraints
+**Learning:** In deployment templates, infrastructure settings (like filesystem permission checks) often have specific performance-security trade-offs documented in comments. Attempting to "harden" these settings without understanding the environment (e.g., Docker startup latency) can lead to regressions in the user's "cold start" experience, which is a critical UX factor for free-tier services.
+**Action:** Always prioritize existing performance optimizations in infrastructure templates and avoid security-focused configuration changes unless they directly improve a user-facing interaction.

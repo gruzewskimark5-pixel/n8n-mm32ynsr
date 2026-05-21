@@ -88,7 +88,6 @@ services:
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
 
-
       # Disables the onboarding flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
       - key: N8N_ONBOARDING_FLOW_DISABLED
