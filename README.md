@@ -1,6 +1,6 @@
 # Deploy n8n on Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
+[![Deploy n8n to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
 
 > [!IMPORTANT]
 > **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
@@ -22,7 +22,7 @@
   - [🐘 Database Connection Errors](#database-connection-errors)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
-  - [✅ Successful executions not showing](#successful-executions-not-showing)
+  - [📜 Successful executions not showing](#successful-executions-not-showing)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [🏁 Next Steps](#next-steps)
@@ -164,18 +164,17 @@ During initial deployment, the database might take slightly longer to initialize
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
-3. **Save Changes**. Note that this will increase your service's idle memory usage.
-4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
+3. **Save Changes**.
+4. **Verify:** Once the service restarts, confirm the **Templates** tab is visible in the n8n sidebar.
 
 ### 🔌 Missing "Community Nodes"
-To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 To reduce background overhead and save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
-3. **Save Changes**. Note that this will increase your service's idle memory usage.
-4. **Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
+3. **Save Changes**.
+4. **Verify:** Once the service restarts, confirm the **Community Nodes** menu item is visible under **Settings**.
 
-### ✅ Successful executions not showing
+### 📜 Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
 
 To see successful executions, you have two options:
@@ -190,7 +189,7 @@ This is the most efficient way to save database space while still seeing success
 **Option 2: For all workflows**
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
-3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+3. **Save Changes**.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
