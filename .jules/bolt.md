@@ -83,6 +83,7 @@
 ## 2026-04-05 - Optimizing Memory with Disabled Task Runners
 **Learning:** n8n Task Runners (enabled by default) spawn child processes for certain tasks like the Code node. In memory-constrained environments like Render's 512MB RAM tier, these additional processes can quickly lead to OOM (Out Of Memory) crashes.
 **Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force these tasks to run within the main process, significantly reducing memory overhead and improving stability.
+
 ## 2026-04-01 - Inconsistent n8n Environment Variable Naming Conventions
 **Learning:** n8n environment variables for related features often follow inconsistent naming patterns. For example, workflow history uses `N8N_WORKFLOW_HISTORY_PRUNE_LIMIT`, but automatic deactivation uses `N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES`. Assuming consistent suffixes or specific camelCase formatting can lead to non-functional configurations that are silently ignored by n8n's configuration loader.
 **Action:** Always cross-reference the official n8n configuration reference to verify the exact key names and property keys, as naming conventions vary significantly across different functional areas of the application.
@@ -94,6 +95,7 @@
 ## 2026-04-05 - Reducing Memory Overhead by Disabling Task Runners
 **Learning:** Setting `N8N_RUNNERS_ENABLED: "false"` in n8n optimizes memory on 512MB tiers by forcing Code nodes and other tasks to run within the main process instead of spawning separate child processes, significantly reducing memory overhead and preventing OOM crashes.
 **Action:** Always disable task runners in memory-constrained environments to consolidate processing into the main n8n process.
+
 ## 2026-05-20 - Complementing Main Process Execution with Disabled Task Runners
 **Learning:** Setting `EXECUTIONS_PROCESS=main` optimizes workflow execution, but n8n still spawns child processes for Code nodes by default through task runners. On Render's 512MB free tier, these additional processes can still trigger OOM kills.
 **Action:** Always set `N8N_RUNNERS_ENABLED: "false"` alongside `EXECUTIONS_PROCESS: main` in highly resource-constrained environments to ensure absolute single-process execution.
@@ -101,20 +103,11 @@
 ## 2026-05-21 - Minimizing Property Lookups in Kernel Hot Path
 **Learning:** In the performance-critical `Kernel.route` method, repeated property access to `this.contracts` and `this.stateMachine` adds measurable overhead during high-frequency execution. While individual lookups are fast, they compound in tight loops.
 **Action:** Always destructure `this` and nested objects (like `this.contracts`) into local variables at the beginning of hot path methods to minimize property lookup depth and improve V8 optimization potential.
-## 2026-04-05 - Optimizing Memory by Disabling Task Runners
-**Learning:** n8n's task runners, when enabled, can spawn separate Node.js child processes for executing certain tasks (like Code nodes). In highly memory-constrained environments like Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
-**Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force all tasks to run within the main process, maximizing available memory for core workflow execution.
-**Learning:** Recent versions of n8n use a Task Runner system that spawns separate child processes for Code nodes and other tasks. On Render's 512MB free tier, this additional process overhead significantly increases the risk of OOM crashes.
-**Action:** Set `N8N_RUNNERS_ENABLED: "false"` in `render.yaml` to force these tasks to run within the main process, drastically reducing memory usage and improving stability for low-memory environments.
-
-## 2024-05-22 - Accelerating Startup with Settings File Permissions
-**Learning:** n8n v2.0+ and some late v1 versions attempt to enforce strict 0600 permissions on the settings directory by default. In Docker environments, especially those with network-attached storage or specific volume drivers, this recursive permission check can significantly delay the startup sequence.
-**Action:** Set `N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "false"` in `render.yaml` to skip this check and achieve faster container readiness on Render's Free Tier.
-
-## 2026-05-20 - Reducing Editor Latency by Disabling External Icons
-**Learning:** In the n8n editor UI, many nodes attempt to fetch favicons and brand icons from external third-party URLs. In resource-constrained environments or networks with high latency, these external requests can noticeably delay the responsiveness of the node configuration panel and increase the browser's network overhead.
-**Action:** Set `N8N_ICONS_CAN_USE_EXTERNAL: "false"` in `render.yaml` to prevent these external lookups, ensuring a faster and more predictable editor experience on Render's Free Tier.
 
 ## 2026-05-21 - Avoiding constructor-level .bind() for Micro-optimizations
 **Learning:** Caching method references using `.bind()` in a constructor to reduce property lookups in hot paths is often a net negative. It creates unique function objects for every instance, increasing memory pressure and initialization overhead. Modern JS engines with Inline Caching already optimize property lookups effectively.
 **Action:** Favor local destructuring in hot methods (e.g., `const { validate } = this.contract;`) over constructor-level binding for a cleaner balance of readability and performance without memory side effects.
+
+## 2026-10-27 - Maximizing Performance by Flattening Property Access
+**Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
+**Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
