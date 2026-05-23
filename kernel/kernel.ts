@@ -4,26 +4,33 @@ export class Kernel {
   stateMachine: any;
   contracts: any;
 
+  // Flattened contract references for performance optimization
+  private identityContract: any;
+  private routingContract: any;
+  private objectContract: any;
+
   constructor(config: any) {
     this.identity = config.identity;
     this.objects = config.objects;
     this.stateMachine = config.stateMachine;
     this.contracts = config.contracts;
+
+    // Pre-cache contract references to minimize property lookup depth in the hot path
+    this.identityContract = config.contracts.identity;
+    this.routingContract = config.contracts.routing;
+    this.objectContract = config.contracts.object;
   }
 
   /**
    * Routes the intent to the state machine after validating contracts.
-   * Optimized: Uses destructuring to minimize property lookups and uses
-   * stateMachine.process to reduce function call overhead.
+   * Optimized: Uses pre-cached contract references to avoid property lookup
+   * and destructuring overhead in high-frequency execution paths.
    */
   route(intent: string, surface: string, agent: any, context: any): any {
-    const { contracts, stateMachine } = this;
-    const { identity, routing, object } = contracts;
+    this.identityContract.validate(agent);
+    this.routingContract.validate(intent, surface);
+    this.objectContract.validate(context);
 
-    identity.validate(agent);
-    routing.validate(intent, surface);
-    object.validate(context);
-
-    return stateMachine.process(context, intent);
+    return this.stateMachine.process(context, intent);
   }
 }
