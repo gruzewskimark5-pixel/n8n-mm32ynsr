@@ -1,6 +1,6 @@
 # Deploy n8n on Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
+[![Deploy n8n to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/n8n "Deploy n8n to Render")
 
 > [!IMPORTANT]
 > **View full deployment instructions in [Render's n8n deployment guide](https://render.com/docs/deploy-n8n).**
@@ -20,9 +20,11 @@
   - [💤 Service is slow to start](#service-is-slow-to-start)
   - [🪝 Webhook or OAuth2 errors](#webhook-or-oauth2-errors)
   - [🐘 Database Connection Errors](#database-connection-errors)
+  - [🖼️ Missing node icons](#missing-node-icons)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
   - [✅ Successful executions not showing](#successful-executions-not-showing)
+  - [⚠️ Workflow automatically deactivated](#workflow-automatically-deactivated)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📝 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
 - [🏁 Next Steps](#next-steps)
@@ -51,8 +53,8 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** Templates, community nodes, external icons, personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, automatic deactivation of failing workflows, and optimized shutdown for faster container lifecycle.
+    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
+    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -160,6 +162,13 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
 
+### 🖼️ Missing node icons
+To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+2. Change `N8N_ICONS_CAN_USE_EXTERNAL` to `true`.
+3. **Save Changes**.
+4. **Verify:** Once the service restarts, you will see high-resolution icons for all nodes in the n8n editor.
+
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
@@ -168,8 +177,7 @@ To save memory on Render's free tier, the workflow template library is disabled 
 4. **Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
-To save memory and reduce background overhead, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
-To reduce background overhead and save memory on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
+To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
@@ -191,6 +199,18 @@ This is the most efficient way to save database space while still seeing success
 1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
+
+### ⚠️ Workflow automatically deactivated
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+
+If your workflow has been deactivated:
+1. Fix the error in your workflow.
+2. Manually reactivate the workflow by toggling the **Active** switch in the top-right corner of the n8n editor.
+
+To disable this feature:
+1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+2. Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+3. **Save Changes**.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
