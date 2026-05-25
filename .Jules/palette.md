@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Contextual Navigation and Proactive Troubleshooting
+**Learning:** In deployment templates where users must toggle between a platform dashboard (Render) and the application (n8n), documentation acts as the primary "UI." Standardizing navigation steps with direct dashboard links and clarifying the UI context (e.g., "follow steps in Render and n8n") reduces cognitive load. Furthermore, adding a "Stuck?" tip in the final "Next Steps" section provides a safety net for users who might have skipped the troubleshooting section earlier.
+**Action:** Always include direct platform links in all navigation-heavy steps and add a proactive troubleshooting call-to-action in the concluding section of the guide.

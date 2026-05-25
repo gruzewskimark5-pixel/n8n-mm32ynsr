@@ -64,7 +64,7 @@ Each of the above uses a free instance type by default.
 
 ## ⚙️ Post-deployment Setup
 
-After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) to finish setting up:
+After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
 Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
@@ -85,7 +85,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
@@ -104,7 +104,7 @@ To ensure your scheduled workflows run at the correct time, you should update th
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
 5. **Save:** Click **Save Changes**.
@@ -164,21 +164,21 @@ During initial deployment, the database might take slightly longer to initialize
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
-1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Change `N8N_ICONS_CAN_USE_EXTERNAL` to `true`.
 3. **Save Changes**.
 4. **✅ Verify:** Once the service restarts, you will see high-resolution icons for all nodes in the n8n editor.
 
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
-1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
 To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
-1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save Changes**. Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
@@ -197,7 +197,7 @@ This is the most efficient way to save database space while still seeing success
 5. **✅ Verify:** Once the change is saved, run a test execution of the workflow and confirm it appears in the **Executions** tab in the left-hand sidebar.
 
 **Option 2: For all workflows**
-1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save Changes**. Note that this will increase your database storage usage more quickly.
 4. **✅ Verify:** Once the service restarts, run any workflow and confirm that a successful execution is recorded in the **Executions** tab.
@@ -211,13 +211,13 @@ If your workflow has been deactivated:
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
 To disable this feature:
-1. Navigate to the **Environment** tab in the left-hand sidebar of the Render Dashboard.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
 3. **Save Changes**.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
-1. Navigate to the **Environment** tab in the left-hand sidebar.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save Changes**. Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
@@ -226,7 +226,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
 
 To get more detailed logs:
-1. Navigate to the **Environment** tab in the left-hand sidebar.
+1. Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. Find the `N8N_LOG_LEVEL` variable.
 3. Change its value from `warn` to `info` or `debug`.
 4. **Save** your changes and Render will restart the service with the new log level.
@@ -239,6 +239,9 @@ To get more detailed logs:
 
 > [!TIP]
 > **Keyboard Shortcuts:** Press `?` anywhere in the n8n editor to view a complete list of keyboard shortcuts for faster workflow building.
+
+> [!TIP]
+> 🔍 **Stuck?** Check the [Troubleshooting](#troubleshooting) guide for common issues and solutions.
 
 - 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
