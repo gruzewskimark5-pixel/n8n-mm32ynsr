@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Contextual Grounding and Verification Feedback Loops
+**Learning:** For deployment templates that bridge multiple platforms (like Render and n8n), instructions that lack clear contextual grounding (e.g., missing links to the dashboard) or success signals (missing verification steps) increase the risk of user abandonment. Providing a direct link to the platform UI in every relevant setup/troubleshooting step and adding explicit "Verify" steps for every manual configuration change creates a robust and intuitive onboarding experience.
+**Action:** Always ground manual setup steps with direct links to the relevant platform dashboard and ensure every configuration change is followed by an explicit, actionable verification step to provide a closed feedback loop.
