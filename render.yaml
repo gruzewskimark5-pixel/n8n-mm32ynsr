@@ -77,6 +77,12 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables the n8n Insights module to reduce background CPU/memory
+      # overhead and database load on resource-constrained environments
+      # like Render's free tier.
+      - key: N8N_DISABLED_MODULES
+        value: "insights"
+
       # Disables external icons in the n8n editor UI to reduce unnecessary
       # network overhead and improve editor responsiveness on Render's
       # free tier.

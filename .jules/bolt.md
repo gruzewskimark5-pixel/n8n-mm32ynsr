@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-05-26 - Disabling Insights via Supported Naming
+**Learning:** Disabling n8n's Insights module significantly reduces background CPU, memory, and database overhead. While some sources suggest `N8N_INSIGHTS_ENABLED: false`, the official n8n documentation (as of v1.x) explicitly identifies `N8N_DISABLED_MODULES: insights` as the supported method for completely disabling the metrics and insights collection system.
+**Action:** Always use `N8N_DISABLED_MODULES: insights` to ensure the Insights module is fully deactivated in resource-constrained environments.
