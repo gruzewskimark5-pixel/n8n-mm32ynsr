@@ -59,6 +59,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables the n8n Insights module to reduce background CPU/memory
+      # overhead and database load on Render's free tier.
+      - key: N8N_DISABLED_MODULES
+        value: "insights"
+
       # Enables version check notifications to ensure you're aware of
       # security updates and new n8n releases. While disabling this
       # reduces minor background overhead, security awareness takes
