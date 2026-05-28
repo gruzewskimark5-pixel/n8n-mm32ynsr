@@ -131,11 +131,11 @@ services:
       # Enable more aggressive execution data pruning to keep the database lean.
       # This prevents the 1GB free tier database from filling up and maintains
       # high performance by reducing index size and query latency.
-      - key: EXECUTIONS_DATA_PRUNE
+      - key: N8N_EXECUTIONS_DATA_PRUNE
         value: "true"
-      - key: EXECUTIONS_DATA_MAX_AGE
+      - key: N8N_EXECUTIONS_DATA_MAX_AGE
         value: "168" # 7 days
-      - key: EXECUTIONS_DATA_PRUNE_MAX_COUNT
+      - key: N8N_EXECUTIONS_DATA_MAX_COUNT
         value: "1000"
 
       # Enables automatic pruning of workflow history versions by age and
@@ -154,15 +154,15 @@ services:
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
-      # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none" and
+      # free tier (1GB limit), set N8N_EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none" and
       # disable progress/manual execution saves. This ensures n8n only persists
       # data for failed production workflow executions, minimizing unnecessary
       # database writes.
-      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+      - key: N8N_EXECUTIONS_DATA_SAVE_ON_SUCCESS
         value: "none"
-      - key: EXECUTIONS_DATA_SAVE_ON_PROGRESS
+      - key: N8N_EXECUTIONS_DATA_SAVE_ON_PROGRESS
         value: "false"
-      - key: EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
+      - key: N8N_EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
         value: "false"
 
       # These automatically populate connection details 
