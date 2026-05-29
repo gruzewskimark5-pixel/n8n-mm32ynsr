@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Health Check Icon Differentiation
+**Learning:** Using a stethoscope icon (🩺) for health check or deployment verification headers provides a unique visual identifier that distinguishes system-level diagnostic steps from general success signals (✅) used within individual instructions.
+**Action:** Always use the stethoscope icon (🩺) for "Verify your deployment" or "Health check" headers to improve scannability and reduce visual ambiguity.
