@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2026-05-30 - Standardizing Onboarding with Sequential Success Feedback
+**Learning:** For multi-step setup processes (like account creation), a single descriptive paragraph often lacks the structure needed for a predictable user experience. Refactoring instructions into a sequential four-step format (Find, Visit, Act, Verify) with an explicit "✅ Verify" success signal provides a clear mental model and immediate positive feedback, which is essential for "Day 1" user success.
+**Action:** Always refactor fragmented onboarding instructions into a standardized, sequential step format that concludes with a concrete verification signal.
