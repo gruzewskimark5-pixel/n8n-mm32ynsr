@@ -12,7 +12,7 @@
   - [👤 1. Create your owner account](#1-create-your-owner-account)
   - [🪝 2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
   - [🌍 3. Update your Timezone (Optional)](#3-update-your-timezone-optional)
-  - [✅ 4. Verify your deployment](#4-verify-your-deployment)
+  - [🩺 4. Verify your deployment](#4-verify-your-deployment)
   - [🔑 5. Backup your encryption key](#5-backup-your-encryption-key)
 - [⚠️ Free Tier Limitations](#free-tier-limitations)
 - [🔄 Maintenance & Updates](#maintenance--updates)
@@ -67,10 +67,12 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
+To get started, visit your unique service URL to set up your primary administrative account.
 
-> [!TIP]
-> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1.  **Find your URL:** Locate your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+2.  **Visit your URL:** Open your service URL in your browser.
+3.  **Create your account:** Follow the on-screen prompts to set up your first owner account. This account will have full access to your n8n instance.
+4.  **✅ Verify:** Once your account is created, confirm you can see the empty workflow canvas and the n8n sidebar.
 
 > [!TIP]
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
@@ -110,7 +112,7 @@ To ensure your scheduled workflows run at the correct time, you should update th
 5. **Save:** Click **Save Changes**.
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
-### ✅ 4. Verify your deployment
+### 🩺 4. Verify your deployment
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
