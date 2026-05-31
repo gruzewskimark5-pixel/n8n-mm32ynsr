@@ -1,25 +1,26 @@
 export const StateMachine = {
   /**
-   * Optimized: Performs transition and action lookup in a single pass.
-   * This reduces function call overhead and centralizes the logic.
+   * Optimized: Computes next state without redundant action lookup.
    */
-  process(context, intent) {
-    const constraints = this.computeConstraints(context);
-    const state = {
+  transition(context, intent) {
+    return {
       identity: context.identity,
       intent,
       context,
-      constraints,
-    };
-
-    return {
-      state,
-      next_action: this.lookupAction(intent, constraints),
+      constraints: this.computeConstraints(context),
     };
   },
 
-  transition(context, intent) {
-    return this.process(context, intent).state;
+  /**
+   * Optimized: Leverages transition() and performs action lookup.
+   * Eliminates the performance anti-pattern of transition() calling process().
+   */
+  process(context, intent) {
+    const state = this.transition(context, intent);
+    return {
+      state,
+      next_action: this.lookupAction(intent, state.constraints),
+    };
   },
 
   nextAction(state) {
