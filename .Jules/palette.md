@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Scannability and Verification Feedback Loops
+**Learning:** In infrastructure-focused READMEs, dense feature lists and missing verification steps increase cognitive load and setup anxiety. Refactoring technical optimizations into nested lists with representative icons improves scannability, while adding explicit "**✅ Verify:**" steps to every manual instruction creates a consistent and reassuring feedback loop for the user.
+**Action:** Always use nested lists with category-specific icons for complex feature sets and ensure every setup step includes a concrete verification action.
