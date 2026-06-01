@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-06-01 - Fixing `transition` calling `process` performance anti-pattern
+**Learning:** In `StateMachine.ts`, having `transition()` call `process()` (and then discarding the `next_action`) is a performance anti-pattern because it forces a redundant `lookupAction()` call. This architectural inefficiency adds measurable nanosecond-scale overhead in hot execution paths.
+**Action:** Always refactor such patterns so that `process()` leverages `transition()`. This ensures that `transition()` only performs the work necessary to compute the next state, while `process()` can add the action lookup on top, maintaining both efficiency and code reuse.
