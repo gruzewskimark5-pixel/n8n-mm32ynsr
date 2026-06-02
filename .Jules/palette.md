@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2026-06-02 - README as the Primary User Interface
+**Learning:** In infrastructure-as-code or deployment-only repositories, the `README.md` is the primary "user interface." Micro-UX improvements should focus on reducing cognitive load during onboarding by refactoring dense instructions into actionable, verifiable lists and using semantic icons to distinguish between different types of verification (e.g., system health vs. user action).
+**Action:** Treat documentation with the same UX rigor as a graphical interface, prioritizing scannability and clear "success signals" (like a dedicated Verify step) for every manual configuration.
