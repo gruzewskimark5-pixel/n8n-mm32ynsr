@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Reducing Cognitive Load via Instructional Scannability
+**Learning:** In technical setup guides, users often skim for keywords like "Save" or "Environment." Standardizing these instructions into a consistent `**Label**: Action` pattern (e.g., `**Save:** Click **Save Changes.**`) creates a predictable rhythm that allows users to process information faster and with fewer errors. Furthermore, placing the trailing period inside the bold markers for the button name maintains structural harmony within the list.
+**Action:** Always standardize high-frequency manual actions into a bolded label/action pattern and ensure consistent punctuation placement to improve scannability in documentation-heavy UIs.
