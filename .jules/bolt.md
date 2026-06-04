@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Optimizing State Machine Transitions
+**Learning:** In the `StateMachine` implementation, having the `transition` method call `process` introduced redundant overhead because `process` also performs a `lookupAction`. When only the next state is needed, this lookup is wasted work.
+**Action:** Centralize state object creation into an internal `createState` helper. This allows `process` to use it followed by `lookupAction`, while `transition` can use it directly to return only the state, eliminating unnecessary computation in the hot path.
