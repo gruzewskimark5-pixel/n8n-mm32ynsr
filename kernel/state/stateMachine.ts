@@ -1,25 +1,33 @@
 export const StateMachine = {
   /**
-   * Optimized: Performs transition and action lookup in a single pass.
-   * This reduces function call overhead and centralizes the logic.
+   * Internal helper to create the state object.
+   * Optimized: Using inline object literal for state construction.
    */
-  process(context, intent) {
+  _createState(context, intent) {
     const constraints = this.computeConstraints(context);
-    const state = {
+    return {
       identity: context.identity,
       intent,
       context,
       constraints,
     };
+  },
+
+  /**
+   * Optimized: Performs transition and action lookup in a single pass.
+   * This reduces function call overhead and centralizes the logic.
+   */
+  process(context, intent) {
+    const state = this._createState(context, intent);
 
     return {
       state,
-      next_action: this.lookupAction(intent, constraints),
+      next_action: this.lookupAction(intent, state.constraints),
     };
   },
 
   transition(context, intent) {
-    return this.process(context, intent).state;
+    return this._createState(context, intent);
   },
 
   nextAction(state) {
