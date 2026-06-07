@@ -150,8 +150,8 @@ services:
       # continuous resource consumption (CPU/RAM) from broken workflows.
       - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS
-        value: "3"
+      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES
+        value: "2"
 
       # To significantly reduce database I/O and storage consumption on Render's
       # free tier (1GB limit), set EXECUTIONS_DATA_SAVE_ON_SUCCESS to "none" and

@@ -203,7 +203,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 2 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
