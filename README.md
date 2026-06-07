@@ -12,7 +12,7 @@
   - [👤 1. Create your owner account](#1-create-your-owner-account)
   - [🪝 2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
   - [🌍 3. Update your Timezone (Optional)](#3-update-your-timezone-optional)
-  - [✅ 4. Verify your deployment](#4-verify-your-deployment)
+  - [🩺 4. Verify your deployment](#4-verify-your-deployment)
   - [🔑 5. Backup your encryption key](#5-backup-your-encryption-key)
 - [⚠️ Free Tier Limitations](#free-tier-limitations)
 - [🔄 Maintenance & Updates](#maintenance--updates)
@@ -53,10 +53,10 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
+    - **Disabled Features:** 🧩 [Templates](#missing-templates-tab), 🔌 [community nodes](#missing-community-nodes), 🖼️ [external icons](#missing-node-icons), 👤 personalization, 👋 onboarding, 📡 telemetry, 📈 insights, and 🏁 hiring banners.
+    - **Operational Efficiency:** 💓 Reduced database heartbeat overhead, 🛑 [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and ⚡ optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [workflows](#maintenance--updates) and [credentials](#5-backup-your-encryption-key).
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
 ---
@@ -67,10 +67,10 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
-
-> [!TIP]
-> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/).
+2. **Visit your URL:** Open your unique service URL (e.g., `https://n8n-service-q975.onrender.com`) in your browser.
+3. **Create account:** Follow the on-screen instructions to create your first owner account.
+4. **✅ Verify:** Confirm you can see the n8n workflow canvas after logging in.
 
 > [!TIP]
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
@@ -85,7 +85,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar.
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
@@ -110,7 +110,7 @@ To ensure your scheduled workflows run at the correct time, you should update th
 5. **Save:** Click **Save Changes**.
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
-### ✅ 4. Verify your deployment
+### 🩺 4. Verify your deployment
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
