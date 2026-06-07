@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - Differentiating System Status from Task Verification
+**Learning:** Using the same icon (like ✅) for both high-level system status and individual task verification steps creates visual ambiguity. Standardizing system-level health check headers with a distinct icon (like 🩺) while reserving the success signal (✅) for user-actionable verification steps improves scannability and mental modeling of the documentation.
+**Action:** Always use a distinct, semantic icon for system status/health check sections that is different from the icons used for individual step success signals.
