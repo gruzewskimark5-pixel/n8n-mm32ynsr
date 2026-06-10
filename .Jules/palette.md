@@ -103,3 +103,7 @@
 ## 2025-05-24 - Semantic Icon Standards for Scannability
 **Learning:** In technical documentation, using "status-heavy" icons (like the green checkmark ✅) in headers can cause visual confusion if they are also used for action-oriented labels like "Verify." Standardizing headers with category-specific icons (📊 for history, 🛑 for errors, 📜 for logs) while reserving the checkmark exclusively for verification steps improves scannability and creates a clear visual hierarchy.
 **Action:** Always audit documentation for icon overlap and reserve status-heavy icons exclusively for explicit success signals or verification steps.
+
+## 2025-05-25 - DX Consistency via Standardized UI Patterns
+**Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
+**Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.

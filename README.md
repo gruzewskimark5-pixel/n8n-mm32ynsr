@@ -12,7 +12,7 @@
   - [👤 1. Create your owner account](#1-create-your-owner-account)
   - [🪝 2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
   - [🌍 3. Update your Timezone (Optional)](#3-update-your-timezone-optional)
-  - [✅ 4. Verify your deployment](#4-verify-your-deployment)
+  - [🩺 4. Verify your deployment](#4-verify-your-deployment)
   - [🔑 5. Backup your encryption key](#5-backup-your-encryption-key)
 - [⚠️ Free Tier Limitations](#free-tier-limitations)
 - [🔄 Maintenance & Updates](#maintenance--updates)
@@ -88,7 +88,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
-5. **Save:** Click **Save Changes**. Render will automatically restart your service with the new setting.
+5. **Save:** Click **Save Changes.** Render will automatically restart your service with the new setting.
 6. **✅ Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
 > [!TIP]
@@ -107,10 +107,10 @@ To ensure your scheduled workflows run at the correct time, you should update th
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
-5. **Save:** Click **Save Changes**.
+5. **Save:** Click **Save Changes.**
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
-### ✅ 4. Verify your deployment
+### 🩺 4. Verify your deployment
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
@@ -164,23 +164,23 @@ During initial deployment, the database might take slightly longer to initialize
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_ICONS_CAN_USE_EXTERNAL` to `true`.
-3. **Save Changes.**
+3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, you will see high-resolution icons for all nodes in the n8n editor.
 
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_TEMPLATES_ENABLED` to `true`.
-3. **Save Changes.** Note that this will increase your service's idle memory usage.
+3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
 To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
-3. **Save Changes.** Note that this will increase your service's idle memory usage.
+3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
 ### 📊 Successful executions not showing
@@ -193,13 +193,14 @@ This is the most efficient way to save database space while still seeing success
 1. Open your workflow in the n8n editor.
 2. Click the **horizontal ellipsis (three dots)** in the top-right corner.
 3. Select **Settings**.
-4. Change **Save Successful Executions** to **Yes** and click **Save**.
-5. **✅ Verify:** Once the change is saved, trigger a **production** execution of the workflow (e.g., via a manual trigger or webhook) and confirm it appears in the **Executions** tab in the left-hand sidebar. Note that manual "test" runs from the editor are not saved by default.
+4. Change **Save Successful Executions** to **Yes**.
+5. **Save:** Click **Save.**
+6. **✅ Verify:** Once the change is saved, trigger a **production** execution of the workflow (e.g., via a manual trigger or webhook) and confirm it appears in the **Executions** tab in the left-hand sidebar. Note that manual "test" runs from the editor are not saved by default.
 
 **Option 2: For all workflows**
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
-3. **Save Changes.** Note that this will increase your database storage usage more quickly.
+3. **Save:** Click **Save Changes.** Note that this will increase your database storage usage more quickly.
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
@@ -211,26 +212,26 @@ If your workflow has been deactivated:
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
 To disable this feature:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
-3. **Save Changes.**
+3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
+3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
 
 To get more detailed logs:
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
-4. **Save Changes.** Render will restart the service with the new log level.
+4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
 5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
