@@ -54,7 +54,7 @@ Each of the above uses a free instance type by default.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
+    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, reduced log verbosity, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -222,9 +222,6 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs

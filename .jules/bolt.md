@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-11-15 - Fixing Non-Functional Performance Safeties in Documentation
+**Learning:** Incorrect environment variable naming in documentation (e.g., inconsistencies between `N8N_` prefixed and prefixless names like `EXECUTIONS_TIMEOUT`) leads to silent configuration failures. Users following these instructions unwittingly leave their services vulnerable to runaway workflows and OOM kills on resource-constrained tiers like Render Free.
+**Action:** Always verify exact environment variable keys against official n8n documentation and ensure troubleshooting guides correctly consolidate redundant instructions and use the most compatible variable names (usually `N8N_` prefixed for consistency across n8n environments).
