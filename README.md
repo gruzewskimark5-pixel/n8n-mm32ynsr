@@ -67,10 +67,12 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
+Follow these steps to set up your n8n instance and create your owner account:
 
-> [!TIP]
-> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+2. **Visit your service:** Open the URL in your browser.
+3. **Create your account:** Follow the on-screen prompts to set up your owner account.
+4. **✅ Verify:** Once the account is created, confirm you can see the empty workflow canvas in the n8n editor.
 
 > [!TIP]
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
@@ -219,12 +221,10 @@ To disable this feature:
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
+
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
+3. **Save:** Click **Save Changes.** Render will automatically restart your service with the new settings.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
