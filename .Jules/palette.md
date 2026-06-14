@@ -107,3 +107,11 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2025-05-26 - Functional Accuracy in Documentation Refactoring
+**Learning:** When deduplicating contradictory documentation, selecting the version with incorrect environment variable naming (e.g., missing the `N8N_` prefix) creates a functional regression that breaks the user experience. Technical accuracy must never be sacrificed for structural "cleanliness."
+**Action:** Always verify environment variable keys against the application's core configuration (e.g., `render.yaml`) and official documentation during README refactoring.
+
+## 2025-05-27 - Visual Hierarchy in Feature Summaries
+**Learning:** Refactoring a dense, comma-separated list of technical optimizations into a structured nested list with representative icons significantly improves scannability and provides a "delightful" developer experience. This "Documentation UI" enhancement helps users quickly map technical features to their respective troubleshooting or setup sections.
+**Action:** Use nested bulleted lists and consistent iconography when summarizing complex technical optimizations in project READMEs.
