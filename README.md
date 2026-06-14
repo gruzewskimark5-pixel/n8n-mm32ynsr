@@ -53,10 +53,19 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
+    - 🧩 **Templates:** [Disabled by default](#missing-templates-tab).
+    - 🔌 **Community Nodes:** [Disabled by default](#missing-community-nodes).
+    - 🖼️ **External Icons:** [Disabled by default](#missing-node-icons).
+    - 👤 **Personalization:** Disabled to reduce initial setup overhead.
+    - 👋 **Onboarding:** Disabled to reduce background network calls.
+    - 📡 **Telemetry:** Disabled to reduce background overhead.
+    - 📈 **Insights:** Disabled to reduce database load.
+    - 🏁 **Hiring Banners:** Disabled to reduce startup noise.
+    - 💓 **Heartbeat:** Reduced database heartbeat overhead.
+    - 🛑 **Auto-deactivation:** [Enabled](#workflow-automatically-deactivated) for failing workflows.
+    - ⚡ **Shutdown:** Optimized for faster container lifecycle.
+  - **Auto-maintenance:** Automated [execution](#maintenance--updates) and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [workflows](#maintenance--updates) and [credentials](#5-backup-your-encryption-key).
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
 ---
@@ -219,13 +228,13 @@ To disable this feature:
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
+
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
+3. **Save:** Click **Save Changes.** Render will automatically restart your service with the new settings.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
+
+Note that very long executions may lead to service instability on the Free Tier.
 
 ### 📜 Viewing and Adjusting Logs
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
