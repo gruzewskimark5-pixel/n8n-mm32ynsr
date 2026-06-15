@@ -107,3 +107,7 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2025-05-26 - Configuration Parity and Troubleshooting Precision
+**Learning:** Discrepancies between the infrastructure-as-code template (`render.yaml`) and the setup documentation (`README.md`) lead to "silent" configuration failures where a service deploys successfully but doesn't behave as documented. Ensuring exact parity between Blueprint keys and README instructions is a critical micro-UX requirement for deployment templates.
+**Action:** Always cross-reference environment variable keys in the Blueprint file against the README's troubleshooting and setup sections to ensure 100% naming parity.
