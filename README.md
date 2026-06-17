@@ -218,13 +218,10 @@ To disable this feature:
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
 
 ### ⏱️ Workflows timing out
-To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
+To prevent runaway workflows from indefinitely consuming CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
