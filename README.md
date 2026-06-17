@@ -23,7 +23,7 @@
   - [🖼️ Missing node icons](#missing-node-icons)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
-  - [📊 Successful executions not showing](#successful-executions-not-showing)
+  - [📈 Successful executions not showing](#successful-executions-not-showing)
   - [🛑 Workflow automatically deactivated](#workflow-automatically-deactivated)
   - [⏱️ Workflows timing out](#workflows-timing-out)
   - [📜 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -53,8 +53,19 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
+      - **Disabled Features:**
+        - 🧩 **Templates:** [Built-in library](#missing-templates-tab) disabled to save memory.
+        - 🔌 **Community Nodes:** [External packages](#missing-community-nodes) disabled to reduce overhead.
+        - 🖼️ **External Icons:** [Remote icon loading](#missing-node-icons) disabled for UI responsiveness.
+        - 👤 **Personalization:** Initial setup flow removed.
+        - 👋 **Onboarding:** Welcome tours and guides disabled.
+        - 📡 **Telemetry:** External diagnostics and usage reporting disabled.
+        - 📈 **Insights:** n8n metrics collection disabled.
+        - 🏁 **Hiring Banners:** Console recruitment notices removed.
+      - **Operational Efficiency:**
+        - 💓 **Heartbeat:** Reduced database check-in frequency.
+        - 🛑 **Auto-deactivation:** [Failing workflows](#workflow-automatically-deactivated) automatically paused.
+        - ⚡ **Shutdown:** Optimized cleanup for faster service restarts.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
@@ -67,10 +78,10 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
-
-> [!TIP]
-> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+2. **Visit your URL:** Open your service URL in your browser.
+3. **Create account:** Follow the on-screen instructions to create your first owner account. This account will have full access to your n8n instance.
+4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
 
 > [!TIP]
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
@@ -140,7 +151,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ## 🔄 Maintenance & Updates
 
-- 🔄 **Updating n8n:** To update to the latest version, click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/).
+- 🔄 **Updating n8n:** Click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/) to update to the latest version.
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
 - 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
 - 🔔 **Security Alerts:** n8n version check notifications are enabled by default (`N8N_VERSION_NOTIFICATIONS_ENABLED: "true"`) to ensure you're alerted to security updates and new releases directly in the dashboard.
@@ -183,7 +194,7 @@ To save memory and reduce background overhead on Render's free tier, the communi
 3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
-### 📊 Successful executions not showing
+### 📈 Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
 
 To see successful executions, you have two options:
@@ -219,12 +230,10 @@ To disable this feature:
 
 ### ⏱️ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
+
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
