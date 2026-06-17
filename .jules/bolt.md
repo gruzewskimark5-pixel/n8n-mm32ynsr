@@ -108,6 +108,10 @@
 **Learning:** Caching method references using `.bind()` in a constructor to reduce property lookups in hot paths is often a net negative. It creates unique function objects for every instance, increasing memory pressure and initialization overhead. Modern JS engines with Inline Caching already optimize property lookups effectively.
 **Action:** Favor local destructuring in hot methods (e.g., `const { validate } = this.contract;`) over constructor-level binding for a cleaner balance of readability and performance without memory side effects.
 
+## 2026-10-25 - Eliminating Silent Configuration Failures for Timeouts and Deactivations
+**Learning:** In the current n8n environment, environment variables for global execution timeouts must be prefixed with `N8N_` (e.g., `N8N_EXECUTIONS_TIMEOUT`) to be recognized, despite some documentation suggesting otherwise. Additionally, the correct key for auto-deactivation failure limits is `N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES`; using the `MAX_LAST_EXECUTIONS` variant or adding extra underscores (like `AUTO_DEACTIVATION`) results in the setting being silently ignored, leaving the system vulnerable to resource exhaustion from runaway or broken workflows.
+**Action:** Always verify environment variable keys against the verified codebase-specific naming conventions and ensure the `N8N_` prefix is applied to timeout configurations to maintain active resource protection.
+
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
