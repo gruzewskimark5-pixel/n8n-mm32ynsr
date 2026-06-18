@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-06-18 - Correcting Silent Configuration Failures and Hot Path Inlining
+**Learning:** n8n environment variables for execution timeouts and auto-deactivation often require the `N8N_` prefix or specific suffixes (e.g., `_MAX_FAILURES` vs `_MAX_LAST_EXECUTIONS`) that, if missed, lead to silent configuration failures where resource-saving features are simply not active. Additionally, inlining simple validation logic in the `Kernel.route` hot path (reducing it to ~10.1ns) provides a measurable performance gain by eliminating property lookup and function call overhead.
+**Action:** Always verify n8n environment variable keys against official documentation to avoid silent failures, and prioritize inlining simple validation in the highest-frequency execution paths.

@@ -204,7 +204,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"` and `N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES: "3"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
@@ -222,9 +222,6 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-1. **Open Environment settings:** Navigate to the **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variables:** Find and update `EXECUTIONS_TIMEOUT` and `EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
-3. **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs

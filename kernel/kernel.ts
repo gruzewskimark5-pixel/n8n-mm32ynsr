@@ -25,7 +25,10 @@ export class Kernel {
    * overhead to achieve maximum performance in the execution hot path.
    */
   route(intent: string, surface: string, agent: any, context: any): any {
-    this.identityContract.validate(agent);
+    // Optimized: Inlined identity check to avoid property lookup and function call overhead in hot path.
+    if (agent.identity !== "kernel-compliant") {
+      throw new Error("Agent identity violation");
+    }
     this.routingContract.validate(intent, surface);
     this.objectContract.validate(context);
 
