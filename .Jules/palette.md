@@ -107,3 +107,7 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2025-06-18 - Functional Documentation UX and Semantic Icon Standards
+**Learning:** In deployment templates, the "UI" is the documentation. Discrepancies between documented features and the underlying infrastructure configuration (e.g., incorrect environment variable names) represent a major UX failure. Furthermore, using a consistent semantic icon standard (📈 for history, ⌛ for timing out) across both the Table of Contents and section headers significantly reduces cognitive load and improves scannability.
+**Action:** Always verify that documentation instructions are functionally backed by the configuration files and strictly adhere to a semantic icon standard for headers and navigation elements.
