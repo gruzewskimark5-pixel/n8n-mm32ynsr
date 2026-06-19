@@ -107,3 +107,7 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2026-05-26 - DX Integrity via Variable Synchronization
+**Learning:** In deployment templates, mismatched environment variable names between the infrastructure configuration (`render.yaml`) and the documentation (`README.md`) create a critical UX failure. Users following the guide will experience silent configuration failures (e.g., timeouts not applying) which are difficult to debug.
+**Action:** Always cross-reference and synchronize environment variable names between the blueprint configuration and all mentions in the documentation, prioritizing the application's actual expected keys (e.g., `N8N_` prefixes).
