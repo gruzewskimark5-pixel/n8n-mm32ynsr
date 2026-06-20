@@ -107,3 +107,7 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2025-05-26 - Improving Scannability with Structured Lists and Icons
+**Learning:** For documentation-heavy repositories like deployment templates, the README is the primary "User Interface." Refactoring dense, comma-separated lists of technical features into structured, nested lists with representative icons significantly reduces cognitive load and improves the onboarding UX by allowing users to quickly scan and understand the value proposition.
+**Action:** When documenting a complex set of optimizations or features, always prefer a nested list format with semantic icons to enhance readability and information hierarchy.
