@@ -150,7 +150,7 @@ services:
       # continuous resource consumption (CPU/RAM) from broken workflows.
       - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS
+      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
@@ -210,9 +210,9 @@ services:
       # To prevent runaway workflows from indefinitely consuming CPU and RAM
       # on Render's 512MB free tier, these variables set a global execution
       # timeout of 1 hour (3600 seconds).
-      - key: EXECUTIONS_TIMEOUT
+      - key: N8N_EXECUTIONS_TIMEOUT
         value: "3600"
-      - key: EXECUTIONS_TIMEOUT_MAX
+      - key: N8N_EXECUTIONS_TIMEOUT_MAX
         value: "3600"
 
       # Speeds up service shutdown and container lifecycle in ephemeral

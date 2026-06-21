@@ -107,3 +107,7 @@
 ## 2025-05-25 - DX Consistency via Standardized UI Patterns
 **Learning:** In technical setup guides, inconsistent button labels (e.g., "Save" vs "Save Changes") and vague navigation paths create subtle friction for the developer. Aligning instructions with the exact text and location in the respective UIs (e.g., Render Dashboard vs n8n editor) and reserving specific status icons (like 🩺 for health) for their semantic purpose significantly improves the onboarding experience.
 **Action:** Always audit documentation to ensure button labels exactly match their target UI and use unique semantic icons for different categories of system status to maintain visual hierarchy.
+
+## 2025-05-26 - Integrity between Configuration and Documentation
+**Learning:** In infrastructure-as-code templates, the `README.md` acts as the user interface, but the `render.yaml` is the underlying engine. Misalignment between the two—such as incorrect environment variable names in the config or redundant, conflicting steps in the documentation—breaks the user experience and leads to silent failures. Ensuring that variable names are correctly prefixed (e.g., `N8N_`) and that documentation is consolidated and verified against the actual config is critical for a "it just works" experience.
+**Action:** Always verify that environment variables in the infrastructure blueprint match the application's required schema and that all corresponding documentation is deduplicated and synchronized with these values.
