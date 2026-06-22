@@ -111,3 +111,7 @@
 ## 2025-05-26 - Integrity between Configuration and Documentation
 **Learning:** In infrastructure-as-code templates, the `README.md` acts as the user interface, but the `render.yaml` is the underlying engine. Misalignment between the two—such as incorrect environment variable names in the config or redundant, conflicting steps in the documentation—breaks the user experience and leads to silent failures. Ensuring that variable names are correctly prefixed (e.g., `N8N_`) and that documentation is consolidated and verified against the actual config is critical for a "it just works" experience.
 **Action:** Always verify that environment variables in the infrastructure blueprint match the application's required schema and that all corresponding documentation is deduplicated and synchronized with these values.
+
+## 2026-06-22 - Standardizing Multi-step Onboarding
+**Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
+**Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
