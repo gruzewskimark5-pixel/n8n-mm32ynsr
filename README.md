@@ -67,10 +67,10 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-Visit your service URL to create your first owner account. This account will have full access to your n8n instance.
-
-> [!TIP]
-> **Find your URL:** You can find your service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
+3. **Create account:** Follow the on-screen instructions to create your first owner account.
+4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
 
 > [!TIP]
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
