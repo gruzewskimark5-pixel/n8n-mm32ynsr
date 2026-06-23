@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-06-23 - Reducing Background Overhead by Disabling n8n Metrics
+**Learning:** n8n's internal metrics service (Prometheus) adds unnecessary CPU and memory overhead when enabled. In resource-constrained environments like Render's 512MB free tier, disabling this service helps reclaim critical resources for core workflow executions.
+**Action:** Set `N8N_METRICS_ENABLED: "false"` in `render.yaml` to minimize idle background processing.
