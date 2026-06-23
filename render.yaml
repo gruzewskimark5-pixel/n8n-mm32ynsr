@@ -55,8 +55,11 @@ services:
       - key: N8N_WORKFLOW_RUN_LOCAL_CACHE
         value: "true"
 
-      # Disables telemetry to reduce background overhead and network calls.
+      # Disables telemetry and metrics to reduce background overhead,
+      # CPU/memory consumption, and network calls.
       - key: N8N_DIAGNOSTICS_ENABLED
+        value: "false"
+      - key: N8N_METRICS_ENABLED
         value: "false"
 
       # Disables the n8n Insights module to reduce background CPU/memory
