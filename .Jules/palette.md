@@ -115,3 +115,7 @@
 ## 2026-06-22 - Standardizing Multi-step Onboarding
 **Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
 **Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
+
+## 2025-05-27 - Improving Scannability with Icon-Augmented Nested Lists
+**Learning:** In documentation-heavy templates (where the README is the primary UI), dense comma-separated lists of technical features are difficult to scan. Breaking them into nested lists with representative icons provides visual anchors that improve information retrieval and reduce cognitive load.
+**Action:** Always refactor dense feature descriptions into structured, icon-augmented nested lists to improve the "Documentation UI" scannability.
