@@ -53,11 +53,21 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+    - **Disabled Features:**
+      - 🧩 [Templates](#missing-templates-tab)
+      - 🔌 [community nodes](#missing-community-nodes)
+      - 🖼️ [external icons](#missing-node-icons)
+      - 👤 personalization
+      - 👋 onboarding
+      - 📡 telemetry
+      - 🏁 hiring banners
+    - **Operational Efficiency:**
+      - 💓 Reduced database heartbeat overhead
+      - 🛑 [automatic deactivation](#workflow-automatically-deactivated) of failing workflows
+      - ⚡ Optimized shutdown for faster container lifecycle
+  - **Auto-maintenance:** Automated execution and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [workflows](#maintenance--updates) and [credentials](#5-backup-your-encryption-key).
+- 🛠️ **Zero-Downtime Deploys:** Includes a [health check endpoint](#4-verify-your-deployment) to ensure your service is always available.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
