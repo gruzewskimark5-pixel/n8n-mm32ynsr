@@ -59,6 +59,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables n8n internal metrics tracking to reduce background CPU and
+      # memory overhead on Render's 512MB RAM free tier.
+      - key: N8N_METRICS_ENABLED
+        value: "false"
+
       # Disables the n8n Insights module to reduce background CPU/memory
       # overhead and database load on Render's free tier.
       - key: N8N_DISABLED_MODULES
