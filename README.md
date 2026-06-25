@@ -57,7 +57,7 @@ Each of the above uses a free instance type by default.
     - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+- 🛠️ **Zero-Downtime Deploys:** Includes a [health check endpoint](#4-verify-your-deployment) to ensure your service is always available.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -67,7 +67,8 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`) and copy it for the next step.
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -76,6 +77,7 @@ After your n8n instance is up and running, follow these steps in the [Render Das
 > 💤 If your service has spun down due to inactivity, it may take 1-2 minutes to start up. If you see a `503 Service Unavailable` message, wait a moment and refresh the page.
 
 ### 🪝 2. Configure Webhook URL (Required)
+
 If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your workflows, you must set your service's `WEBHOOK_URL` environment variable manually. This ensures that external services can communicate with your n8n instance for webhooks and OAuth2 callbacks.
 
 > [!IMPORTANT]
@@ -98,6 +100,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
 
 ### 🌍 3. Update your Timezone (Optional)
+
 To ensure your scheduled workflows run at the correct time, you should update the `GENERIC_TIMEZONE` environment variable.
 
 > [!TIP]
@@ -111,12 +114,14 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### 🩺 4. Verify your deployment
+
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
 
 ### 🔑 5. Backup your encryption key
+
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
@@ -151,18 +156,22 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 ## 🔍 Troubleshooting
 
 ### 💤 Service is slow to start
+
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
 
 ### 🪝 Webhook or OAuth2 errors
+
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
 - Ensure you have set the `WEBHOOK_URL` environment variable as described in [Step 2](#2-configure-webhook-url-required).
 - Double-check that the `WEBHOOK_URL` follows the correct format (no trailing slash).
 - **✅ Verify:** Follow the [in-app verification steps](#2-configure-webhook-url-required) to confirm your configuration is active.
 
 ### 🐘 Database Connection Errors
+
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
 
 ### 🖼️ Missing node icons
+
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_ICONS_CAN_USE_EXTERNAL` to `true`.
@@ -170,6 +179,7 @@ To reduce network overhead and improve editor responsiveness on Render's free ti
 4. **✅ Verify:** Once the service restarts, you will see high-resolution icons for all nodes in the n8n editor.
 
 ### 🧩 Missing "Templates" tab
+
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_TEMPLATES_ENABLED` to `true`.
@@ -177,6 +187,7 @@ To save memory on Render's free tier, the workflow template library is disabled 
 4. **✅ Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
+
 To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
@@ -184,6 +195,7 @@ To save memory and reduce background overhead on Render's free tier, the communi
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
 ### 📈 Successful executions not showing
+
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
 
 To see successful executions, you have two options:
@@ -204,6 +216,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
+
 To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
 
 If your workflow has been deactivated:
@@ -218,6 +231,7 @@ To disable this feature:
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
 
 ### ⏳ Workflows timing out
+
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
@@ -225,6 +239,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
+
 If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
 
 To get more detailed logs:
@@ -248,7 +263,7 @@ To get more detailed logs:
 - 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
 - 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
-- 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+- 💬 **Get Help:** Join the [n8n community forum](https://community.n8n.io/) or read the [n8n official documentation](https://docs.n8n.io/).
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
