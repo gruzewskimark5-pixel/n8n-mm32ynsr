@@ -108,6 +108,10 @@
 **Learning:** Caching method references using `.bind()` in a constructor to reduce property lookups in hot paths is often a net negative. It creates unique function objects for every instance, increasing memory pressure and initialization overhead. Modern JS engines with Inline Caching already optimize property lookups effectively.
 **Action:** Favor local destructuring in hot methods (e.g., `const { validate } = this.contract;`) over constructor-level binding for a cleaner balance of readability and performance without memory side effects.
 
+## 2026-05-22 - Validating Environment Variable Naming for n8n
+**Learning:** Assuming all n8n configuration variables require an `N8N_` prefix is a mistake. While many do (like `N8N_EXECUTIONS_TIMEOUT`), others specifically related to execution data management (like `EXECUTIONS_DATA_SAVE_ON_SUCCESS` and `EXECUTIONS_PROCESS`) do not. Renaming them incorrectly causes n8n to silently ignore the settings and revert to unoptimized defaults, such as saving all successful executions, which leads to database bloat and increased I/O.
+**Action:** Always verify the exact variable name in the official n8n documentation and avoid blanket prefixing without confirmation.
+
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
