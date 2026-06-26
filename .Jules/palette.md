@@ -115,3 +115,7 @@
 ## 2026-06-22 - Standardizing Multi-step Onboarding
 **Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
 **Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
+
+## 2025-05-27 - Enhancing Scannability with Icon-Rich Nested Lists
+**Learning:** In documentation-heavy templates, technical feature lists (like "Disabled Features") are often perceived as a "wall of text" and skipped. Refactoring these into nested lists with representative emojis (e.g., 🧩 for templates, 🔌 for nodes) significantly improves scannability and allows users to quickly grasp the template's optimizations.
+**Action:** Always refactor dense technical feature descriptions into structured, nested lists with semantic icons to improve information hierarchy and scannability.
