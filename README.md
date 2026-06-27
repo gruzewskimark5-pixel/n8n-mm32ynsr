@@ -53,11 +53,11 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+    - **Disabled Features:** 🧩 [Templates](#missing-templates-tab), 🔌 [community nodes](#missing-community-nodes), 🖼️ [external icons](#missing-node-icons), 👤 personalization, 👋 onboarding, 📡 telemetry, 📊 metrics, and 🏁 hiring banners.
+    - **Operational Efficiency:** 💓 Reduced database heartbeat, 🛑 [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and ⚡ optimized shutdown for faster container lifecycle.
+  - **Auto-maintenance:** Automated execution and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and [credentials](#5-backup-your-encryption-key).
+- 🛠️ **Zero-Downtime Deploys:** Includes a [health check endpoint](#4-verify-your-deployment) to ensure your service is always available.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). **Copy this URL**, as you will need it for the `WEBHOOK_URL` in the next step.
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
