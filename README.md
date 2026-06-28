@@ -53,11 +53,20 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+    - 🧩 **Templates:** [Disabled by default](#missing-templates-tab).
+    - 🔌 **Community Nodes:** [Disabled by default](#missing-community-nodes).
+    - 🖼️ **External Icons:** [Disabled by default](#missing-node-icons).
+    - 👤 **Personalization:** Disabled to reduce setup overhead.
+    - 👋 **Onboarding:** Disabled for faster initialization.
+    - 📡 **Telemetry:** Disabled to reduce background network calls.
+    - 📊 **Metrics:** Internal tracking disabled for stability.
+    - 🏁 **Hiring Banners:** Removed for a cleaner interface.
+    - 💓 **Heartbeat:** Reduced database overhead.
+    - 🛑 **Auto-deactivation:** [Failing workflows automatically paused](#workflow-automatically-deactivated).
+    - ⚡ **Shutdown:** Optimized for faster container lifecycle.
+  - **Auto-maintenance:** Automated [execution](#successful-executions-not-showing) and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and [credentials](#5-backup-your-encryption-key).
+- 🛠️ **Zero-Downtime Deploys:** Includes a [health check endpoint](#4-verify-your-deployment) to ensure your service is always available.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -67,7 +76,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). Be sure to **copy** this URL, as you will need it for the next step.
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -142,7 +151,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 - 🔄 **Updating n8n:** Click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/) to update to the latest version.
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
-- 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+- 📊 **Monitor Storage:** Keep an eye on your database usage in the [Render Dashboard](https://dashboard.render.com/) to ensure you stay within the 1GB free tier limit.
 - 🔔 **Security Alerts:** n8n version check notifications are enabled by default (`N8N_VERSION_NOTIFICATIONS_ENABLED: "true"`) to ensure you're alerted to security updates and new releases directly in the dashboard.
 
 ---
@@ -160,7 +169,7 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 - **✅ Verify:** Follow the [in-app verification steps](#2-configure-webhook-url-required) to confirm your configuration is active.
 
 ### 🐘 Database Connection Errors
-During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the [Render Dashboard](https://dashboard.render.com/) to monitor the connection status.
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
@@ -222,17 +231,17 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
+4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the [Render Dashboard](https://dashboard.render.com/) after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can check the service logs in the **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
 4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
-5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
+5. **✅ Verify:** Navigate to the **Logs** tab in the [Render Dashboard](https://dashboard.render.com/) and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
