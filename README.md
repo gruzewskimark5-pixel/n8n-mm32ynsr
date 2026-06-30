@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find and copy your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -111,7 +111,9 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### 🩺 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+1. **Append path:** Add `/healthz/readiness` to the end of your service URL (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`).
+2. **Visit URL:** Open the modified URL in your browser.
+3. **✅ Verify:** Confirm the page displays a plain-text `OK`.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
@@ -222,17 +224,17 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
+4. **✅ Verify:** To confirm the new timeout is active, navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can check the service logs by navigating to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
 4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
-5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
+5. **✅ Verify:** Navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
