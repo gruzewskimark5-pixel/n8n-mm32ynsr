@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Reducing Resource Overhead by Disabling the Internal Event Bus
+**Learning:** n8n's internal event bus, used for streaming events to external systems, adds background CPU and memory overhead even when not actively configured. In highly resource-constrained environments like Render's 512MB RAM free tier, disabling this non-essential background service improves stability and frees up resources for core workflow execution.
+**Action:** Set `N8N_EVENT_BUS_ENABLED: "false"` in `render.yaml` to eliminate background overhead from the event bus.
