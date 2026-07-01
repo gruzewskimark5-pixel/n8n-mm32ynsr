@@ -53,7 +53,7 @@ Each of the above uses a free instance type by default.
   - **Memory & Concurrency:** Optimized settings for stable operation on 512MB RAM, including forced main-process execution and disabled task runners.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
-    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
+    - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, event bus, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
@@ -204,7 +204,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"` and `N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES: "3"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
