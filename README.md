@@ -13,7 +13,7 @@
   - [🪝 2. Configure Webhook URL (Required)](#2-configure-webhook-url-required)
   - [🌍 3. Update your Timezone (Optional)](#3-update-your-timezone-optional)
   - [🩺 4. Verify your deployment](#4-verify-your-deployment)
-  - [🔑 5. Backup your encryption key](#5-backup-your-encryption-key)
+  - [🔑 5. Backup your encryption key (Required)](#5-backup-your-encryption-key)
 - [⚠️ Free Tier Limitations](#free-tier-limitations)
 - [🔄 Maintenance & Updates](#maintenance--updates)
 - [🔍 Troubleshooting](#troubleshooting)
@@ -23,7 +23,7 @@
   - [🖼️ Missing node icons](#missing-node-icons)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
-  - [📈 Successful executions not showing](#successful-executions-not-showing)
+  - [📊 Successful executions not showing](#successful-executions-not-showing)
   - [🛑 Workflow automatically deactivated](#workflow-automatically-deactivated)
   - [⏳ Workflows timing out](#workflows-timing-out)
   - [📜 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -103,7 +103,9 @@ To ensure your scheduled workflows run at the correct time, you should update th
 > [!TIP]
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
-1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
+1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+   - ✅ `America/New_York`
+   - ❌ `EST`
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
@@ -116,7 +118,7 @@ You can verify that your n8n instance and database are correctly connected by vi
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
 
-### 🔑 5. Backup your encryption key
+### 🔑 5. Backup your encryption key (Required)
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
@@ -130,7 +132,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 > [!WARNING]
 > This template uses Render's **Free instance type** by default.
 > - 💤 **Spin down:** Free web services [spin down](https://render.com/docs/free#spinning-down) after 15 minutes of inactivity.
-> - 🗓️ **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)).
+> - 🗓️ **Database expiry:** Free PostgreSQL databases expire and are permanently **DELETED** after **30 days** (see [Render's Free Tier documentation](https://render.com/docs/free#free-postgresql)). Ensure you regularly [backup your workflows and encryption key](#maintenance--updates) to prevent data loss.
 > - ⏰ **Scheduled triggers:** Workflows using the Schedule or Cron nodes will not run while the service is [spun down](https://render.com/docs/free#spinning-down) due to inactivity.
 >
 > To avoid data loss and ensure your workflows run reliably, we recommend upgrading to a paid instance type for both the web service and the database.
@@ -152,6 +154,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 ### 💤 Service is slow to start
 On Render's Free Tier, services spin down after 15 minutes of inactivity. When you visit your URL after it has spun down, it can take 1-2 minutes to "cold start." If you see a `503 Service Unavailable` error, wait a minute and refresh the page.
+- **✅ Verify:** Confirm the n8n login page or dashboard is visible.
 
 ### 🪝 Webhook or OAuth2 errors
 If your webhooks aren't receiving data or OAuth2 authentication (like Google or Slack) is failing:
@@ -161,6 +164,7 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 
 ### 🐘 Database Connection Errors
 During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+- **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
@@ -183,7 +187,7 @@ To save memory and reduce background overhead on Render's free tier, the communi
 3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
-### 📈 Successful executions not showing
+### 📊 Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
 
 To see successful executions, you have two options:
