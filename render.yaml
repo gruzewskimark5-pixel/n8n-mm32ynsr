@@ -93,6 +93,10 @@ services:
       - key: N8N_PERSONALIZATION_ENABLED
         value: "false"
 
+      # Disables the internal event bus to reduce background CPU and memory
+      # overhead on Render's 512MB RAM free tier.
+      - key: N8N_EVENT_BUS_ENABLED
+        value: "false"
 
       # Disables the onboarding flow to reduce initial setup overhead,
       # background network calls, and idle resource consumption.
@@ -148,9 +152,11 @@ services:
 
       # Automatically deactivates workflows after repeated failures to prevent
       # continuous resource consumption (CPU/RAM) from broken workflows.
+      # Note: n8n variable naming is inconsistent; _ENABLED lacks underscores
+      # between AUTO and DEACTIVATION, while _MAX_FAILURES requires them.
       - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES
+      - key: N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
