@@ -160,7 +160,7 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 - **✅ Verify:** Follow the [in-app verification steps](#2-configure-webhook-url-required) to confirm your configuration is active.
 
 ### 🐘 Database Connection Errors
-During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) to monitor the connection status.
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
@@ -204,7 +204,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED: "true"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
@@ -213,26 +213,32 @@ If your workflow has been deactivated:
 
 To disable this feature:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+2. **Update variable:** Change `N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED` to `false`.
 3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
+
+To change the deactivation threshold:
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Update variable:** Find `N8N_WORKFLOW_AUTO_DEACTIVATION_MAX_FAILURES` and change its value to your preferred number of failures (e.g., `5`).
+3. **Save:** Click **Save Changes.**
+4. **✅ Verify:** Once the service restarts, confirm that workflows are only deactivated after the new failure limit is reached.
 
 ### ⏳ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
+4. **✅ Verify:** To confirm the new timeout is active, navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
 4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
-5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
+5. **✅ Verify:** Navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
