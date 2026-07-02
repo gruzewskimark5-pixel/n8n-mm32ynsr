@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Destructuring Regression in Hot Paths
+**Learning:** In Node.js v22, using object destructuring for `this` properties in a performance-critical method (e.g., `const { a, b } = this`) was measured to be ~26% slower than direct property access (`this.a`, `this.b`). This suggests that the overhead of creating the local bindings or the way V8 optimizes destructuring outweighs the benefit of reduced property lookups for small numbers of accesses.
+**Action:** Prioritize direct property access (`this.property`) over local destructuring in hot paths unless the property is accessed many times and measured to be faster when cached.
