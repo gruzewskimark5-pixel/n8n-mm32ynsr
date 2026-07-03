@@ -115,3 +115,7 @@
 ## 2026-06-22 - Standardizing Multi-step Onboarding
 **Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
 **Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
+
+## 2025-02-27 - Reliability via Correct Environment Schema
+**Learning:** In technical configuration templates, silent failures occur when environment variable names deviate from the application's expected schema (e.g., missing underscores in `N8N_WORKFLOW_AUTO_DEACTIVATION_ENABLED`). Aligning these keys with the exact internal schema and providing instructions for customizing their thresholds improves both system reliability and user agency.
+**Action:** Always audit environment variable keys against the application's core configuration schema and expose relevant customization parameters in the troubleshooting documentation.
