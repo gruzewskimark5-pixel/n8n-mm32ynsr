@@ -111,3 +111,11 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Reducing Background Overhead by Disabling the Event Bus
+**Learning:** The n8n internal event bus, while useful for auditing, adds background CPU and memory overhead. In resource-constrained environments like Render's 512MB RAM free tier, every reduction in idle resource usage improves stability and responsiveness for core workflow executions.
+**Action:** Set `N8N_EVENT_BUS_ENABLED: "false"` in `render.yaml` to minimize background processing overhead.
+
+## 2026-10-29 - Fixing Silent Configuration Failures in Workflow Deactivation
+**Learning:** Incorrect environment variable naming for n8n features can lead to silent configuration failures. Specifically, omitting underscores in `N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED` and `N8N_WORKFLOW_AUTO_DE_ACTIVATION_MAX_FAILURES` causes n8n to ignore these critical resource-saving settings.
+**Action:** Always cross-reference the official n8n documentation for the exact environment variable keys and ensure they include all required underscores to prevent resource exhaustion from broken workflows.

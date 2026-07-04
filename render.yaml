@@ -82,6 +82,11 @@ services:
       - key: N8N_COMMUNITY_PACKAGES_ENABLED
         value: "false"
 
+      # Disables the internal event bus to reduce background CPU and memory
+      # overhead on Render's 512MB RAM free tier.
+      - key: N8N_EVENT_BUS_ENABLED
+        value: "false"
+
       # Disables external icons in the n8n editor UI to reduce unnecessary
       # network overhead and improve editor responsiveness on Render's
       # free tier.
@@ -148,9 +153,9 @@ services:
 
       # Automatically deactivates workflows after repeated failures to prevent
       # continuous resource consumption (CPU/RAM) from broken workflows.
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
+      - key: N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES
+      - key: N8N_WORKFLOW_AUTO_DE_ACTIVATION_MAX_FAILURES
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
