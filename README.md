@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). **Copy this URL, as you will need it for the next step.**
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -102,6 +102,11 @@ To ensure your scheduled workflows run at the correct time, you should update th
 
 > [!TIP]
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
+
+> [!IMPORTANT]
+> The `GENERIC_TIMEZONE` must be a valid TZ database name:
+> - ✅ `America/New_York`
+> - ❌ `EST`
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
 2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
@@ -204,7 +209,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED: "true"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
@@ -213,7 +218,7 @@ If your workflow has been deactivated:
 
 To disable this feature:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+2. **Update variable:** Change `N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED` to `false`.
 3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
 
@@ -232,7 +237,7 @@ To get more detailed logs:
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
 4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
-5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
+5. **✅ Verify:** Navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
