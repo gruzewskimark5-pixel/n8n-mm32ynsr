@@ -55,9 +55,9 @@ Each of the above uses a free instance type by default.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
     - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+  - **Auto-maintenance:** Automated execution and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [workflows](#maintenance--updates) and [credentials](#5-backup-your-encryption-key).
+- 🛠️ **Zero-Downtime Deploys:** Includes a [health check endpoint](#4-verify-your-deployment) to ensure your service is always available.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find and copy your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). **Copy this URL**, as you will need it for the next steps.
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -204,18 +204,20 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails repeatedly (`N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED: "true"`). By default, this happens after 3 consecutive failures.
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
 2. Manually reactivate the workflow by toggling the **Active** switch in the top-right corner of the n8n editor.
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
-To disable this feature:
+To adjust the failure threshold or disable this feature:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+2. **Update variables:**
+   - To change the threshold, update `N8N_WORKFLOW_AUTO_DE_ACTIVATION_MAX_FAILURES` (e.g., to `5`).
+   - To disable the feature, change `N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED` to `false`.
 3. **Save:** Click **Save Changes.**
-4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
+4. **✅ Verify:** Once the service restarts, confirm that the new failure behavior is applied to your workflows in n8n.
 
 ### ⏳ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
@@ -225,7 +227,9 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can check the service logs.
+
+1. **View logs:** Navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
