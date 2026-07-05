@@ -115,3 +115,7 @@
 ## 2026-06-22 - Standardizing Multi-step Onboarding
 **Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
 **Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
+
+## 2026-06-23 - Preventing Silent Failures with Precise Configuration Keys
+**Learning:** In n8n v1+, environment variable naming for features like workflow auto-deactivation is highly specific and differs from the intuitive camel-case or simplified formats (e.g., 'AUTODEACTIVATION' vs 'AUTO_DE_ACTIVATION'). Misconfigured keys lead to silent failures where the feature remains disabled despite being documented as active.
+**Action:** Always verify application-specific environment variable schemas against official documentation and include explicit troubleshooting steps for adjusting these precise keys in the README.
