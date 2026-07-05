@@ -204,7 +204,7 @@ This is the most efficient way to save database space while still seeing success
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
 
 ### 🛑 Workflow automatically deactivated
-To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTODEACTIVATION_ENABLED: "true"`).
+To prevent broken workflows from wasting resources, n8n is configured to automatically deactivate any workflow that fails 3 times in a row (`N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED: "true"`).
 
 If your workflow has been deactivated:
 1. Fix the error in your workflow.
@@ -213,7 +213,7 @@ If your workflow has been deactivated:
 
 To disable this feature:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+2. **Update variable:** Change `N8N_WORKFLOW_AUTO_DE_ACTIVATION_ENABLED` to `false`.
 3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
 
