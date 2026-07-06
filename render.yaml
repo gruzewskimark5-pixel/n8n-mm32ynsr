@@ -59,6 +59,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables the internal event bus to reduce background CPU and memory
+      # overhead on Render's 512MB RAM free tier.
+      - key: N8N_EVENT_BUS_ENABLED
+        value: "false"
+
       # Disables the n8n Insights module to reduce background CPU/memory
       # overhead and database load on Render's free tier.
       - key: N8N_DISABLED_MODULES
@@ -226,14 +231,14 @@ services:
       - key: PORT
         value: 5678
 
-      # Sets the timezone for your n8n instance.
+      # (Optional) Sets the timezone for your n8n instance.
       # This is important for accurate scheduling in your workflows.
       # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # for a list of valid TZ values.
       - key: GENERIC_TIMEZONE
         value: UTC
 
-      # If you use webhook nodes or OAuth2 (e.g., Google, Slack), you must
+      # (Required) If you use webhook nodes or OAuth2 (e.g., Google, Slack), you must
       # set this manually to your service URL after your first deployment
       # for webhooks and OAuth2 callbacks to work correctly.
       #

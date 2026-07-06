@@ -96,6 +96,10 @@
 **Learning:** Setting `N8N_RUNNERS_ENABLED: "false"` in n8n optimizes memory on 512MB tiers by forcing Code nodes and other tasks to run within the main process instead of spawning separate child processes, significantly reducing memory overhead and preventing OOM crashes.
 **Action:** Always disable task runners in memory-constrained environments to consolidate processing into the main n8n process.
 
+## 2026-06-05 - Reducing Background Overhead by Disabling the Event Bus
+**Learning:** n8n's internal event bus, used for pushing events to external systems, adds background CPU and memory overhead even when not actively used. In highly resource-constrained environments like Render's 512MB free tier, this idle overhead can impact the stability of core workflow executions.
+**Action:** Set `N8N_EVENT_BUS_ENABLED: "false"` in `render.yaml` to eliminate this background processing and preserve resources for workflow execution.
+
 ## 2026-05-20 - Complementing Main Process Execution with Disabled Task Runners
 **Learning:** Setting `EXECUTIONS_PROCESS=main` optimizes workflow execution, but n8n still spawns child processes for Code nodes by default through task runners. On Render's 512MB free tier, these additional processes can still trigger OOM kills.
 **Action:** Always set `N8N_RUNNERS_ENABLED: "false"` alongside `EXECUTIONS_PROCESS: main` in highly resource-constrained environments to ensure absolute single-process execution.
