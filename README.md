@@ -54,10 +54,10 @@ Each of the above uses a free instance type by default.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
-- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
+    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing [workflows](#maintenance--updates), and optimized shutdown for faster container lifecycle.
+  - **Auto-maintenance:** Automated execution and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [workflows](#maintenance--updates) and [credentials](#5-backup-your-encryption-key).
+- 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available (see [Verify your deployment](#4-verify-your-deployment)).
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). Be sure to copy your service URL, as you'll need it for the next step.
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -111,7 +111,11 @@ To ensure your scheduled workflows run at the correct time, you should update th
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### 🩺 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+You can verify that your n8n instance and database are correctly connected by following these steps:
+
+1. **Append path:** Add `/healthz/readiness` to the end of your unique service URL (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`).
+2. **Visit URL:** Open the modified URL in your browser.
+3. **✅ Verify:** Confirm the page displays a plain-text `OK` response.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
@@ -225,7 +229,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can check the service logs by navigating to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).

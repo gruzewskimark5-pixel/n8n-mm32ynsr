@@ -113,5 +113,9 @@
 **Action:** Always verify that environment variables in the infrastructure blueprint match the application's required schema and that all corresponding documentation is deduplicated and synchronized with these values.
 
 ## 2026-06-22 - Standardizing Multi-step Onboarding
-**Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from skipping prerequisite steps hidden in "Tips."
+**Learning:** For deployment templates with manual setup, transitioning from descriptive paragraphs to standardized, sequential numbered lists reduces cognitive load and prevents users from coaching and skipping prerequisite steps hidden in "Tips."
 **Action:** Always prefer a sequential numbered list for onboarding steps and integrate prerequisite information directly into the primary flow.
+
+## 2026-06-23 - Contextual Navigation Clarity for Log Management
+**Learning:** In technical troubleshooting guides, instructing users to "check logs" without qualifying the navigation path in the platform dashboard (Render) leads to confusion between viewing logs and configuring log levels. Explicitly distinguishing between the **Logs** tab and the **Environment** tab ensures users can both observe issues and apply fixes correctly.
+**Action:** Always ground dashboard navigation steps with the specific tab name and purpose to maintain clear boundaries between system observability and system configuration.
