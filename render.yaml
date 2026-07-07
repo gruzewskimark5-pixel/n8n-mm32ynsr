@@ -59,6 +59,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables the internal event bus to reduce background CPU and memory
+      # overhead in resource-constrained environments.
+      - key: N8N_EVENT_BUS_ENABLED
+        value: "false"
+
       # Disables the n8n Insights module to reduce background CPU/memory
       # overhead and database load on Render's free tier.
       - key: N8N_DISABLED_MODULES
@@ -150,7 +155,7 @@ services:
       # continuous resource consumption (CPU/RAM) from broken workflows.
       - key: N8N_WORKFLOW_AUTODEACTIVATION_ENABLED
         value: "true"
-      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES
+      - key: N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS
         value: "3"
 
       # To significantly reduce database I/O and storage consumption on Render's
