@@ -23,7 +23,7 @@
   - [🖼️ Missing node icons](#missing-node-icons)
   - [🧩 Missing "Templates" tab](#missing-templates-tab)
   - [🔌 Missing "Community Nodes"](#missing-community-nodes)
-  - [📈 Successful executions not showing](#successful-executions-not-showing)
+  - [📊 Successful executions not showing](#successful-executions-not-showing)
   - [🛑 Workflow automatically deactivated](#workflow-automatically-deactivated)
   - [⏳ Workflows timing out](#workflows-timing-out)
   - [📜 Viewing and Adjusting Logs](#viewing-and-adjusting-logs)
@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). **Copy this URL for use in later steps.**
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -85,7 +85,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > - ❌ `https://n8n-service-q975.onrender.com:5678`
 
 1. **Select your service:** In the [Render Dashboard](https://dashboard.render.com/), click on your n8n web service.
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `WEBHOOK_URL` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Paste your unique service URL as the value (e.g., `https://n8n-service-q975.onrender.com`).
 5. **Save:** Click **Save Changes.** Render will automatically restart your service with the new setting.
@@ -104,14 +104,16 @@ To ensure your scheduled workflows run at the correct time, you should update th
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
 1. **Find your Timezone:** Look up your [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g., `Europe/Berlin` or `America/New_York`).
-2. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 3. **Update variable:** Find the existing `GENERIC_TIMEZONE` variable. Click the **Edit** button (or the value field) to update it.
 4. **Enter details:** Change the value from `UTC` to your preferred TZ name (e.g., `America/New_York`).
 5. **Save:** Click **Save Changes.**
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
 ### 🩺 4. Verify your deployment
-You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
+1. **Append path:** Append `/healthz/readiness` to your service URL (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`).
+2. **Visit URL:** Open the modified URL in your browser.
+3. **✅ Verify:** Confirm that the page displays a plain-text `OK` response.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
@@ -119,7 +121,7 @@ You can verify that your n8n instance and database are correctly connected by vi
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
 
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Reveal and copy key:** Find the `N8N_ENCRYPTION_KEY` variable. Click the **eye icon** (or the **Reveal** button) to show the value, then copy it.
 3. **Store safely:** Save this key in a secure location (like a password manager).
 
@@ -142,7 +144,7 @@ Your credentials in n8n are encrypted with a unique key. If you ever need to mig
 
 - 🔄 **Updating n8n:** Click **Clear Build Cache & Deploy** from the **Manual Deploy** dropdown (top-right corner) in the [Render Dashboard](https://dashboard.render.com/) to update to the latest version.
 - 💾 **Backups:** Regularly export your workflows (open a workflow, click the **horizontal ellipsis (three dots)** in the top-right corner, and select **Download**) and keep a secure backup of your `N8N_ENCRYPTION_KEY`.
-- 📊 **Monitor Storage:** Keep an eye on your database usage in the Render Dashboard to ensure you stay within the 1GB free tier limit.
+- 📊 **Monitor Storage:** Keep an eye on your database usage in the [Render Dashboard](https://dashboard.render.com/) to ensure you stay within the 1GB free tier limit.
 - 🔔 **Security Alerts:** n8n version check notifications are enabled by default (`N8N_VERSION_NOTIFICATIONS_ENABLED: "true"`) to ensure you're alerted to security updates and new releases directly in the dashboard.
 
 ---
@@ -160,30 +162,30 @@ If your webhooks aren't receiving data or OAuth2 authentication (like Google or 
 - **✅ Verify:** Follow the [in-app verification steps](#2-configure-webhook-url-required) to confirm your configuration is active.
 
 ### 🐘 Database Connection Errors
-During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the Render Dashboard to monitor the connection status.
+During initial deployment, the database might take slightly longer to initialize than the web service. If the service fails to start initially, Render will automatically retry. You can check the service logs in the [Render Dashboard](https://dashboard.render.com/) to monitor the connection status.
 
 ### 🖼️ Missing node icons
 To reduce network overhead and improve editor responsiveness on Render's free tier, external node icons are disabled by default (`N8N_ICONS_CAN_USE_EXTERNAL: "false"`). To re-enable them:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_ICONS_CAN_USE_EXTERNAL` to `true`.
 3. **Save:** Click **Save Changes.**
 4. **✅ Verify:** Once the service restarts, you will see high-resolution icons for all nodes in the n8n editor.
 
 ### 🧩 Missing "Templates" tab
 To save memory on Render's free tier, the workflow template library is disabled by default (`N8N_TEMPLATES_ENABLED: "false"`). To re-enable it:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_TEMPLATES_ENABLED` to `true`.
 3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, you will see a **Templates** tab in the left-hand sidebar of your n8n instance.
 
 ### 🔌 Missing "Community Nodes"
 To save memory and reduce background overhead on Render's free tier, the community nodes library is disabled by default (`N8N_COMMUNITY_PACKAGES_ENABLED: "false"`). To re-enable it:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_COMMUNITY_PACKAGES_ENABLED` to `true`.
 3. **Save:** Click **Save Changes.** Note that this will increase your service's idle memory usage.
 4. **✅ Verify:** Once the service restarts, open n8n, click on **Settings** in the left-hand sidebar, and confirm the **Community Nodes** menu item is visible.
 
-### 📈 Successful executions not showing
+### 📊 Successful executions not showing
 To keep the database lean, n8n is configured to only save data for failed production executions (`EXECUTIONS_DATA_SAVE_ON_SUCCESS: "none"`) by default.
 
 To see successful executions, you have two options:
@@ -198,7 +200,7 @@ This is the most efficient way to save database space while still seeing success
 6. **✅ Verify:** Once the change is saved, trigger a **production** execution of the workflow (e.g., via a manual trigger or webhook) and confirm it appears in the **Executions** tab in the left-hand sidebar. Note that manual "test" runs from the editor are not saved by default.
 
 **Option 2: For all workflows**
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `EXECUTIONS_DATA_SAVE_ON_SUCCESS` to `all`.
 3. **Save:** Click **Save Changes.** Note that this will increase your database storage usage more quickly.
 4. **✅ Verify:** Once the service restarts, trigger a **production** execution of any workflow and confirm that a successful execution is recorded in the **Executions** tab. Note that manual "test" runs from the editor are not saved by default.
@@ -211,28 +213,28 @@ If your workflow has been deactivated:
 2. Manually reactivate the workflow by toggling the **Active** switch in the top-right corner of the n8n editor.
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
-To disable this feature:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+To disable this feature or customize the failure threshold:
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false` to disable the feature, or update `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` to change the number of allowed consecutive failures (default is `3`).
 3. **Save:** Click **Save Changes.**
-4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
+4. **✅ Verify:** Once the service restarts, confirm the new behavior by checking if workflows are deactivated after the newly specified number of failures.
 
 ### ⏳ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variables:** Find and update `N8N_EXECUTIONS_TIMEOUT` and `N8N_EXECUTIONS_TIMEOUT_MAX` to your desired value in seconds.
 3. **Save:** Click **Save Changes.** Note that very long executions may lead to service instability on the Free Tier.
-4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
+4. **✅ Verify:** To confirm the new timeout is active, navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
-1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+1. **Open Environment settings:** navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Find the `N8N_LOG_LEVEL` variable.
 3. **Enter details:** Change its value from `warn` to `info` or `debug`.
 4. **Save:** Click **Save Changes.** Render will restart the service with the new log level.
-5. **✅ Verify:** Navigate to the **Logs** tab in the Render Dashboard and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
+5. **✅ Verify:** navigate to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/) and confirm you see `[INFO]` or `[DEBUG]` entries in the log stream.
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
