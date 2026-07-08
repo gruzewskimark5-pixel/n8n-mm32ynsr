@@ -67,7 +67,7 @@ Each of the above uses a free instance type by default.
 After your n8n instance is up and running, follow these steps in the [Render Dashboard](https://dashboard.render.com/) and the n8n application to finish setting up:
 
 ### 👤 1. Create your owner account
-1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`).
+1. **Find your URL:** Find your unique service URL at the top of the service page or under the **Connect** button in the [Render Dashboard](https://dashboard.render.com/) (e.g., `https://n8n-service-q975.onrender.com`). **Copy this URL, as you will need it for later configuration steps.**
 2. **Visit your URL:** Open your unique service URL to access the n8n setup page.
 3. **Create account:** Follow the on-screen instructions to create your first owner account.
 4. **✅ Verify:** Confirm you can see the empty workflow canvas in the n8n editor.
@@ -99,6 +99,13 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 
 ### 🌍 3. Update your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should update the `GENERIC_TIMEZONE` environment variable.
+
+> [!IMPORTANT]
+> The `GENERIC_TIMEZONE` must be a valid TZ database name:
+> - ✅ `America/New_York`
+> - ✅ `Europe/Berlin`
+> - ❌ `EST`
+> - ❌ `UTC+1`
 
 > [!TIP]
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
@@ -211,7 +218,16 @@ If your workflow has been deactivated:
 2. Manually reactivate the workflow by toggling the **Active** switch in the top-right corner of the n8n editor.
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
-To disable this feature:
+To adjust the failure threshold or disable this feature:
+
+**To change the threshold (e.g., from 3 failures to 5):**
+1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
+2. **Update variable:** Find the existing `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` variable and click the **Edit** button.
+3. **Enter details:** Change the value from `3` to your preferred threshold (e.g., `5`).
+4. **Save:** Click **Save Changes.**
+5. **✅ Verify:** Once the service restarts, confirm that workflows are now only deactivated after reaching your new threshold.
+
+**To disable automatic deactivation entirely:**
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
 3. **Save:** Click **Save Changes.**
@@ -225,7 +241,7 @@ To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free 
 4. **✅ Verify:** To confirm the new timeout is active, check the **Logs** tab in the Render Dashboard after the next execution to ensure it is no longer being terminated at the previous limit.
 
 ### 📜 Viewing and Adjusting Logs
-If you're troubleshooting an issue, you can check the service logs in the **Logs** tab of the Render Dashboard.
+If you're troubleshooting an issue, you can check the service logs by navigating to your service's **Logs** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
 
 To get more detailed logs:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
