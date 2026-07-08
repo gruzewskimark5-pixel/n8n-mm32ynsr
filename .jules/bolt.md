@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Correcting Silent Configuration Failures in Auto-Deactivation
+**Learning:** n8n's environment variable naming for automatic workflow deactivation is specific and easily confused. Using `N8N_WORKFLOW_AUTODEACTIVATION_MAX_FAILURES` instead of the correct `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` causes the setting to be silently ignored, leaving n8n instances vulnerable to continuous resource consumption from broken workflows.
+**Action:** Always verify exact environment variable keys against official n8n documentation and implement `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` to ensure the resource-saving auto-deactivation feature is functional.
