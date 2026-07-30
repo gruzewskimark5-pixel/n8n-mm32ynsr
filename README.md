@@ -54,7 +54,7 @@ Each of the above uses a free instance type by default.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
+    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, reduced log verbosity, and optimized shutdown for faster container lifecycle.
   - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
 - 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
