@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Optimizing Hot Paths via Manual Inlining
+**Learning:** In highly sensitive hot paths (nanosecond-scale execution), internal helper function calls can introduce measurable overhead (approx. 1ns per call). While JIT compilers often inline these automatically, manual inlining of simple object creation logic can guarantee a performance gain and provide better predictability for V8's optimization.
+**Action:** When optimizing high-frequency methods, consider inlining small helpers. Always remove the now-unused helper methods to avoid dead code and document the trade-off between DRY and performance via comments.
