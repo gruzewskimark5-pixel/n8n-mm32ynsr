@@ -111,3 +111,7 @@
 ## 2026-10-27 - Maximizing Performance by Flattening Property Access
 **Learning:** In highly optimized hot paths where execution time is measured in nanoseconds, even local destructuring can introduce measurable overhead compared to direct property access on the instance. Flattening deep property structures into instance-level properties during construction allows for the fastest possible access during execution.
 **Action:** Flatten nested configuration or contract objects into instance properties in the constructor to minimize lookup depth and eliminate destructuring overhead in critical execution paths.
+
+## 2026-10-28 - Mandatory N8N_ Prefix for Execution Maintenance
+**Learning:** For n8n v1+, environment variables related to execution data maintenance (e.g., pruning, saving) must retain the `N8N_` prefix (e.g., `N8N_EXECUTIONS_DATA_MAX_AGE`) to be correctly recognized. Omission of the prefix leads to "silent failures" where settings are ignored, causing uncontrolled database growth and performance degradation on resource-constrained platforms.
+**Action:** Always include the `N8N_` prefix for all execution maintenance environment variables and verify against official n8n v1+ documentation.
