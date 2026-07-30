@@ -54,9 +54,9 @@ Each of the above uses a free instance type by default.
   - **Storage Stability:** Disk-offloaded binary data to prevent memory-related crashes.
   - **Lean Background:** Optimized for stability and speed by disabling non-essential features and background tasks:
     - **Disabled Features:** [Templates](#missing-templates-tab), [community nodes](#missing-community-nodes), [external icons](#missing-node-icons), personalization, onboarding, telemetry, and hiring banners.
-    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing workflows, and optimized shutdown for faster container lifecycle.
-  - **Auto-maintenance:** Automated execution and history pruning to keep the database lean.
-- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your workflows and credentials.
+    - **Operational Efficiency:** Reduced database heartbeat overhead, [automatic deactivation](#workflow-automatically-deactivated) of failing [workflows](#maintenance--updates), and optimized shutdown for faster container lifecycle.
+  - **Auto-maintenance:** Automated execution and [history pruning](#maintenance--updates) to keep the database lean.
+- 💾 **Persistent Storage:** Includes a Render Postgres database (1GB limit on Free Tier) to securely store your [credentials](#5-backup-your-encryption-key).
 - 🛠️ **Zero-Downtime Deploys:** Includes a health check endpoint to ensure your service is always available.
 
 ---
@@ -91,6 +91,9 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 5. **Save:** Click **Save Changes.** Render will automatically restart your service with the new setting.
 6. **✅ Verify:** Once the service restarts, open any **Webhook** node in n8n, select the **Production** tab, and confirm the displayed URL matches your service URL (e.g., `https://n8n-service-q975.onrender.com/webhook/...`).
 
+---
+[↑ Back to top](#deploy-n8n-on-render)
+
 > [!TIP]
 > **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
 
@@ -110,11 +113,17 @@ To ensure your scheduled workflows run at the correct time, you should update th
 5. **Save:** Click **Save Changes.**
 6. **✅ Verify:** To confirm the change, create a new workflow in n8n, select the **horizontal ellipsis (three dots)** in the top-right corner, click **Settings**, and confirm the **Timezone** field matches your choice.
 
+---
+[↑ Back to top](#deploy-n8n-on-render)
+
 ### 🩺 4. Verify your deployment
 You can verify that your n8n instance and database are correctly connected by visiting your service URL with the `/healthz/readiness` path appended (e.g., `https://n8n-service-q975.onrender.com/healthz/readiness`). A successful setup will return a plain-text `OK` response.
 
 > [!TIP]
 > This endpoint confirms that both the n8n service and its database are fully connected and ready. To perform a basic reachability check for just the web service, you can use the `/healthz` path instead (e.g., `https://n8n-service-q975.onrender.com/healthz`).
+
+---
+[↑ Back to top](#deploy-n8n-on-render)
 
 ### 🔑 5. Backup your encryption key
 Your credentials in n8n are encrypted with a unique key. If you ever need to migrate or restore your n8n instance, you will need this key. **If you lose this key, you will permanently lose access to all your stored credentials in n8n. Treat this key like a password.**
