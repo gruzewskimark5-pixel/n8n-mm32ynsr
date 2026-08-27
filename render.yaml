@@ -59,6 +59,11 @@ services:
       - key: N8N_DIAGNOSTICS_ENABLED
         value: "false"
 
+      # Disables the internal event bus to eliminate background processing
+      # overhead and reduce memory consumption on Render's 512MB free tier.
+      - key: N8N_EVENT_BUS_ENABLED
+        value: "false"
+
       # Disables the n8n Insights module to reduce background CPU/memory
       # overhead and database load on Render's free tier.
       - key: N8N_DISABLED_MODULES
