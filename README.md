@@ -95,7 +95,7 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 > **Test vs. Production Tabs:** In n8n's Webhook node, the **Test** tab displays a URL for manual testing, while the **Production** tab displays the URL used for active, saved workflows. You must select the **Production** tab to verify that your `WEBHOOK_URL` environment variable has been applied correctly.
 
 > [!TIP]
-> **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can [add a custom domain](https://render.com/docs/custom-domains) to your n8n service for free on Render.
+> **Use a Custom Domain:** For a more professional look and to avoid changing URLs in your external services if you ever redeploy, you can consult [Render's custom domain documentation](https://render.com/docs/custom-domains) to set one up for free.
 
 ### 🌍 3. Update your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should update the `GENERIC_TIMEZONE` environment variable.
@@ -245,10 +245,10 @@ To get more detailed logs:
 > [!TIP]
 > 🔍 **Stuck?** Check the [Troubleshooting](#troubleshooting) guide for help with common issues.
 
-- 🚀 **Quickstart Guide:** Follow n8n's [official quickstart](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
+- 🚀 **Quickstart Guide:** Follow the [n8n official quickstart guide](https://docs.n8n.io/try-it-out/quickstart/) to build your first workflow.
 - 🧩 **Explore Templates:** Browse the [n8n workflow library](https://n8n.io/workflows/) for inspiration.
-- 🔌 **Connect Apps:** Check out the [available integrations](https://n8n.io/integrations/).
-- 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [official docs](https://docs.n8n.io/).
+- 🔌 **Connect Apps:** Check out the [n8n available integrations](https://n8n.io/integrations/).
+- 💬 **Get Help:** Join the [n8n forum](https://community.n8n.io/) or read the [n8n official documentation](https://docs.n8n.io/).
 
 ---
 [↑ Back to top](#deploy-n8n-on-render)
