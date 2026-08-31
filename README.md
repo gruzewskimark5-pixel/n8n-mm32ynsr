@@ -100,6 +100,12 @@ If you use webhook nodes or OAuth2 authentication (e.g., Google, Slack) in your 
 ### 🌍 3. Update your Timezone (Optional)
 To ensure your scheduled workflows run at the correct time, you should update the `GENERIC_TIMEZONE` environment variable.
 
+> [!IMPORTANT]
+> The `GENERIC_TIMEZONE` must use a valid IANA TZ database name (Location/City), not a time zone abbreviation or UTC offset:
+> - ✅ `America/New_York` or `Europe/Berlin`
+> - ❌ `EST` or `PST`
+> - ❌ `GMT+2` or `UTC-5`
+
 > [!TIP]
 > Note that scheduled workflows will only run while the service is active. On the Free Tier, your service will not "wake up" to run a scheduled workflow if it has spun down due to inactivity.
 
