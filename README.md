@@ -211,11 +211,11 @@ If your workflow has been deactivated:
 2. Manually reactivate the workflow by toggling the **Active** switch in the top-right corner of the n8n editor.
 3. **✅ Verify:** After manually reactivating, confirm the **Active** toggle remains green and check the **Executions** list to ensure the workflow is running as expected.
 
-To disable this feature:
+To adjust the failure threshold or disable this feature:
 1. **Open Environment settings:** Navigate to your service's **Environment** tab in the left-hand sidebar of the [Render Dashboard](https://dashboard.render.com/).
-2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false`.
+2. **Update variable:** Change `N8N_WORKFLOW_AUTODEACTIVATION_MAX_LAST_EXECUTIONS` to your preferred number of allowed consecutive failures (default: `3`), or set `N8N_WORKFLOW_AUTODEACTIVATION_ENABLED` to `false` to disable automatic deactivation.
 3. **Save:** Click **Save Changes.**
-4. **✅ Verify:** Once the service restarts, confirm that workflows that fail repeatedly no longer show the "Automatically deactivated" status in n8n.
+4. **✅ Verify:** Once the service restarts, confirm in n8n that workflows reflect the updated deactivation threshold or behavior after execution failures.
 
 ### ⏳ Workflows timing out
 To prevent runaway workflows from exhausting CPU and RAM on Render's 512MB free tier, a global execution timeout of 1 hour (3600 seconds) is enabled by default. If your workflows require more time:
